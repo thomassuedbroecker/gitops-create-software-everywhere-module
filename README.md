@@ -119,6 +119,7 @@ git push -u origin main
 #### Step 1:  Do some modification in the `main.tf` file
 
 * Change `name = "my-module"` to `guestbook-module`
+* Add `helm_guestbook = {// create entry}` to the `values_content = {}`. 
 
 ```
 locals {
