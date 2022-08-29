@@ -120,6 +120,7 @@ git push -u origin main
 
 * Change `name = "my-module"` to `guestbook-module`
 * Add `helm_guestbook = {// create entry}` to the `values_content = {}`. 
+* Change `layer = "services"` to `layer = "applications"`
 
 ```
 locals {
