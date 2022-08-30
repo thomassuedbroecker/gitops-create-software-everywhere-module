@@ -141,4 +141,53 @@ locals {
 #### Step 2: Create a new folder structure for the `guestbook helmchart`
 
 * Create following folder structure `chart/helm-guestbook`
-* Copy in newly created `helm-guestbook` the content from the repository for the `helm-guestbook` chart [https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook)
+* Copy in newly created `chart/helm-guestbook` the content from the repository for the `helm-guestbook` chart [https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook)
+
+#### Step 3: Edited the `module.yaml` 
+
+* Use for `name`: `gitops-guestbook-module`
+* Use for `description`: `That module will add a new Argo CD config to deploy the guestbook application`
+
+```yaml
+name: ""
+type: gitops
+description: ""
+tags:
+  - tools
+  - gitops
+versions:
+  - platforms:
+      - kubernetes
+      - ocp3
+      - ocp4
+    dependencies:
+      - id: gitops
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+            version: ">= 1.1.0"
+      - id: namespace
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+            version: ">= 1.0.0"
+    variables:
+      - name: gitops_config
+        moduleRef:
+          id: gitops
+          output: gitops_config
+      - name: git_credentials
+        moduleRef:
+          id: gitops
+          output: git_credentials
+      - name: server_name
+        moduleRef:
+          id: gitops
+          output: server_name
+      - name: namespace
+        moduleRef:
+          id: namespace
+          output: name
+      - name: kubeseal_cert
+        moduleRef:
+          id: gitops
+          output: sealed_secrets_cert
+```
