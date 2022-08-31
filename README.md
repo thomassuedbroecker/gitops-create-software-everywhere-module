@@ -202,7 +202,22 @@ versions:
 In that example we will not use the public catalog for module of techzone automation. 
 We will create our own one.
 
-* Let's first inspect the structure of an catalog
+* How to create that catalog.yaml?
+
+  It is useful to take a look into [iascable documentation](https://github.com/cloud-native-toolkit/iascable) and the [build-catalog.sh automation](https://github.com/cloud-native-toolkit/software-everywhere/blob/main/.github/scripts/build-catalog.sh).
+
+  This is an important command to understand.
+  You can combine catalog resources.
+  
+  ```sh
+  iascable build [-c {CATALOG_URL}] [-c {CATALOG_URL}] -i {BOM_INPUT} [-i {BOM_INPUT}] [-o {OUTPUT_DIR}]
+  ```
+
+  * `CATALOG_URL` is the url of the module catalog. The default module catalog is https://modules.cloudnativetoolkit.dev/index.yaml. Multiple module catalogs can be provided. The catalogs are combined, with the last one taking precedence in the case of duplicate modules.
+  * `BOM_INPUT` is the input file containing the Bill of Material definition. Multiple bom files can be provided at the same time.
+  * `OUTPUT_DIR` is the directory where the output terraform template will be generated.
+
+* Inspect the structure of a `catalog.yaml`
 
 The structure of a catalog can be verified here
 [https://modules.cloudnativetoolkit.dev/index.yaml](https://modules.cloudnativetoolkit.dev/index.yaml)
@@ -314,10 +329,6 @@ categories:
               output: sealed_secrets_cert
 ```
 
-* How to create that catalog.yaml?
 
-It is useful to take a look into [iascable documentation](https://github.com/cloud-native-toolkit/iascable) and the [build-catalog.sh automation](https://github.com/cloud-native-toolkit/software-everywhere/blob/main/.github/scripts/build-catalog.sh).
-
-
-* Create a new github project that contains the `custom-catalog.yaml` and ensure that the github project has a tag and a release.
+* Add the `guestbook-catalog.yaml` the guestbook module github repository and ensure that the github project has a tag and a release.
 
