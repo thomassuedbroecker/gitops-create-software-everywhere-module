@@ -368,16 +368,18 @@ We see that the `modules section` does contain entries which are starting with t
 This is an example configuration.
 
 ```yaml
+apiVersion: cloudnativetoolkit.dev/v1alpha1
+kind: Catalog
 categories:
   - category: custom_module
     categoryName: custom_module
     selection: multiple
-    id: https://github.com/thomassuedbroecker/gitops-terraform-guestbook
-      group: ""
-      displayName: gitops-guestbook-module
     modules:
       - cloudProvider: ""
         softwareProvider: ""
+        id: https://github.com/thomassuedbroecker/gitops-terraform-guestbook
+        group: ""
+        displayName: gitops-guestbook-module
         type: gitops
         name: "gitops-guestbook-module"
         type: gitops
