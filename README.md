@@ -143,6 +143,96 @@ locals {
 * Create following folder structure `chart/helm-guestbook`
 * Copy in newly created `chart/helm-guestbook` the content from the repository for the `helm-guestbook` chart [https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook)
 
+* Validate the structure with following commands:
+
+```sh
+CHARTDIR=your_chart_directory
+cd %CHARTDIR
+helm dep update .
+```
+
+```sh
+helm lint .
+```
+
+Example output:
+
+```sh
+==> Linting .
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+```
+
+```sh
+helm template test . -n test
+```
+
+```sh
+# Source: helm-guestbook/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-helm-guestbook
+  labels:
+    app: helm-guestbook
+    chart: helm-guestbook-0.1.0
+    release: test
+    heritage: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: helm-guestbook
+    release: test
+---
+# Source: helm-guestbook/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-helm-guestbook
+  labels:
+    app: helm-guestbook
+    chart: helm-guestbook-0.1.0
+    release: test
+    heritage: Helm
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: helm-guestbook
+      release: test
+  template:
+    metadata:
+      labels:
+        app: helm-guestbook
+        release: test
+    spec:
+      containers:
+        - name: helm-guestbook
+          image: "gcr.io/heptio-images/ks-guestbook-demo:0.1"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {}
+```
+
 #### Step 3: Edited the `module.yaml` 
 
 * Use for `name`: `gitops-guestbook-module`
@@ -208,7 +298,7 @@ We will create our own one.
 
   This is an important command to understand.
   You can combine catalog resources.
-  
+
   ```sh
   iascable build [-c {CATALOG_URL}] [-c {CATALOG_URL}] -i {BOM_INPUT} [-i {BOM_INPUT}] [-o {OUTPUT_DIR}]
   ```
