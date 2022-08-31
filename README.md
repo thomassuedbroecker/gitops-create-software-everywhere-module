@@ -191,3 +191,133 @@ versions:
           id: gitops
           output: sealed_secrets_cert
 ```
+
+### Step 4: Create GitHub tag and relase
+
+* Create a github tag ([example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/))
+* Create a relase 
+
+### 3. Create an own catalog
+
+In that example we will not use the public catalog for module of techzone automation. 
+We will create our own one.
+
+* Let's first inspect the structure of an catalog
+
+The structure of a catalog can be verified here
+[https://modules.cloudnativetoolkit.dev/index.yaml](https://modules.cloudnativetoolkit.dev/index.yaml)
+That is a minimize extraction of the `index.yaml` above. It contains: `categories`,`modules`,`aliases`
+and `providers`.
+
+```yaml
+apiVersion: cloudnativetoolkit.dev/vlalphal
+kind: Catalog
+categories:
+  - category: ai-ml
+  - category: cluster
+  - category: databases
+  - category: dev-tool
+  - category: gitops
+    categoryName: GitOps
+    selection: multiple
+    modules:
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        name: gitops-ocs-operator
+        description: Module to populate a gitops repo with the resources to provision ocs-operator
+        tags:
+          - tools
+          - gitops
+        versions: []
+        id: github.com/cloud-native-toolkit/terraform-gitops-ocs-operator
+        group: ""
+        displayName: ocs-operator
+  - category: iam
+  - category: image-registry
+  - category: infrastructure
+  - category: middleware
+  - category: network
+  - category: source-control
+  - category: sre
+  - category: storage
+  - category: util
+aliases:
+  - id: github.com/terraform-ibm-modules/terraform-ibm-toolkit-mongodb
+    aliases:
+      - github.com/cloud-native-toolkit/terraform-ibm-mongodb
+providers:
+  - name: ibm
+    source: ibm-cloud/ibm
+    variables:
+      - name: ibmcloud_api_key
+        scope: global
+      - name: region
+        scope: global
+```
+
+We see that the `modules section` does contain entries which are starting with the entries      `cloudProvider`, `softwareProvider` and `type`. After these entries we insert content of the `module.yaml`.
+
+This is an example configuration.
+
+```yaml
+apiVersion: cloudnativetoolkit.dev/v1alpha1
+kind: Catalog
+categories:
+  - category: custom_module
+    categoryName: custom_module
+    selection: multiple
+    modules:
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        name: "gitops-guestbook-module"
+        type: gitops
+        description: "That module will add a new Argo CD config to deploy the guestbook application"
+        tags:
+          - tools
+          - gitops
+        versions:
+          - platforms:
+            - kubernetes
+            - ocp3
+            - ocp4
+        dependencies:
+          - id: gitops
+            refs:
+              - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+               version: ">= 1.1.0"
+          - id: namespace
+            refs:
+              - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                version: ">= 1.0.0"
+        variables:
+          - name: gitops_config
+            moduleRef:
+              id: gitops
+              output: gitops_config
+          - name: git_credentials
+            moduleRef:
+              id: gitops
+              output: git_credentials
+          - name: server_name
+            moduleRef:
+              id: gitops
+              output: server_name
+          - name: namespace
+            moduleRef:
+              id: namespace
+              output: name
+          - name: kubeseal_cert
+            moduleRef:
+              id: gitops
+              output: sealed_secrets_cert
+```
+
+* How to create that catalog.yaml?
+
+It is useful to take a look into [iascable documentation](https://github.com/cloud-native-toolkit/iascable) and the [build-catalog.sh automation](https://github.com/cloud-native-toolkit/software-everywhere/blob/main/.github/scripts/build-catalog.sh).
+
+
+* Create a new github project that contains the `custom-catalog.yaml` and ensure that the github project has a tag and a release.
+
