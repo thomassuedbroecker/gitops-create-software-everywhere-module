@@ -143,7 +143,7 @@ locals {
 * Create following folder structure `chart/helm-guestbook`
 * Copy in newly created `chart/helm-guestbook` the content from the repository for the `helm-guestbook` chart [https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook)
 
-* Validate the structure with following commands:
+* Validate the helm chart structure with following commands:
 
 ```sh
 CHARTDIR=your_chart_directory
@@ -167,6 +167,8 @@ Example output:
 ```sh
 helm template test . -n test
 ```
+
+Example output:
 
 ```sh
 # Source: helm-guestbook/templates/service.yaml
