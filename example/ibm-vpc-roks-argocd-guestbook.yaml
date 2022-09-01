@@ -30,7 +30,7 @@ spec:
     # - objectstorage
     - name: ibm-ocp-vpc
       alias: ibm-ocp-vpc
-      version: v1.15.5
+      version: v1.15.7
       variables:
         - name: name
           value: "tsued-gitops-guestbook"
@@ -40,7 +40,7 @@ spec:
           value: ["tsuedro"]
     - name: ibm-object-storage
       alias: ibm-object-storage
-      version: v4.0.3
+      version: v4.0.6
       variables:
         - name: name
           value: "cos_tsued_guestbook"
@@ -75,4 +75,4 @@ spec:
     # Install guestbook editor
     - name: gitops-terraform-guestbook
       alias: gitops-terraform-guestbook
-      version: v0.0.4
+      version: v0.0.5
