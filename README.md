@@ -19,6 +19,10 @@ The module covers the [GitOps topic](https://modules.cloudnativetoolkit.dev/#/ho
 
 ### a. Create a new GitHub repository based on the template
 
+We will use later different catalogs here is a simplified view of the depencencies we will have later.
+
+![](images/develop-own-module-01.png)
+
 #### Step 1: Clone the project to your local computer
 
 ```sh
