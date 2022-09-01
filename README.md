@@ -313,8 +313,7 @@ We will create our own one.
 
 The structure of a catalog can be verified here
 [https://modules.cloudnativetoolkit.dev/index.yaml](https://modules.cloudnativetoolkit.dev/index.yaml)
-That is a minimize extraction of the `index.yaml` above. It contains: `categories`,`modules`,`aliases`
-and `providers`.
+That is a minimize extraction of the `index.yaml` above. It contains: `categories`,`modules`,`aliases` and `providers`.
 
 ```yaml
 apiVersion: cloudnativetoolkit.dev/vlalphal
@@ -363,7 +362,7 @@ providers:
         scope: global
 ```
 
-We see that the `modules section` does contain entries which are starting with the entries      `cloudProvider`, `softwareProvider` and `type`. After these entries we insert content of the `module.yaml`.
+We see that the `modules section` does contain entries which are starting with the entries   `cloudProvider`, `softwareProvider`, `id`, `group`, `displayName` and `type`. After these entries we insert content of the `module.yaml`.
 
 This is an example configuration.
 
@@ -424,6 +423,19 @@ categories:
               output: sealed_secrets_cert
 ```
 
-
 * Add the `guestbook-catalog.yaml` the guestbook module github repository and ensure that the github project has a tag and a release.
+
+* Copy the helper scripts from the [lab 3 operate](https://operate.cloudnativetoolkit.dev/getting-started/lab3/)
+
+* Update helper script `helper-create-scaffolding.sh` with following code that uses two catalog files as input for the terraform creation with `iascable`.
+
+```sh
+BASE_CATALOG=modules.cloudnativetoolkit.dev/index.yaml
+CUSTOM_CATALOG=raw.githubusercontent.com/thomassuedbroecker/gitops-terraform-guestbook/main/guestbook-catalog.yaml
+
+# 1. Create scaffolding
+iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM_CATALOG
+``` 
+
+
 

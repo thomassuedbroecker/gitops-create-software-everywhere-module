@@ -72,7 +72,7 @@ spec:
           value: "iascable-gitops-guestbook"
         - name: repo
           value: "iascable-gitops-guestbook"
-    # Install Swagger editor
+    # Install guestbook editor
     - name: gitops-guestbook-module
       alias: gitops-guestbook-module
       version: v0.0.2
