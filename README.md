@@ -425,6 +425,18 @@ categories:
 
 * Add the `guestbook-catalog.yaml` the guestbook module github repository and ensure that the github project has a tag and a release.
 
+* Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
+
+```sh
+curl -sL https://iascable.cloudnativetoolkit.dev/install.sh | sh
+iascable --version
+```
+
+Example output:
+```sh
+2.17.1
+```
+
 * Copy the helper scripts from the [lab 3 operate](https://operate.cloudnativetoolkit.dev/getting-started/lab3/)
 
 * Update helper script `helper-create-scaffolding.sh` with following code that uses two catalog files as input for the terraform creation with `iascable`.

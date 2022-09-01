@@ -73,6 +73,6 @@ spec:
         - name: repo
           value: "iascable-gitops-guestbook"
     # Install guestbook editor
-    - name: gitops-guestbook-module
-      alias: gitops-guestbook-module
-      version: v0.0.3
+    - name: gitops-terraform-guestbook
+      alias: gitops-terraform-guestbook
+      version: v0.0.4
