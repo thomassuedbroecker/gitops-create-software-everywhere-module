@@ -2,9 +2,9 @@
 
 # Basic global variables
 CONTAINER_ENGINE="colima"
-BASE_CATALOG=modules.cloudnativetoolkit.dev/index.yaml
+BASE_CATALOG=https://modules.cloudnativetoolkit.dev/index.yaml
 #BASE_CATALOG=raw.githubusercontent.com/cloud-native-toolkit/software-everywhere/main/catalog.yaml
-CUSTOM_CATALOG=raw.githubusercontent.com/thomassuedbroecker/gitops-terraform-guestbook/main/guestbook-catalog.yaml
+CUSTOM_CATALOG=https://raw.githubusercontent.com/thomassuedbroecker/gitops-terraform-guestbook/main/guestbook-catalog.yml
 
 # 1. Create scaffolding
 iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM_CATALOG
