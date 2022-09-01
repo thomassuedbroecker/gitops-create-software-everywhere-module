@@ -59,7 +59,7 @@ Initialized empty Git repository in /Users/thomassuedbroecker/Downloads/dev/gito
 git add --all
 ```
 
-#### Step 5: Create new github project `gitops-terraform-guestbook` using `git commit`
+#### Step 5: Create new github project [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook) using `git commit`
 
 ```sh
 git commit
