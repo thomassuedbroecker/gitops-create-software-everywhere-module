@@ -398,117 +398,113 @@ We will create our own `catalog.yaml` file and save the configruation in the the
 
 * Inspect the structure of a `catalog.yaml`
 
-The structure of a catalog can be verified here
-[https://modules.cloudnativetoolkit.dev/index.yaml](https://modules.cloudnativetoolkit.dev/index.yaml)
-That is a minimize extraction of the `index.yaml` above. It contains: `categories`,`modules`,`aliases` and `providers`.
+  The structure of a catalog can be verified here
+  [https://modules.cloudnativetoolkit.dev/index.yaml](https://modules.cloudnativetoolkit.dev/index.yaml)
+  That is a minimize extraction of the `index.yaml` above. It contains: `categories`,`modules`,`aliases` and `providers`.
 
-```yaml
-apiVersion: cloudnativetoolkit.dev/vlalphal
-kind: Catalog
-categories:
-  - category: ai-ml
-  - category: cluster
-  - category: databases
-  - category: dev-tool
-  - category: gitops
-    categoryName: GitOps
-    selection: multiple
-    modules:
-      - cloudProvider: ""
-        softwareProvider: ""
-        type: gitops
-        name: gitops-ocs-operator
-        description: Module to populate a gitops repo with the resources to provision ocs-operator
-        tags:
-          - tools
-          - gitops
-        versions: []
-        id: github.com/cloud-native-toolkit/terraform-gitops-ocs-operator
-        group: ""
-        displayName: ocs-operator
-  - category: iam
-  - category: image-registry
-  - category: infrastructure
-  - category: middleware
-  - category: network
-  - category: source-control
-  - category: sre
-  - category: storage
-  - category: util
-aliases:
-  - id: github.com/terraform-ibm-modules/terraform-ibm-toolkit-mongodb
-    aliases:
-      - github.com/cloud-native-toolkit/terraform-ibm-mongodb
-providers:
-  - name: ibm
-    source: ibm-cloud/ibm
-    variables:
-      - name: ibmcloud_api_key
-        scope: global
-      - name: region
-        scope: global
-```
+  ```yaml
+  apiVersion: cloudnativetoolkit.dev/vlalphal
+  kind: Catalog
+  categories:
+    - category: ai-ml
+    - category: cluster
+    - category: databases
+    - category: dev-tool
+    - category: gitops
+      categoryName: GitOps
+      selection: multiple
+      modules:
+        - cloudProvider: ""
+          softwareProvider: ""
+          type: gitops
+          name: gitops-ocs-operator
+          description: Module to populate a gitops repo with the resources to provision ocs-operator
+          tags:
+            - tools
+            - gitops
+          versions: []
+          id: github.com/cloud-native-toolkit/terraform-gitops-ocs-operator
+          group: ""
+          displayName: ocs-operator
+    - category: iam
+    - category: image-registry
+    - category: infrastructure
+    ...
+  aliases:
+    - id: github.com/terraform-ibm-modules/terraform-ibm-toolkit-mongodb
+    ...
+  providers:
+    - name: ibm
+      source: ibm-cloud/ibm
+      variables:
+        - name: ibmcloud_api_key
+          scope: global
+        - name: region
+          scope: global
+    ```
 
-We see that the `modules section` does contain entries which are starting with the entries   `cloudProvider`, `softwareProvider`, `id`, `group`, `displayName` and `type`. After these entries we insert content of the `module.yaml`.
+* Inspect the module section in more detail
 
-This is an example configuration.
+  We see that the `modules section` does contain following `cloudProvider`, `softwareProvider`, `id`, `group`, `displayName` and `type` which are not a part of the `module.yaml`. After these entries we insert content of the `module.yaml`.
 
-```yaml
-apiVersion: cloudnativetoolkit.dev/v1alpha1
-kind: Catalog
-categories:
-  - category: custom_module
-    categoryName: custom_module
-    selection: multiple
-    modules:
-      - cloudProvider: ""
-        softwareProvider: ""
-        id: https://github.com/thomassuedbroecker/gitops-terraform-guestbook
-        group: ""
-        displayName: gitops-guestbook-module
-        type: gitops
-        name: "gitops-guestbook-module"
-        type: gitops
-        description: "That module will add a new Argo CD config to deploy the guestbook application"
-        tags:
-          - tools
-          - gitops
-        versions:
-          - platforms:
-            - kubernetes
-            - ocp3
-            - ocp4
-        dependencies:
-          - id: gitops
-            refs:
-              - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
-               version: ">= 1.1.0"
-          - id: namespace
-            refs:
-              - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
-                version: ">= 1.0.0"
-        variables:
-          - name: gitops_config
-            moduleRef:
-              id: gitops
-              output: gitops_config
-          - name: git_credentials
-            moduleRef:
-              id: gitops
-              output: git_credentials
-          - name: server_name
-            moduleRef:
-              id: gitops
-              output: server_name
-          - name: namespace
-            moduleRef:
-              id: namespace
-              output: name
-          - name: kubeseal_cert
-            moduleRef:
-              id: gitops
-              output: sealed_secrets_cert
-```
+  This is an example configuration.
+
+  ```yaml
+  apiVersion: cloudnativetoolkit.dev/v1alpha1
+  kind: Catalog
+  categories:
+    - category: custom_module
+     categoryName: custom_module
+     selection: multiple
+     modules:
+       - cloudProvider: ""
+         softwareProvider: ""
+         id: https://github.com/thomassuedbroecker/gitops-terraform-guestbook
+         group: ""
+         displayName: gitops-guestbook-module
+         type: gitops
+         name: "gitops-guestbook-module"
+         type: gitops
+         description: "That module will add a new Argo CD config to deploy the guestbook   application"
+         tags:
+            - tools
+            - gitops
+         versions:
+            - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+         dependencies:
+            - id: gitops
+              refs:
+                - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                  version: ">= 1.1.0"
+            - id: namespace
+              refs:
+                - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                  version: ">= 1.0.0"
+         variables:
+            - name: gitops_config
+              moduleRef:
+                id: gitops
+                output: gitops_config
+            - name: git_credentials
+              moduleRef:
+                id: gitops
+                output: git_credentials
+            - name: server_name
+              moduleRef:
+                id: gitops
+                output: server_name
+            - name: namespace
+              moduleRef:
+                id: namespace
+                output: name
+            - name: kubeseal_cert
+              moduleRef:
+                id: gitops
+                output: sealed_secrets_cert
+  ```
 
 * Add the `guestbook-catalog.yaml` the guestbook module github repository and ensure that the github project has a tag and a release.
 
