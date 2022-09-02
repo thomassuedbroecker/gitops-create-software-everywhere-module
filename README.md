@@ -356,6 +356,52 @@ versions:
           output: sealed_secrets_cert
 ```
 
+### Step 4: Add additional variables to the module
+
+```sh
+name: "gitops-terraform-guestbook"
+type: gitops
+description: "That module will add a new Argo CD config to deploy the guestbook application"
+tags:
+  - tools
+  - gitops
+versions:
+  - platforms:
+      - kubernetes
+      - ocp3
+      - ocp4
+    dependencies:
+      - id: gitops
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+            version: '>= 1.1.0'
+      - id: namespace
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+            version: '>= 1.0.0'
+    variables:
+      - name: gitops_config
+        moduleRef:
+          id: gitops
+          output: gitops_config
+      - name: git_credentials
+        moduleRef:
+          id: gitops
+          output: git_credentials
+      - name: server_name
+        moduleRef:
+          id: gitops
+          output: server_name
+      - name: namespace
+        moduleRef:
+          id: namespace
+          output: name
+      - name: kubeseal_cert
+        moduleRef:
+          id: gitops
+          output: sealed_secrets_cert
+```
+
 ### Step 4: Create GitHub tag and relase
 
 The module github repository releases shoulf be updated when you are going to change the module.
