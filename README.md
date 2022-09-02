@@ -617,10 +617,6 @@ We will create our own `catalog.yaml` file and save the configruation in the the
                   moduleRef:
                     id: gitops
                     output: server_name
-                - name: enable_sso
-                  type: bool
-                  description: Flag indicating if oauth should be applied (only available for OpenShift)
-                  default: true
               version: v0.0.1
               outputs:
                 - name: name
