@@ -621,16 +621,6 @@ We will create our own `catalog.yaml` file and save the configruation in the the
                   type: bool
                   description: Flag indicating if oauth should be applied (only available for OpenShift)
                   default: true
-                - name: tls_secret_name
-                  description: The name of the secret containing the tls certificate values
-                  default: '""'
-                - name: cluster_ingress_hostname
-                  type: string
-                  description: Ingress hostname of the cluster.
-                  default: ""
-                - name: cluster_type
-                  description: The cluster type (openshift or kubernetes)
-                  default: '"openshift"'
               version: v0.0.1
               outputs:
                 - name: name
@@ -701,16 +691,16 @@ iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM
 sh helper-create-scaffolding.sh 
 ```
 
-#### Step 6: Execute "helper-tools-execute-apply-and-backup-result.sh"
-
-```sh
-sh helper-tools-execute-apply-and-backup-result.sh 
-```
-
 #### Step 6: Execute "helper-tools-create-container-workspace.sh "
 
 ```sh
 sh helper-tools-create-container-workspace.sh 
+```
+
+#### Step 6: Execute "helper-tools-execute-apply-and-backup-result.sh "
+
+```sh
+sh helper-tools-execute-apply-and-backup-result.sh 
 ```
 
 Interactive output:
