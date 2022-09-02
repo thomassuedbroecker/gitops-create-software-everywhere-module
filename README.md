@@ -443,7 +443,7 @@ We will create our own `catalog.yaml` file and save the configruation in the the
           scope: global
     ```
 
-* Inspect the module section in more detail
+* Inspect the module section of the catalog file in more detail
 
   We see that the `modules section` does contain following `cloudProvider`, `softwareProvider`, `id`, `group`, `displayName` and `type` which are not a part of the `module.yaml`. After these entries we insert content of the `module.yaml`.
 
@@ -461,9 +461,9 @@ We will create our own `catalog.yaml` file and save the configruation in the the
          softwareProvider: ""
          id: https://github.com/thomassuedbroecker/gitops-terraform-guestbook
          group: ""
-         displayName: gitops-guestbook-module
+         displayName: gitops-terraform-guestbook
          type: gitops
-         name: "gitops-guestbook-module"
+         name: gitops-terraform-guestbook
          type: gitops
          description: "That module will add a new Argo CD config to deploy the guestbook   application"
          tags:
@@ -506,9 +506,13 @@ We will create our own `catalog.yaml` file and save the configruation in the the
                 output: sealed_secrets_cert
   ```
 
-* Add the `guestbook-catalog.yaml` the guestbook module github repository and ensure that the github project has a tag and a release.
+#### Step 1: Add the `guestbook-catalog.yaml` file to `gitops-terraform-guestbook` repository 
 
-* Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
+Note: Ensure that the github project has a tag and a release.
+
+#### Step 2: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
+
+To ensure you use the lates version.
 
 ```sh
 curl -sL https://iascable.cloudnativetoolkit.dev/install.sh | sh
@@ -517,16 +521,34 @@ iascable --version
 
 Example output:
 ```sh
-2.17.1
+2.17.2
 ```
 
-* Copy the helper scripts from the [lab 3 operate](https://operate.cloudnativetoolkit.dev/getting-started/lab3/)
+#### Step 3: Clone the project with the example BOM configuration 
 
+```sh
+git clone https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module
+```
+
+#### Step 4:  Update helper scripts
+
+```sh
+cd example
+ls
+```
+
+These are the helper scripts:
+
+  * helper-create-scaffolding.sh                            
+  * helper-tools-create-container-workspace.sh              
+  * helper-tools-execute-apply-and-backup-result.sh         
+  * helper-tools-execute-destroy-and-delete-backup.sh
+ 
 * Update helper script `helper-create-scaffolding.sh` with following code that uses two catalog files as input for the terraform creation with `iascable`.
 
 ```sh
-BASE_CATALOG=modules.cloudnativetoolkit.dev/index.yaml
-CUSTOM_CATALOG=raw.githubusercontent.com/thomassuedbroecker/gitops-terraform-guestbook/main/guestbook-catalog.yaml
+BASE_CATALOG=https://modules.cloudnativetoolkit.dev/index.yaml
+CUSTOM_CATALOG=https://raw.githubusercontent.com/thomassuedbroecker/gitops-terraform-guestbook/main/guestbook-catalog.yml
 
 # 1. Create scaffolding
 iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM_CATALOG
