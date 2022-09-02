@@ -454,56 +454,151 @@ We will create our own `catalog.yaml` file and save the configruation in the the
   kind: Catalog
   categories:
     - category: custom_module
-     categoryName: custom_module
-     selection: multiple
-     modules:
-       - cloudProvider: ""
-         softwareProvider: ""
-         id: https://github.com/thomassuedbroecker/gitops-terraform-guestbook
-         group: ""
-         displayName: gitops-terraform-guestbook
-         type: gitops
-         name: gitops-terraform-guestbook
-         type: gitops
-         description: "That module will add a new Argo CD config to deploy the guestbook   application"
-         tags:
+      categoryName: custom_module
+      selection: multiple
+      modules:
+        - cloudProvider: ""
+          softwareProvider: ""
+          type: gitops
+          id: github.com/thomassuedbroecker/gitops-terraform-guestbook
+          group: ""
+          displayName: gitops-terraform-guestbook
+          name: gitops-terraform-guestbook
+          description: asdf
+          tags:
             - tools
             - gitops
-         versions:
+          versions:
             - platforms:
-              - kubernetes
-              - ocp3
-              - ocp4
-         dependencies:
-            - id: gitops
-              refs:
-                - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
-                  version: ">= 1.1.0"
-            - id: namespace
-              refs:
-                - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
-                  version: ">= 1.0.0"
-         variables:
-            - name: gitops_config
-              moduleRef:
-                id: gitops
-                output: gitops_config
-            - name: git_credentials
-              moduleRef:
-                id: gitops
-                output: git_credentials
-            - name: server_name
-              moduleRef:
-                id: gitops
-                output: server_name
-            - name: namespace
-              moduleRef:
-                id: namespace
-                output: name
-            - name: kubeseal_cert
-              moduleRef:
-                id: gitops
-                output: sealed_secrets_cert
+                - kubernetes
+                - ocp3
+                - ocp4
+              dependencies:
+                - id: gitops
+                  refs:
+                    - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                      version: '>= 1.1.0'
+                - id: namespace
+                  refs:
+                    - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                      version: '>= 1.0.0'
+              variables:
+                - name: gitops_config
+                  type: |-
+                    object({
+                        boostrap = object({
+                          argocd-config = object({
+                            project = string
+                            repo = string
+                            url = string
+                            path = string
+                          })
+                        })
+                        infrastructure = object({
+                          argocd-config = object({
+                            project = string
+                            repo = string
+                            url = string
+                            path = string
+                          })
+                          payload = object({
+                            repo = string
+                            url = string
+                            path = string
+                          })
+                        })
+                        services = object({
+                          argocd-config = object({
+                            project = string
+                            repo = string
+                            url = string
+                            path = string
+                          })
+                          payload = object({
+                            repo = string
+                            url = string
+                            path = string
+                          })
+                        })
+                        applications = object({
+                          argocd-config = object({
+                            project = string
+                            repo = string
+                            url = string
+                            path = string
+                          })
+                          payload = object({
+                            repo = string
+                            url = string
+                            path = string
+                          })
+                        })
+                      })
+                  description: Config information regarding the gitops repo structure
+                  moduleRef:
+                    id: gitops
+                    output: gitops_config
+                - name: git_credentials
+                  type: |-
+                    list(object({
+                        repo = string
+                        url = string
+                        username = string
+                        token = string
+                      }))
+                  description: The credentials for the gitops repo(s)
+                  sensitive: true
+                  moduleRef:
+                    id: gitops
+                    output: git_credentials
+                - name: namespace
+                  type: string
+                  description: The namespace where the application should be deployed
+                  moduleRef:
+                    id: namespace
+                    output: name
+                - name: kubeseal_cert
+                  type: string
+                  description: The certificate/public key used to encrypt the sealed secrets
+                  default: ""
+                  moduleRef:
+                    id: gitops
+                    output: sealed_secrets_cert
+                - name: server_name
+                  type: string
+                  description: The name of the server
+                  default: default
+                  moduleRef:
+                    id: gitops
+                    output: server_name
+                - name: enable_sso
+                  type: bool
+                  description: Flag indicating if oauth should be applied (only available for OpenShift)
+                  default: true
+                - name: tls_secret_name
+                  description: The name of the secret containing the tls certificate values
+                  default: '""'
+                - name: cluster_ingress_hostname
+                  type: string
+                  description: Ingress hostname of the cluster.
+                  default: ""
+                - name: cluster_type
+                  description: The cluster type (openshift or kubernetes)
+                  default: '"openshift"'
+              version: v0.0.1
+              outputs:
+                - name: name
+                  description: The name of the module
+                - name: branch
+                  description: The branch where the module config has been placed
+                - name: namespace
+                  description: The namespace where the module will be deployed
+                - name: server_name
+                  description: The server where the module will be deployed
+                - name: layer
+                  description: The layer where the module is deployed
+                - name: type
+                  description: The type of module where the module is deployed
   ```
 
 #### Step 1: Add the `guestbook-catalog.yaml` file to `gitops-terraform-guestbook` repository 
