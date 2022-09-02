@@ -1,20 +1,17 @@
 apiVersion: cloudnativetoolkit.dev/v1alpha1
 kind: BillOfMaterial
 metadata:
-  name: ibm-vpc-roks-argocd-guestbook
+  name: new-cluster
 spec:
   modules:
-    # Virtual Private Cloud - related
-    # - subnets
-    # - gateways
     - name: ibm-vpc
       alias: ibm-vpc
-      version: v1.16.0
+      version: v1.16.1
       variables:
       - name: name
-        value: "tsued-gitops-swagger"
+        value: "tsuedbro-ta-gitops"
       - name: tags
-        value: ["tsuedro"]
+        value: ["tsuedbro"]
     - name: ibm-vpc-subnets
       alias: ibm-vpc-subnets
       version: v1.13.2
@@ -22,35 +19,30 @@ spec:
         - name: _count
           value: 1
         - name: name
-          value: "tsued-gitops-guestbook"
+          value: "tsuedbro-ta-gitops"
         - name: tags
-          value: ["tsuedro"]
+          value: ["tsuedbro"]
     - name: ibm-vpc-gateways
-    # ROKS - related
-    # - objectstorage
     - name: ibm-ocp-vpc
       alias: ibm-ocp-vpc
       version: v1.15.7
       variables:
         - name: name
-          value: "tsued-gitops-guestbook"
+          value: "tsuedbro-ta-gitops"
         - name: worker_count
           value: 2
         - name: tags
-          value: ["tsuedro"]
+          value: ["tsuedbro"]
     - name: ibm-object-storage
       alias: ibm-object-storage
-      version: v4.0.6
+      version: v4.0.3
       variables:
         - name: name
-          value: "cos_tsued_guestbook"
+          value: "tsuedbro-ta-gitops"
         - name: tags
-          value: ["tsuedro"]
+          value: ["tsuedbro"]
         - name: label
-          value: ["cos_tsued"]
-    # Install OpenShift GitOps and Bootstrap GitOps (aka. ArgoCD) - related
-    # - argocd
-    # - gitops
+          value: ["tsuedbro"]
     - name: argocd-bootstrap
       alias: argocd-bootstrap
       version: v1.12.0
@@ -65,14 +57,11 @@ spec:
         - name: type
           value: "GIT"
         - name: org
-          value: "thomassuedbroecker"
+          value: "nheidloff"
         - name: username
-          value: "thomassuedbroecker"
+          value: "nheidloff"
         - name: project
-          value: "iascable-gitops-guestbook"
+          value: "ta-gitops"
         - name: repo
-          value: "iascable-gitops-guestbook"
-    # Install guestbook editor
-    - name: gitops-terraform-guestbook
-      #alias: gitops-terraform-guestbook
-      #  version: v0.0.5
+          value: "ta-gitops"
+    - name: terraform-gitops-guestbook-helm

@@ -5,7 +5,8 @@
 # ************************************
 
 # Basic global variables
-PROJECT_NAME="ibm-vpc-roks-argocd-guestbook"
+#PROJECT_NAME="ibm-vpc-roks-argocd-guestbook"
+PROJECT_NAME="niklas-example"
 WORKSPACES_PATH="/home/devops/workspace"
 MAPPED_VOLUME_PATH="/terraform"
 

@@ -122,8 +122,46 @@ git push -u origin main
 
 #### Step 1:  Do some modification in the `main.tf` file
 
-* Change `name = "my-module"` to `guestbook-module`
-* Add `helm_guestbook = {// create entry}` to the `values_content = {}`. 
+* Change `name = "my-module"` to `gitops-guestbook-module`
+* First add `helm_guestbook = {// create entry}` to the `values_content = {}`. That entry will be used to create the values for the variables in the `values.yaml` file for the helm chart.
+  
+  Below you see the relevant code in the `main.tf` which does the copy later.
+
+  ```sh
+  resource null_resource create_yaml {
+    provisioner "local-exec" {
+      command = "${path.module}/scripts/create-yaml.sh '${local.name}' '${local.yaml_dir}'"
+
+      environment = {
+        VALUES_CONTENT = yamlencode(local.values_content)
+      }
+    }
+  }
+  ```
+
+  These are the values we need to insert for our guestbook application as variables for the helm-chart. You find the variables in the Argo CD github project for the helm guestbook application [values.yaml](https://github.com/argoproj/argocd-example-apps/blob/master/helm-guestbook/values.yaml)
+
+  Now replace the `// create entry` with the needed values.
+
+  ```sh
+  helm-guestbook = {
+    "replicaCount": 1
+    "image.repository" = "gcr.io/heptio-images/ks-guestbook-demo"
+    "image.tag" = "0.1"
+    "image.pullPolicy" = "IfNotPresent"
+    "service.type" = "ClusterIP"
+    "service.port" = "80"
+    "ingress.enabled" = "false"
+    "ingress.annotations" = null
+    "ingress.path" = "/"
+    "ingress.hosts" = ["chart-example.local"]
+    "ingress.tls" = []
+    "resources" = null
+    "nodeSelector" = null
+    "tolerations" = null
+    "affinity" = null
+  }
+  ```
 * Change `layer = "services"` to `layer = "applications"`
 
 ```
@@ -133,6 +171,9 @@ locals {
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart/${local.name}"
   service_url   = "http://${local.name}.${var.namespace}"
   values_content = {
+    helm_guestbook = {
+      // create entry
+    }
   }
   layer = "services"
   type  = "base"
@@ -145,15 +186,42 @@ locals {
 #### Step 2: Create a new folder structure for the `guestbook helmchart`
 
 * Create following folder structure `chart/helm-guestbook`
-* Copy in newly created `chart/helm-guestbook` the content from the repository for the `helm-guestbook` chart [https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook)
 
-* Validate the helm chart structure with following commands:
+  ```sh
+  ├── chart
+  │   └── helm-guestbook
+  │       ├── Chart.yaml
+  │       ├── charts
+  │       │   └── helm-guestbook
+  │       │       ├── templates
+  │       │       │   ├── NOTES.txt
+  │       │       │   ├── _helpers.tpl
+  │       │       │   ├── deployment.yaml
+  │       │       │   └── service.yaml
+  │       │       ├── values-production.yaml
+  │       │       └── values.yaml
+  │       │       └── Chart.yaml
+  │       └── values.yaml
+  ```
+
+#### Step 3: Copy in newly create folderstructure the content from the repository for the `helm-guestbook` chart [https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook)
+
+#### Step 4: Validate the helm chart with following commands:
+
+* Navigate the charts directory
 
 ```sh
-CHARTDIR=your_chart_directory
-cd %CHARTDIR
+CHARTDIR=./chart/helm-guestbook/charts/helm-guestbook
+cd $CHARTDIR
+```
+
+* Verify the dependencies
+
+```sh
 helm dep update .
 ```
+
+* Verify the helm chart structure
 
 ```sh
 helm lint .
@@ -241,7 +309,7 @@ spec:
 
 #### Step 3: Edited the `module.yaml` 
 
-* Use for `name`: `gitops-guestbook-module`
+* Use for `name`: `gitops-terraform-guestbook`
 * Use for `description`: `That module will add a new Argo CD config to deploy the guestbook application`
 
 ```yaml
