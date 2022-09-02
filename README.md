@@ -358,20 +358,35 @@ versions:
 
 ### Step 4: Create GitHub tag and relase
 
-* Create a github tag ([example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/))
-* Create a relase 
+The module github repository releases shoulf be updated when you are going to change the module.
+In case when you use specific version numbers in the `BOM` which consums the module.
+
+Example relevant extract from a `BOM` -> `version: v0.0.5`
+
+```yaml
+- name: gitops-terraform-guestbook
+      alias: gitops-terraform-guestbook
+      version: v0.0.5
+``` 
+
+You can follow the step to create a github tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and than create a release.
 
 ### 3. Create an own catalog
 
-In that example we will not use the public catalog for module of techzone automation. 
-We will create our own one.
+In that example we will not publish the our `gitops-terraform-guestbook` module to the public catalog on [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/).. 
 
-* How to create that catalog.yaml?
+We will create our own `catalog.yaml` file and save the configruation in the the github project of the module.
+
+* How to create `catalog.yaml` file ?
 
   It is useful to take a look into [iascable documentation](https://github.com/cloud-native-toolkit/iascable) and the [build-catalog.sh automation](https://github.com/cloud-native-toolkit/software-everywhere/blob/main/.github/scripts/build-catalog.sh).
 
-  This is an important command to understand.
-  You can combine catalog resources.
+
+* How to combine various catalogs?
+
+  You can combine more than one `catalog resources` and `BOM inputs` with the `iascable build` command.
+
+  Here is the build command:
 
   ```sh
   iascable build [-c {CATALOG_URL}] [-c {CATALOG_URL}] -i {BOM_INPUT} [-i {BOM_INPUT}] [-o {OUTPUT_DIR}]
