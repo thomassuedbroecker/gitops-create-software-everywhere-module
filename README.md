@@ -723,7 +723,7 @@ spec:
         - name: tags
           value: ["tsuedro"]
         - name: label
-          value: ["cos_tsued"]
+          value: ["cos_tsued_guestbook"]
     # Install OpenShift GitOps and Bootstrap GitOps (aka. ArgoCD) - related
     # - argocd
     # - gitops
