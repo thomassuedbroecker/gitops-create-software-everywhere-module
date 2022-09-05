@@ -189,7 +189,7 @@ locals {
 
   ```sh
   ├── chart
-  │   └── helm-guestbook
+  │   └── guestbook-module
   │       ├── Chart.yaml
   │       ├── charts
   │       │   └── helm-guestbook
@@ -211,7 +211,7 @@ locals {
 * Navigate the charts directory
 
 ```sh
-CHARTDIR=./chart/helm-guestbook/charts/helm-guestbook
+CHARTDIR=./chart/guestbook-module/charts/helm-guestbook
 cd $CHARTDIR
 ```
 
