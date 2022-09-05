@@ -424,7 +424,7 @@ You can follow the step to create a github tag is that [example blog post](https
 
 ### 3. Create an own catalog
 
-In that example we will not publish the our `gitops-terraform-guestbook` module to the public catalog on [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/).. 
+In that example we will not publish the our `gitops-terraform-guestbook` module to the public catalog on [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/). 
 
 We will create our own `catalog.yaml` file and save the configruation in the the github project of the module.
 
@@ -497,6 +497,14 @@ We will create our own `catalog.yaml` file and save the configruation in the the
 * Inspect the module section of the catalog file in more detail
 
   We see that the `modules section` does contain following `cloudProvider`, `softwareProvider`, `id`, `group`, `displayName` and `type` which are not a part of the `module.yaml`. After these entries we insert content of the `module.yaml`.
+
+  The long type section is not a part of the variable specification:
+  ```yaml
+  name: gitops_config
+                  type: |-
+  ```
+  is not a part of the [current template](https://github.com/cloud-native-toolkit/template-terraform-gitops).
+
 
   This is an example configuration.
 
