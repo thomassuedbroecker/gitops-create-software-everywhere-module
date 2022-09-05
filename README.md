@@ -712,7 +712,19 @@ iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM
 sh helper-create-scaffolding.sh 
 ```
 
-#### Step 8: Execute in the `tools container` the "helper-tools-create-container-workspace.sh" script
+#### Step 8: Delete the `-u "${UID}" \` command from the `output/launch.sh` script
+
+```sh
+${DOCKER_CMD} run -itd --name ${CONTAINER_NAME} \
+  --device /dev/net/tun --cap-add=NET_ADMIN \
+  -u "${UID}" \
+  -v "${SRC_DIR}:/terraform" \
+  -v "workspace-${AUTOMATION_BASE}:/workspaces" \
+  ${ENV_VARS} -w /terraform \
+  ${DOCKER_IMAGE}
+```
+
+#### Step 9: Execute in the `tools container` the "helper-tools-create-container-workspace.sh" script
 
 ```sh
 /terraform $
@@ -722,7 +734,7 @@ sh helper-create-scaffolding.sh
 sh helper-tools-create-container-workspace.sh 
 ```
 
-#### Step 9: Execute in the `tools container` the "helper-tools-execute-apply-and-backup-result.sh" script
+#### Step 10: Execute in the `tools container` the "helper-tools-execute-apply-and-backup-result.sh" script
 
 ```sh
 /terraform $
