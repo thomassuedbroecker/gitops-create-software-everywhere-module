@@ -410,9 +410,14 @@ In case when you use specific version numbers in the `BOM` which consums the mod
 Example relevant extract from a `BOM` -> `version: v0.0.5`
 
 ```yaml
-- name: gitops-terraform-guestbook
+    # Install guestbook
+    # New custom module linked be the custom catalog
+    - name: gitops-terraform-guestbook
       alias: gitops-terraform-guestbook
-      version: v0.0.5
+      #  version: v0.0.5
+      variables:
+        - name: namespace
+          value: "helm-guestbook"
 ``` 
 
 You can follow the step to create a github tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and than create a release.
