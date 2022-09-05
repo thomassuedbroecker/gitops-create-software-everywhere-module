@@ -724,7 +724,14 @@ ${DOCKER_CMD} run -itd --name ${CONTAINER_NAME} \
   ${DOCKER_IMAGE}
 ```
 
-#### Step 9: Execute in the `tools container` the "helper-tools-create-container-workspace.sh" script
+#### Step 9: Start the `launch.sh script`
+
+```sh
+cd output
+sh launch.sh
+```
+
+#### Step 10: Execute in the `tools container` the "helper-tools-create-container-workspace.sh" script
 
 ```sh
 /terraform $
@@ -734,7 +741,7 @@ ${DOCKER_CMD} run -itd --name ${CONTAINER_NAME} \
 sh helper-tools-create-container-workspace.sh 
 ```
 
-#### Step 10: Execute in the `tools container` the "helper-tools-execute-apply-and-backup-result.sh" script
+#### Step 11: Execute in the `tools container` the "helper-tools-execute-apply-and-backup-result.sh" script
 
 ```sh
 /terraform $

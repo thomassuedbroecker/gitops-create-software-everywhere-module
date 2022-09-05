@@ -20,4 +20,7 @@ cd output
 "${CONTAINER_ENGINE}" start
 
 # 5. Start tools container
-sh launch.sh
+#sh launch.sh
+echo "*********************"
+echo "Please delete the <-u '${UID}' \> command from the <output/launch.sh> script"
+echo "*********************"
