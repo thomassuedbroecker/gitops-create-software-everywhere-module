@@ -433,7 +433,6 @@ We will create our own `catalog.yaml` file and save the configruation in the the
 
   It is useful to take a look into [iascable documentation](https://github.com/cloud-native-toolkit/iascable) and the [build-catalog.sh automation](https://github.com/cloud-native-toolkit/software-everywhere/blob/main/.github/scripts/build-catalog.sh).
 
-
 * How to combine various catalogs?
 
   You can combine more than one `catalog resources` and `BOM inputs` with the `iascable build` command.
@@ -544,68 +543,11 @@ We will create our own `catalog.yaml` file and save the configruation in the the
                       version: '>= 1.0.0'
               variables:
                 - name: gitops_config
-                  type: |-
-                    object({
-                        boostrap = object({
-                          argocd-config = object({
-                            project = string
-                            repo = string
-                            url = string
-                            path = string
-                          })
-                        })
-                        infrastructure = object({
-                          argocd-config = object({
-                            project = string
-                            repo = string
-                            url = string
-                            path = string
-                          })
-                          payload = object({
-                            repo = string
-                            url = string
-                            path = string
-                          })
-                        })
-                        services = object({
-                          argocd-config = object({
-                            project = string
-                            repo = string
-                            url = string
-                            path = string
-                          })
-                          payload = object({
-                            repo = string
-                            url = string
-                            path = string
-                          })
-                        })
-                        applications = object({
-                          argocd-config = object({
-                            project = string
-                            repo = string
-                            url = string
-                            path = string
-                          })
-                          payload = object({
-                            repo = string
-                            url = string
-                            path = string
-                          })
-                        })
-                      })
                   description: Config information regarding the gitops repo structure
                   moduleRef:
                     id: gitops
                     output: gitops_config
                 - name: git_credentials
-                  type: |-
-                    list(object({
-                        repo = string
-                        url = string
-                        username = string
-                        token = string
-                      }))
                   description: The credentials for the gitops repo(s)
                   sensitive: true
                   moduleRef:
