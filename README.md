@@ -739,6 +739,7 @@ spec:
     - name: gitops-terraform-guestbook
       alias: gitops-terraform-guestbook
       #  version: v0.0.5
+      variables:
         - name: namespace
           value: "helm-guestbook"
 ```
