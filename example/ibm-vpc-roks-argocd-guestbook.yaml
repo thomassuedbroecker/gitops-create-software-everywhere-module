@@ -72,7 +72,10 @@ spec:
           value: "iascable-gitops-guestbook"
         - name: repo
           value: "iascable-gitops-guestbook"
-    # Install guestbook editor
+    # Install guestbook
+    # New custom module linked be the custom catalog
     - name: gitops-terraform-guestbook
-      #alias: gitops-terraform-guestbook
+      alias: gitops-terraform-guestbook
       #  version: v0.0.5
+        - name: namespace
+          value: "helm-guestbook"

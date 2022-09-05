@@ -657,6 +657,92 @@ Example output:
 git clone https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module
 ```
 
+#### Step 4: Verify the `ibm-vpc-roks-argocd-guestbook.yaml` `BOM` file
+
+```yaml
+apiVersion: cloudnativetoolkit.dev/v1alpha1
+kind: BillOfMaterial
+metadata:
+  name: ibm-vpc-roks-argocd-guestbook
+spec:
+  modules:
+    # Virtual Private Cloud - related
+    # - subnets
+    # - gateways
+    - name: ibm-vpc
+      alias: ibm-vpc
+      version: v1.16.1
+      variables:
+      - name: name
+        value: "tsued-gitops-swagger"
+      - name: tags
+        value: ["tsuedro"]
+    - name: ibm-vpc-subnets
+      alias: ibm-vpc-subnets
+      version: v1.13.2
+      variables:
+        - name: _count
+          value: 1
+        - name: name
+          value: "tsued-gitops-guestbook"
+        - name: tags
+          value: ["tsuedro"]
+    - name: ibm-vpc-gateways
+    # ROKS - related
+    # - objectstorage
+    - name: ibm-ocp-vpc
+      alias: ibm-ocp-vpc
+      version: v1.15.7
+      variables:
+        - name: name
+          value: "tsued-gitops-guestbook"
+        - name: worker_count
+          value: 2
+        - name: tags
+          value: ["tsuedro"]
+    - name: ibm-object-storage
+      alias: ibm-object-storage
+      version: v4.0.3
+      variables:
+        - name: name
+          value: "cos_tsued_guestbook"
+        - name: tags
+          value: ["tsuedro"]
+        - name: label
+          value: ["cos_tsued"]
+    # Install OpenShift GitOps and Bootstrap GitOps (aka. ArgoCD) - related
+    # - argocd
+    # - gitops
+    - name: argocd-bootstrap
+      alias: argocd-bootstrap
+      version: v1.12.0
+      variables:
+        - name: repo_token
+    - name: gitops-repo
+      alias: gitops-repo
+      version: v1.20.2
+      variables:
+        - name: host
+          value: "github.com"
+        - name: type
+          value: "GIT"
+        - name: org
+          value: "thomassuedbroecker"
+        - name: username
+          value: "thomassuedbroecker"
+        - name: project
+          value: "iascable-gitops-guestbook"
+        - name: repo
+          value: "iascable-gitops-guestbook"
+    # Install guestbook
+    # New custom module linked be the custom catalog
+    - name: gitops-terraform-guestbook
+      alias: gitops-terraform-guestbook
+      #  version: v0.0.5
+        - name: namespace
+          value: "helm-guestbook"
+```
+
 #### Step 4:  Update helper scripts
 
 ```sh
