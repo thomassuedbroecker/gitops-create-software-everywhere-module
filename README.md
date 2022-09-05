@@ -715,10 +715,18 @@ sh helper-create-scaffolding.sh
 #### Step 8: Execute in the `tools container` the "helper-tools-create-container-workspace.sh" script
 
 ```sh
+/terraform $
+```
+
+```sh
 sh helper-tools-create-container-workspace.sh 
 ```
 
 #### Step 9: Execute in the `tools container` the "helper-tools-execute-apply-and-backup-result.sh" script
+
+```sh
+/terraform $
+```
 
 ```sh
 sh helper-tools-execute-apply-and-backup-result.sh 
