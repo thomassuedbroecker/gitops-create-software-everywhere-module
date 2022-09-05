@@ -498,12 +498,8 @@ We will create our own `catalog.yaml` file and save the configruation in the the
 
   We see that the `modules section` does contain following `cloudProvider`, `softwareProvider`, `id`, `group`, `displayName` and `type` which are not a part of the `module.yaml`. After these entries we insert content of the `module.yaml`.
 
-  The long type section is not a part of the variable specification:
-  ```yaml
-  name: gitops_config
-                  type: |-
-  ```
-  is not a part of the [current template](https://github.com/cloud-native-toolkit/template-terraform-gitops).
+
+  [Current `gitops` template](https://github.com/cloud-native-toolkit/template-terraform-gitops).
 
 
   This is an example configuration.
@@ -589,11 +585,38 @@ We will create our own `catalog.yaml` file and save the configruation in the the
                   description: The type of module where the module is deployed
   ```
 
-#### Step 1: Add the `guestbook-catalog.yaml` file to `gitops-terraform-guestbook` repository 
+#### Step 1: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
+
+Replace the existing code with following content.
+The is important for later when the helm-chart will be copied.
+
+```sh
+#!/usr/bin/env bash
+
+SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
+MODULE_DIR=$(cd "${SCRIPT_DIR}/.."; pwd -P)
+CHART_DIR=$(cd "${SCRIPT_DIR}/../chart/helm-guestbook"; pwd -P)
+
+NAME="$1"
+DEST_DIR="$2"
+
+## Add logic here to put the yaml resource content in DEST_DIR
+mkdir -p "${DEST_DIR}"
+cp -R "${CHART_DIR}/"* "${DEST_DIR}"
+
+if [[ -n "${VALUES_CONTENT}" ]]; then
+  echo "${VALUES_CONTENT}" > "${DEST_DIR}/values.yaml"
+fi
+find "${DEST_DIR}" -name "*"
+echo "Files in output path"
+ls -l "${DEST_DIR}"
+```
+
+#### Step 2: Add the `guestbook-catalog.yaml` file to `gitops-terraform-guestbook` repository 
 
 Note: Ensure that the github project has a tag and a release.
 
-#### Step 2: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
+#### Step 3: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
 
 To ensure you use the lates version.
 
@@ -607,13 +630,13 @@ Example output:
 2.17.2
 ```
 
-#### Step 3: Clone the project with the example BOM configuration 
+#### Step 4: Clone the project with the example BOM configuration 
 
 ```sh
 git clone https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module
 ```
 
-#### Step 4: Verify the `ibm-vpc-roks-argocd-guestbook.yaml` `BOM` file
+#### Step 5: Verify the `ibm-vpc-roks-argocd-guestbook.yaml` `BOM` file
 
 ```yaml
 apiVersion: cloudnativetoolkit.dev/v1alpha1
@@ -700,7 +723,7 @@ spec:
           value: "helm-guestbook"
 ```
 
-#### Step 5:  Update helper scripts
+#### Step 6:  Update helper scripts
 
 ```sh
 cd example
@@ -724,13 +747,13 @@ CUSTOM_CATALOG=https://raw.githubusercontent.com/thomassuedbroecker/gitops-terra
 iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM_CATALOG
 ``` 
 
-#### Step 6: Execute "helper-create-scaffolding.sh"
+#### Step 7: Execute "helper-create-scaffolding.sh"
 
 ```sh
 sh helper-create-scaffolding.sh 
 ```
 
-#### Step 7: Execute "helper-tools-create-container-workspace.sh "
+#### Step 8: Execute "helper-tools-create-container-workspace.sh "
 
 ```sh
 sh helper-tools-create-container-workspace.sh 
