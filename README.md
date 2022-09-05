@@ -423,6 +423,33 @@ Example relevant extract from a `BOM` -> `version: v0.0.5`
 
 You can follow the step to create a github tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and than create a release.
 
+#### Step 5: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
+
+Replace the existing code with following content.
+The is important for later when the helm-chart will be copied.
+
+```sh
+#!/usr/bin/env bash
+
+SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
+MODULE_DIR=$(cd "${SCRIPT_DIR}/.."; pwd -P)
+CHART_DIR=$(cd "${SCRIPT_DIR}/../chart/helm-guestbook"; pwd -P)
+
+NAME="$1"
+DEST_DIR="$2"
+
+## Add logic here to put the yaml resource content in DEST_DIR
+mkdir -p "${DEST_DIR}"
+cp -R "${CHART_DIR}/"* "${DEST_DIR}"
+
+if [[ -n "${VALUES_CONTENT}" ]]; then
+  echo "${VALUES_CONTENT}" > "${DEST_DIR}/values.yaml"
+fi
+find "${DEST_DIR}" -name "*"
+echo "Files in output path"
+ls -l "${DEST_DIR}"
+```
+
 ### 3. Create an own catalog
 
 In that example we will not publish the our `gitops-terraform-guestbook` module to the public catalog on [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/). 
@@ -498,11 +525,11 @@ We will create our own `catalog.yaml` file and save the configruation in the the
 
   We see that the `modules section` does contain following `cloudProvider`, `softwareProvider`, `id`, `group`, `displayName` and `type` which are not a part of the `module.yaml`. After these entries we insert content of the `module.yaml`.
 
-
   [Current `gitops` template](https://github.com/cloud-native-toolkit/template-terraform-gitops).
 
+#### Step 1: Create a `guestbook-catalog.yml` and insert following content
 
-  This is an example configuration.
+Note: Ensure that the github project has a tag and a release.
 
   ```yaml
   apiVersion: cloudnativetoolkit.dev/v1alpha1
@@ -585,38 +612,10 @@ We will create our own `catalog.yaml` file and save the configruation in the the
                   description: The type of module where the module is deployed
   ```
 
-#### Step 1: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
+### Verify the `BOM` to use the `guestbook module` and use [`iascable`](https://github.com/cloud-native-toolkit/iascable)
 
-Replace the existing code with following content.
-The is important for later when the helm-chart will be copied.
 
-```sh
-#!/usr/bin/env bash
-
-SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
-MODULE_DIR=$(cd "${SCRIPT_DIR}/.."; pwd -P)
-CHART_DIR=$(cd "${SCRIPT_DIR}/../chart/helm-guestbook"; pwd -P)
-
-NAME="$1"
-DEST_DIR="$2"
-
-## Add logic here to put the yaml resource content in DEST_DIR
-mkdir -p "${DEST_DIR}"
-cp -R "${CHART_DIR}/"* "${DEST_DIR}"
-
-if [[ -n "${VALUES_CONTENT}" ]]; then
-  echo "${VALUES_CONTENT}" > "${DEST_DIR}/values.yaml"
-fi
-find "${DEST_DIR}" -name "*"
-echo "Files in output path"
-ls -l "${DEST_DIR}"
-```
-
-#### Step 2: Add the `guestbook-catalog.yaml` file to `gitops-terraform-guestbook` repository 
-
-Note: Ensure that the github project has a tag and a release.
-
-#### Step 3: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
+#### Step 1: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
 
 To ensure you use the lates version.
 
@@ -630,13 +629,13 @@ Example output:
 2.17.2
 ```
 
-#### Step 4: Clone the project with the example BOM configuration 
+#### Step 2: Clone the project with the example BOM configuration 
 
 ```sh
 git clone https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module
 ```
 
-#### Step 5: Verify the `ibm-vpc-roks-argocd-guestbook.yaml` `BOM` file
+#### Step 3: Verify the `ibm-vpc-roks-argocd-guestbook.yaml` `BOM` file
 
 ```yaml
 apiVersion: cloudnativetoolkit.dev/v1alpha1
@@ -716,14 +715,14 @@ spec:
     # Install guestbook
     # New custom module linked be the custom catalog
     - name: gitops-terraform-guestbook
-      alias: gitops-terraform-guestbook
+      #  alias: gitops-terraform-guestbook
       #  version: v0.0.5
       variables:
         - name: namespace
           value: "helm-guestbook"
 ```
 
-#### Step 6:  Update helper scripts
+#### Step 4:  Update helper scripts
 
 ```sh
 cd example
@@ -753,13 +752,13 @@ iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM
 sh helper-create-scaffolding.sh 
 ```
 
-#### Step 8: Execute "helper-tools-create-container-workspace.sh "
+#### Step 8: Execute in the `tools container` the "helper-tools-create-container-workspace.sh" script
 
 ```sh
 sh helper-tools-create-container-workspace.sh 
 ```
 
-#### Step 8: Execute "helper-tools-execute-apply-and-backup-result.sh "
+#### Step 8: Execute in the `tools container` the "helper-tools-execute-apply-and-backup-result.sh" script
 
 ```sh
 sh helper-tools-execute-apply-and-backup-result.sh 
