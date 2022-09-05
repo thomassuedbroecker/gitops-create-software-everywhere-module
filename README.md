@@ -744,7 +744,7 @@ spec:
           value: "helm-guestbook"
 ```
 
-#### Step 4:  Update helper scripts
+#### Step 5:  Update helper scripts
 
 ```sh
 cd example
@@ -768,19 +768,19 @@ CUSTOM_CATALOG=https://raw.githubusercontent.com/thomassuedbroecker/gitops-terra
 iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM_CATALOG
 ``` 
 
-#### Step 5: Execute "helper-create-scaffolding.sh"
+#### Step 6: Execute "helper-create-scaffolding.sh"
 
 ```sh
 sh helper-create-scaffolding.sh 
 ```
 
-#### Step 6: Execute "helper-tools-create-container-workspace.sh "
+#### Step 7: Execute "helper-tools-create-container-workspace.sh "
 
 ```sh
 sh helper-tools-create-container-workspace.sh 
 ```
 
-#### Step 6: Execute "helper-tools-execute-apply-and-backup-result.sh "
+#### Step 8: Execute "helper-tools-execute-apply-and-backup-result.sh "
 
 ```sh
 sh helper-tools-execute-apply-and-backup-result.sh 
