@@ -547,10 +547,6 @@ Note: Ensure that the github project has a tag and a release.
                   refs:
                     - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
                       version: '>= 1.1.0'
-                - id: namespace
-                  refs:
-                    - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
-                      version: '>= 1.0.0'
               variables:
                 - name: gitops_config
                   description: Config information regarding the gitops repo structure
