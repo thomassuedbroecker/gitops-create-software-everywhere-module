@@ -518,7 +518,7 @@ We will create our own `catalog.yaml` file and save the configruation in the the
 
 > Note: Ensure that the github project has a tag and a release!
 
-The right value of the release must be reference in the catalog! (Example `version: v0.0.1`).
+**The right value of the release** must be reference in the catalog! (Example `version: v0.0.1`).
 
   ```yaml
   apiVersion: cloudnativetoolkit.dev/v1alpha1
