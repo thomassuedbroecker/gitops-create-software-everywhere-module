@@ -170,6 +170,7 @@ git push -u origin main
   }
   ```
 * Change `layer = "services"` to `layer = "applications"`
+* Add `cluster_type = var.cluster_type == "kubernetes" ? "kubernetes" : "openshift"` to the `locals`
 
 ```
 locals {
@@ -187,6 +188,32 @@ locals {
   application_branch = "main"
   namespace = var.namespace
   layer_config = var.gitops_config[local.layer]
+}
+```
+
+#### Step 2:  Add some variable in the `variable.tf` file
+
+```terraform
+variable "enable_sso" {
+  type        = bool
+  description = "Flag indicating if oauth should be applied (only available for OpenShift)"
+  default     = true
+}
+
+variable "tls_secret_name" {
+  description = "The name of the secret containing the tls certificate values"
+  default     = ""
+}
+
+variable "cluster_ingress_hostname" {
+  type        = string
+  description = "Ingress hostname of the cluster."
+  default     = ""
+}
+
+variable "cluster_type" {
+  description = "The cluster type (openshift or kubernetes)"
+  default     = "openshift"
 }
 ```
 
