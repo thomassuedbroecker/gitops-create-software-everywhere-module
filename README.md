@@ -185,7 +185,8 @@ locals {
 
 #### Step 2: Create a new folder structure for the `guestbook helmchart`
 
-* Create following folder structure `chart/helm-guestbook`
+* Create following folder structure `chart/guestbook-module`.
+  The name after chart must be the module name.
 
   ```sh
   ├── chart
