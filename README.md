@@ -212,7 +212,7 @@ locals {
 * Navigate the charts directory
 
 ```sh
-CHARTDIR=./chart/guestbook-module/charts/helm-guestbook
+CHARTDIR=./chart/helm-guestbook/charts/helm-guestbook
 cd $CHARTDIR
 ```
 
