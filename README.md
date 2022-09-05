@@ -122,10 +122,10 @@ git push -u origin main
 
 #### Step 1:  Do some modification in the `main.tf` file
 
-* Change `name = "my-module"` to `gitops-guestbook-module`
+* Change `name = "my-helm-chart-folder"` to `helm-guestbook`
 * First add `helm_guestbook = {// create entry}` to the `values_content = {}`. That entry will be used to create the values for the variables in the `values.yaml` file for the helm chart.
   
-  Below you see the relevant code in the `main.tf` which does the copy later.
+  Below you see the relevant code in the `main.tf` which does the copy later. As you can is it uses the `{local.name}` value, so you need to ensure the name reflects the folder structure for your `helm-chart` later.
 
   ```sh
   resource null_resource create_yaml {
@@ -166,7 +166,7 @@ git push -u origin main
 
 ```
 locals {
-  name          = "my-module"
+  name          = "my-helm-chart-folder"
   bin_dir       = module.setup_clis.bin_dir
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart/${local.name}"
   service_url   = "http://${local.name}.${var.namespace}"
