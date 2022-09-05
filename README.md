@@ -15,9 +15,16 @@ The module covers the [GitOps topic](https://modules.cloudnativetoolkit.dev/#/ho
 
 # Use the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) to create a module to deploy the guestbook example
 
+These are the main tasks:
+
+1. Create a GitHub repository based on the `gitops template` from `Software Everywhere`
+2. Configure the `guestbook` `module`
+3. Create an own `catalog` for the `guestbook` `module`
+4. Create a `BOM` where the the `guestbook` `module` is used and create the needed terraform output with `iascable`
+
 ## Perpare the environment
 
-### a. Create a new GitHub repository based on the template
+### Create a new GitHub repository based on the `gitops template`
 
 We will use later different catalogs here is a simplified view of the depencencies we will have later.
 
@@ -207,7 +214,7 @@ locals {
 
 #### Step 3: Copy in newly create folderstructure the content from the repository for the `helm-guestbook` chart [https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook)
 
-#### Step 4: Validate the helm chart with following commands:
+#### Step 4: Validate the `helm chart` with following commands:
 
 * Navigate the charts directory
 
@@ -357,52 +364,6 @@ versions:
           output: sealed_secrets_cert
 ```
 
-### Step 4: Add additional variables to the module
-
-```sh
-name: "gitops-terraform-guestbook"
-type: gitops
-description: "That module will add a new Argo CD config to deploy the guestbook application"
-tags:
-  - tools
-  - gitops
-versions:
-  - platforms:
-      - kubernetes
-      - ocp3
-      - ocp4
-    dependencies:
-      - id: gitops
-        refs:
-          - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
-            version: '>= 1.1.0'
-      - id: namespace
-        refs:
-          - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
-            version: '>= 1.0.0'
-    variables:
-      - name: gitops_config
-        moduleRef:
-          id: gitops
-          output: gitops_config
-      - name: git_credentials
-        moduleRef:
-          id: gitops
-          output: git_credentials
-      - name: server_name
-        moduleRef:
-          id: gitops
-          output: server_name
-      - name: namespace
-        moduleRef:
-          id: namespace
-          output: name
-      - name: kubeseal_cert
-        moduleRef:
-          id: gitops
-          output: sealed_secrets_cert
-```
-
 ### Step 4: Create GitHub tag and relase
 
 The module github repository releases shoulf be updated when you are going to change the module.
@@ -425,8 +386,7 @@ You can follow the step to create a github tag is that [example blog post](https
 
 #### Step 5: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
 
-Replace the existing code with following content.
-The is important for later when the helm-chart will be copied.
+Replace the existing code with following content. This is important for later when the helm-chart will be copied.
 
 ```sh
 #!/usr/bin/env bash
