@@ -416,7 +416,7 @@ Example relevant extract from a `BOM` -> `version: v0.0.5`
       alias: gitops-terraform-guestbook
       #  version: v0.0.5
       variables:
-        - name: namespace
+        - name: namespace_name
           value: "helm-guestbook"
 ``` 
 
@@ -687,7 +687,7 @@ spec:
       version: v1.16.1
       variables:
       - name: name
-        value: "tsued-gitops-swagger"
+        value: "tsued-gitops-guestbook"
       - name: tags
         value: ["tsuedro"]
     - name: ibm-vpc-subnets
