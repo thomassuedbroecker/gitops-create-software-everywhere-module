@@ -800,3 +800,87 @@ Provide a value for 'resource_group_name':
   The name of the resource group
 > default
 ```
+
+#### Step 12: Verify the output of terraform execution
+
+After some time you should get following output:
+
+```sh
+Apply complete! Resources: 103 added, 0 changed, 0 destroyed.
+```
+
+### Verify the created Argo CD configuration on GitHub
+
+We see that in our GitHub account new repostory was created from the GitOps bootstap module to figure `Argo CD` for a using the `app-of-apps` concept with a single GitHub repository to manage all application in the GitOps context.
+
+The repository is called `iascable-gitops-guestbook` in our case.
+
+The repository contains two folders:
+
+1. **argocd** folder which contains the configuration for `Argo CD` let us call it `**app-of-apps** folder`. The following image displays the resulting configuration in `Argo CD`
+
+![](images/develop-own-module-03.png)
+
+
+2. **payload** folder which contains the current helm deployment for the **apps** which will be deployed. The following image show the deployment created by `apps` in our case the helm-guestbook 
+
+The following image show the create GitHub project
+
+![](images/develop-own-module-02.png)
+
+For more details visit the template of the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module.
+
+### Understand how the `guestbook module content` was pasted into the new repository
+
+1. `Argo CD application configuration` to deploy the guestbook application
+
+Therefor we defined the values content before in the `module.tf` file.
+
+```hcl
+  values_content = {
+    helm_guestbook = {
+      // create entry
+    }
+  }
+```
+
+These will be use in the first `values.yaml` file in the payload directory.
+
+That first directory is used as the `source.path` in the `Argo CD` application configuration.
+
+This is the Argo CD application configuration `guestbook-helm-guestbook.yaml` file, which was created automaticly by our module with the `igc gitops-module` command.
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook-helm-guestbook
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: guestbook
+    server: https://kubernetes.default.svc
+  project: 3-applications
+  source:
+    path: payload/3-applications/namespace/guestbook/helm-guestbook
+    repoURL: https://github.com/thomassuedbroecker/iascable-gitops-guestbook.git
+    targetRevision: main
+    helm:
+      releaseName: helm-guestbook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  ignoreDifferences: []
+```
+
+2. `Helm guestbook application` deployment
+
+The script `scripts/create-yaml.sh` of our [module `gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook) was resposible to copy the guestbook helm-chart into the payload directory. Therefor we did the customization of that file.
+
+
+
+
+
+
