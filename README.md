@@ -20,7 +20,7 @@ These are the main tasks:
 1. Create a GitHub repository based on the `gitops template` from `Software Everywhere`
 2. Configure the `guestbook` `module`
 3. Create an own `catalog` for the `guestbook` `module`
-4. Create a `BOM` where the the `guestbook` `module` is used and create the needed terraform output with `iascable`
+4. Create a `BOM` where the `guestbook` `module` is used and create the needed terraform output with `iascable`
 
 ## Perpare the environment
 
@@ -70,7 +70,7 @@ Initialized empty Git repository in /Users/thomassuedbroecker/Downloads/dev/gito
 git add --all
 ```
 
-#### Step 5: Create new github project [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook) using `git commit`
+#### Step 5: Create new GitHub project [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook) using `git commit`
 
 ```sh
 git commit
@@ -138,7 +138,7 @@ git push -u origin main
   resource null_resource create_yaml {
     provisioner "local-exec" {
       command = "${path.module}/scripts/create-yaml.sh '${local.name}' '${local.yaml_dir}'"
-
+  
       environment = {
         VALUES_CONTENT = yamlencode(local.values_content)
       }
@@ -390,9 +390,9 @@ Example relevant extract from a `BOM` -> `version: v0.0.5`
       # variables:
       #  - name: namespace_name
       #    value: "helm-guestbook"
-``` 
+```
 
-You can follow the step to create a github tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and than create a release.
+You can follow the step to create a GitHub tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and then create a release.
 
 #### Step 5: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
 
@@ -424,7 +424,7 @@ ls -l "${DEST_DIR}"
 
 In that example we will not publish the our `gitops-terraform-guestbook` module to the public catalog on [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/). 
 
-We will create our own `catalog.yaml` file and save the configruation in the the github project of the module.
+We will create our own `catalog.yaml` file and save the configuration in the GitHub project of the module.
 
 * How to create `catalog.yaml` file ?
 
@@ -441,7 +441,7 @@ We will create our own `catalog.yaml` file and save the configruation in the the
   ```
 
   * `CATALOG_URL` is the url of the module catalog. The default module catalog is https://modules.cloudnativetoolkit.dev/index.yaml. Multiple module catalogs can be provided. The catalogs are combined, with the last one taking precedence in the case of duplicate modules.
-  * `BOM_INPUT` is the input file containing the Bill of Material definition. Multiple bom files can be provided at the same time.
+  * `BOM_INPUT` is the input file containing the Bill of Material definition. Multiple BOM files can be provided at the same time.
   * `OUTPUT_DIR` is the directory where the output terraform template will be generated.
 
 * Inspect the structure of a `catalog.yaml`
@@ -489,7 +489,7 @@ We will create our own `catalog.yaml` file and save the configruation in the the
           scope: global
         - name: region
           scope: global
-    ```
+  ```
 
 * Inspect the module section of the catalog file in more detail
 
@@ -703,7 +703,7 @@ These are the helper scripts:
   * helper-tools-create-container-workspace.sh              
   * helper-tools-execute-apply-and-backup-result.sh         
   * helper-tools-execute-destroy-and-delete-backup.sh
- 
+
 * Update helper script `helper-create-scaffolding.sh` with following code that uses two catalog files as input for the terraform creation with `iascable`.
 
 ```sh
@@ -712,7 +712,7 @@ CUSTOM_CATALOG=https://raw.githubusercontent.com/thomassuedbroecker/gitops-terra
 
 # 1. Create scaffolding
 iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM_CATALOG
-``` 
+```
 
 #### Step 7: Execute "helper-create-scaffolding.sh"
 
