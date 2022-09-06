@@ -76,7 +76,7 @@ spec:
     # New custom module linked be the custom catalog
     - name: gitops-terraform-guestbook
       # alias: gitops-terraform-guestbook
-      version: v0.0.10
+      # version: v0.0.10
       #variables:
       #  - name: namespace
       #    value: "helm-guestbook"
