@@ -17,7 +17,7 @@ spec:
         value: ["tsuedro"]
     - name: ibm-vpc-subnets
       alias: ibm-vpc-subnets
-      version: v1.13.3
+      version: v1.13.2
       variables:
         - name: _count
           value: 1
@@ -40,7 +40,7 @@ spec:
           value: ["tsuedro"]
     - name: ibm-object-storage
       alias: ibm-object-storage
-      version: v4.0.6
+      version: v4.0.3
       variables:
         - name: name
           value: "cos_tsued_guestbook"
@@ -58,7 +58,7 @@ spec:
         - name: repo_token
     - name: gitops-repo
       alias: gitops-repo
-      version: v1.21.0
+      version: v1.20.2
       variables:
         - name: host
           value: "github.com"
@@ -76,7 +76,7 @@ spec:
     # New custom module linked be the custom catalog
     - name: gitops-terraform-guestbook
       # alias: gitops-terraform-guestbook
-      #version: v0.0.8
-      variables:
-        - name: namespace
-          value: "helm-guestbook"
+      version: v0.0.10
+      #variables:
+      #  - name: namespace
+      #    value: "helm-guestbook"
