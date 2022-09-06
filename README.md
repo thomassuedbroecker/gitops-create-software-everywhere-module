@@ -36,7 +36,7 @@ We will use later different catalogs here is a simplified view of the depencenci
 git clone https://github.com/cloud-native-toolkit/template-terraform-gitops
 ```
 
-#### Step 2: Delete the `.git` folder in the cloned project to disconnect the git repository
+#### Step 2: Delete the **`.git`** folder in the cloned project to disconnect the git repository
 
 #### Step 3: Rename the root folder of the project from `template-terraform-gitops` to `gitops-terraform-guestbook`
 
