@@ -385,18 +385,18 @@ Example relevant extract from a `BOM` -> `version: v0.0.5`
     # Install guestbook
     # New custom module linked be the custom catalog
     - name: gitops-terraform-guestbook
-      alias: gitops-terraform-guestbook
+      # alias: gitops-terraform-guestbook
       #  version: v0.0.5
-      variables:
-        - name: namespace_name
-          value: "helm-guestbook"
+      # variables:
+      #  - name: namespace_name
+      #    value: "helm-guestbook"
 ``` 
 
 You can follow the step to create a github tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and than create a release.
 
 #### Step 5: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
 
-Replace the existing code with following content. This is important for later when the helm-chart will be copied.
+Replace the existing code in `scripts/create-yaml.sh` with following content. This is important for later when the `helm-chart` will be copied.
 
 ```sh
 #!/usr/bin/env bash
