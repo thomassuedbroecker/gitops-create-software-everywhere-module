@@ -151,23 +151,23 @@ git push -u origin main
   Now replace the `// create entry` with the needed values.
 
   ```sh
-  helm-guestbook = {
-    "replicaCount": 1
-    "image.repository" = "gcr.io/heptio-images/ks-guestbook-demo"
-    "image.tag" = "0.1"
-    "image.pullPolicy" = "IfNotPresent"
-    "service.type" = "ClusterIP"
-    "service.port" = "80"
-    "ingress.enabled" = "false"
-    "ingress.annotations" = null
-    "ingress.path" = "/"
-    "ingress.hosts" = ["chart-example.local"]
-    "ingress.tls" = []
-    "resources" = null
-    "nodeSelector" = null
-    "tolerations" = null
-    "affinity" = null
-  }
+    helm_guestbook = {
+      "replicaCount": 1
+      "image.repository" = "gcr.io/heptio-images/ks-guestbook-demo"
+      "image.tag" = "0.1"
+      "image.pullPolicy" = "IfNotPresent"
+      "service.type" = "ClusterIP"
+      "service.port" = "80"
+      "ingress.enabled" = "false"
+      "ingress.annotations" = ""
+      "ingress.path" = "/"
+      "ingress.hosts" = ["chart-example.local"]
+      "ingress.tls" = []
+      "resources" = ""
+      "nodeSelector" = ""
+      "tolerations" = ""
+      "affinity" = ""
+    }
   ```
 * Change `layer = "services"` to `layer = "applications"`
 * Add `cluster_type = var.cluster_type == "kubernetes" ? "kubernetes" : "openshift"` to the `locals`
@@ -193,24 +193,7 @@ locals {
 
 #### Step 2:  Add some variable in the `variable.tf` file
 
-```terraform
-variable "enable_sso" {
-  type        = bool
-  description = "Flag indicating if oauth should be applied (only available for OpenShift)"
-  default     = true
-}
-
-variable "tls_secret_name" {
-  description = "The name of the secret containing the tls certificate values"
-  default     = ""
-}
-
-variable "cluster_ingress_hostname" {
-  type        = string
-  description = "Ingress hostname of the cluster."
-  default     = ""
-}
-
+```hcl
 variable "cluster_type" {
   description = "The cluster type (openshift or kubernetes)"
   default     = "openshift"
