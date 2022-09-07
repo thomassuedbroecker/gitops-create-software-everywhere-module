@@ -23,13 +23,13 @@ These are the main tasks:
 3. Create an own `catalog` for the `guestbook` `module`
 4. Create a `BOM` where the `guestbook` `module` is used and create the needed terraform output with `iascable`
 
-## 3.1 Perpare the environment
-
-### 3.1.1 Create a new GitHub repository based on the `gitops template`
-
 We will use later different catalogs here is a simplified view of the depencencies we will have later.
 
 ![](images/develop-own-module-01.png)
+
+## 3.1 Perpare the environment
+
+### 3.1.1 Create a new GitHub repository based on the `gitops template`
 
 #### Step 1: Clone the GitHub `gitops template` repository to your local computer and create a new GitHub repository based on that template
 
