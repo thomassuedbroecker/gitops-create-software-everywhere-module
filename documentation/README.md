@@ -642,10 +642,10 @@ ls
 
 These are the helper scripts:
 
-  * helper-create-scaffolding.sh                            
-  * helper-tools-create-container-workspace.sh              
-  * helper-tools-execute-apply-and-backup-result.sh         
-  * helper-tools-execute-destroy-and-delete-backup.sh
+  * [helper-create-scaffolding.sh](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-create-scaffolding.sh)                          
+  * [helper-tools-create-container-workspace.sh](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-create-container-workspace.sh)          
+  * [helper-tools-execute-apply-and-backup-result.sh](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-execute-apply-and-backup-result.sh)       
+  * [helper-tools-execute-destroy-and-delete-backup.sh](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-execute-destroy-and-delete-backup.sh)
 
 * Update helper script `helper-create-scaffolding.sh` with following code that uses two catalog files as input for the terraform creation with `iascable`.
 
