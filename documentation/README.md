@@ -796,7 +796,7 @@ The following image shows the newly created GitHub `iascable-gitops-guestbook` r
 
 For more details visit the template of the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module.
 
-### Understand how the `guestbook module content` was pasted into the new `iascable-gitops-guestbook` repository
+### 7.1 Understand how the `guestbook module content` was pasted into the new `iascable-gitops-guestbook` repository
 
 Following the concept for the gitops bootstrap setup documented in the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) GitHub repository.
 
@@ -807,7 +807,7 @@ We have to main folders in the `iascable-gitops-guestbook` repository.
 
 Let inspect these two folders.
 
-#### `argocd` folder
+#### 7.1.1 `argocd` folder
 
 There were two `Argo CD application` configurations added into the `iascable-gitops-guestbook` repository. 
 
@@ -816,13 +816,13 @@ There were two `Argo CD application` configurations added into the `iascable-git
 
 Let's take a look a the created `Argo CD application configurations`
 
-1. Guestbook application `Argo CD application configurations` to deploy the guestbook application
+1. **Guestbook application** `Argo CD application configurations` to deploy the guestbook application
 
 We have two `Argo CD` application configurations:
 
-a. Guestbook **Namespace** in `argocd.1-infrastructure.cluster.default.base.namespace.yaml`
+  * Guestbook **Namespace** in `argocd.1-infrastructure.cluster.default.base.namespace.yaml`
 
-```yaml
+ ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -843,11 +843,11 @@ spec:
       prune: true
       selfHeal: true
   ignoreDifferences: []
-```
+ ```
 
-b. Guestbook **application deployment**
+  * Guestbook **application deployment**
 
-```yaml
+ ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -870,7 +870,13 @@ spec:
       prune: true
       selfHeal: true
   ignoreDifferences: []
-  ```
+ ```
+
+#### 7.1.2 `payload` folder
+
+That folder contains what we defined in the 
+
+1. **Guestbook application** `helm chart configuration` to deploy the guestbook application
 
 Therefor we defined the values content before in the `module.tf` file.
 
@@ -884,7 +890,7 @@ Therefor we defined the values content before in the `module.tf` file.
 
 These will be use in the first `values.yaml` file in the payload directory.
 
-That first directory is used as the `source.path` in the `Argo CD` application configuration.
+That first directory is used as the `source.path` in the `Argo CD` application configuration as you see above.
 
 This is the Argo CD application configuration `guestbook-helm-guestbook.yaml` file, which was created automaticly by our module with the `igc gitops-module` command.
 
