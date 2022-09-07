@@ -39,14 +39,14 @@ You can follow the steps in the [blog post](https://wp.me/paelj4-1yf) to do this
 
 In that section we will modify files 
 
-* The `main.tf` file
-* The `variable.tf` file
-* The `helm chart` content
-* The `module.yaml` file
-* Create for `gitops-terraform-guestbook` GitHub repository `tags` and `releases`
+* The [`main.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/main.tf) file
+* The [`variable.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/variables.tf) file
+* The [`helm chart`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tree/main/chart/helm-guestbook) content
+* The [`module.yaml`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/module.yaml) file
+* Create for [`gitops-terraform-guestbook` GitHub repository `tags` and `releases`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tags)
 * Configure the `helm chart` copy automation in the `scripts/create-yaml.sh` file
 
-### 4.1 The `main.tf` file
+### 4.1 The [`main.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/main.tf) file
 
 #### Step 1:  Do some modifications in the `main.tf` file
 
@@ -112,9 +112,9 @@ locals {
 }
 ```
 
-### 4.2 The `variable.tf` file
+### 4.2 The [`variable.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/variables.tf) file
 
-#### Step 1: Add some variables in the `variable.tf` file
+#### Step 1: Add some variables in the [`variable.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/variables.tf) file
 
 ```hcl
 variable "cluster_type" {
@@ -123,7 +123,7 @@ variable "cluster_type" {
 }
 ```
 
-### 4.3 The `helm chart` content
+### 4.3 The [`helm chart`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tree/main/chart/helm-guestbook) content
 
 #### Step 1: Create a new folder structure for the `guestbook helm chart`
 
@@ -250,7 +250,7 @@ spec:
             {}
 ```
 
-### 4.4 The `module.yaml` file
+### 4.4 The [`module.yaml`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/module.yaml) file
 
 #### Step 1: Edited the `module.yaml` 
 
