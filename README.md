@@ -4,16 +4,16 @@
 
 The objective is to understand how to build new modules for the [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/).
 
-# What does the project do?
+# 1. What does the project do?
 
 This project does inspect the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) and needs to be seen in combination with the [gitops-verify-swagger-editor-example](https://github.com/thomassuedbroecker/gitops-verify-swagger-editor-example) outcome.
 
-## Understand the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops)
+## 1.1 Understand the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops)
 
 The [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) is a part of the `How to` instructions of the [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/). 
 The module covers the [GitOps topic](https://modules.cloudnativetoolkit.dev/#/how-to/gitops).
 
-# Use the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) to create a module to deploy the guestbook example
+# 2. Use the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) to create a module to deploy the guestbook example
 
 These are the main tasks:
 
@@ -22,9 +22,9 @@ These are the main tasks:
 3. Create an own `catalog` for the `guestbook` `module`
 4. Create a `BOM` where the `guestbook` `module` is used and create the needed terraform output with `iascable`
 
-## Perpare the environment
+## 3. Perpare the environment
 
-### Create a new GitHub repository based on the `gitops template`
+### 3.1 Create a new GitHub repository based on the `gitops template`
 
 We will use later different catalogs here is a simplified view of the depencencies we will have later.
 
@@ -34,7 +34,7 @@ We will use later different catalogs here is a simplified view of the depencenci
 
 Follow the step in the [blog post](https://wp.me/paelj4-1yf)
 
-### 2. Configure the `guestbook` module 
+## 4. Implement the new `guestbook` module 
 
 #### Step 1:  Do some modification in the `main.tf` file
 
@@ -109,7 +109,7 @@ variable "cluster_type" {
 }
 ```
 
-#### Step 2: Create a new folder structure for the `guestbook helmchart`
+#### Step 3: Create a new folder structure for the `guestbook helmchart`
 
 * Create following folder structure `chart/helm-guestbook`.
   The name after chart must be the module name.
@@ -131,9 +131,9 @@ variable "cluster_type" {
   │       └── values.yaml
   ```
 
-#### Step 3: Copy in newly create folderstructure the content from the repository for the `helm-guestbook` chart [https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook)
+#### Step 4: Copy in newly create folderstructure the content from the repository for the `helm-guestbook` chart [https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook)
 
-#### Step 4: Validate the `helm chart` with following commands:
+#### Step 5: Validate the `helm chart` with following commands:
 
 * Navigate the charts directory
 
@@ -234,7 +234,7 @@ spec:
             {}
 ```
 
-#### Step 3: Edited the `module.yaml` 
+#### Step 5: Edited the `module.yaml` 
 
 * Use for `name`: `gitops-terraform-guestbook`
 * Use for `description`: `That module will add a new Argo CD config to deploy the guestbook application`
@@ -283,7 +283,7 @@ versions:
           output: sealed_secrets_cert
 ```
 
-### Step 4: Create GitHub tag and relase
+### Step 6: Create GitHub tag and relase
 
 The module github repository releases shoulf be updated when you are going to change the module.
 In case when you use specific version numbers in the `BOM` which consums the module.
@@ -303,7 +303,7 @@ Example relevant extract from a `BOM` -> `version: v0.0.5`
 
 You can follow the step to create a GitHub tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and then create a release.
 
-#### Step 5: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
+#### Step 7: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
 
 Replace the existing code in `scripts/create-yaml.sh` with following content. This is important for later when the `helm-chart` will be copied.
 
@@ -329,7 +329,7 @@ echo "Files in output path"
 ls -l "${DEST_DIR}"
 ```
 
-### 3. Create an own catalog
+### 5. Create an own catalog
 
 In that example we will not publish the our `gitops-terraform-guestbook` module to the public catalog on [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/). 
 
@@ -489,7 +489,7 @@ We will create our own `catalog.yaml` file and save the configuration in the Git
                   description: The type of module where the module is deployed
   ```
 
-### Verify the `BOM` to use the `guestbook module` and use [`iascable`](https://github.com/cloud-native-toolkit/iascable)
+### 5. Verify the `BOM` that we will use `guestbook module` and use [`iascable`](https://github.com/cloud-native-toolkit/iascable) to create the terraform code
 
 
 #### Step 1: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
@@ -506,7 +506,7 @@ Example output:
 2.17.2
 ```
 
-#### Step 2: Clone the project with the example BOM configuration 
+#### Step 2: Clone the project with the example `BOM` configuration 
 
 ```sh
 git clone https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module
@@ -599,7 +599,9 @@ spec:
           value: "helm-guestbook"
 ```
 
-#### Step 4:  Update helper scripts
+#### Step 4: Update helper scripts
+
+The helper scripts are not a part of the framework, the will just help to avoid failures during the execution of several command.
 
 ```sh
 cd example
@@ -628,6 +630,14 @@ iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM
 ```sh
 sh helper-create-scaffolding.sh 
 ```
+
+That script contains following sections:
+
+1. Basic global variables
+2. Create scaffolding (execute iascable)
+3. Copy helper bash scripts
+4. Navigate to the output folder
+5. Start the container engine
 
 #### Step 8: Delete the `-u "${UID}" \` command from the `output/launch.sh` script
 
@@ -733,15 +743,87 @@ The repository contains two folders:
 
 2. **payload** folder which contains the current helm deployment for the **apps** which will be deployed. The following image show the deployment created by `apps` in our case the helm-guestbook 
 
-The following image show the create GitHub project
+The following image shows the newly created GitHub `iascable-gitops-guestbook` repository.
 
 ![](images/develop-own-module-02.png)
 
 For more details visit the template of the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module.
 
-### Understand how the `guestbook module content` was pasted into the new repository
+### Understand how the `guestbook module content` was pasted into the new `iascable-gitops-guestbook` repository
 
-1. `Argo CD application configuration` to deploy the guestbook application
+Following the concept for the gitops bootstrap setup documented in the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) GitHub repository.
+
+We have to main folders in the `iascable-gitops-guestbook` repository.
+
+1. One for the `Argo CD application` configurations called `argocd`
+2. One for the application which will be deployed be the `Argo CD application` configurations called payload.
+
+Let inspect these two folders.
+
+#### `argocd` folder
+
+There were two `Argo CD application` configurations added into the `iascable-gitops-guestbook` repository. 
+
+1. One for the `namespace` in the OpenShift or Kubernetes cluster where the guestbook application will be deployed 
+2. One for the `guestbook` application we want to deploy.
+
+Let's take a look a the created `Argo CD application configurations`
+
+1. Guestbook application `Argo CD application configurations` to deploy the guestbook application
+
+We have two `Argo CD` application configurations:
+
+a. Guestbook **Namespace** in `argocd.1-infrastructure.cluster.default.base.namespace.yaml`
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: namespace-guestbook
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: 1-infrastructure
+  source:
+    path: payload/1-infrastructure/namespace/guestbook/namespace
+    repoURL: https://github.com/thomassuedbroecker/iascable-gitops-guestbook.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  ignoreDifferences: []
+```
+
+b. Guestbook **application deployment**
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook-helm-guestbook
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: guestbook
+    server: https://kubernetes.default.svc
+  project: 3-applications
+  source:
+    path: payload/3-applications/namespace/guestbook/helm-guestbook
+    repoURL: https://github.com/thomassuedbroecker/iascable-gitops-guestbook.git
+    targetRevision: main
+    helm:
+      releaseName: helm-guestbook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  ignoreDifferences: []
+  ```
 
 Therefor we defined the values content before in the `module.tf` file.
 
