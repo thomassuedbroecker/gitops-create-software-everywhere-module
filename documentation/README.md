@@ -37,14 +37,14 @@ You can follow the steps in the [blog post](https://wp.me/paelj4-1yf) to do this
 
 ## 4. Implement the new `guestbook` module 
 
-The content of the section:
+In that section we will modify files 
 
 * The `main.tf` file
 * The `variable.tf` file
 * The `helm chart` content
 * The `module.yaml` file
-* `gitops-terraform-guestbook` GitHub repository `tags` and release
-* Configure the `helm chart` copy automation
+* Create for `gitops-terraform-guestbook` GitHub repository `tags` and `releases`
+* Configure the `helm chart` copy automation in the 
 
 ### 4.1 The `main.tf` file
 
@@ -301,7 +301,7 @@ versions:
           output: sealed_secrets_cert
 ```
 
-### 4.5 `gitops-terraform-guestbook` GitHub repository `tags` and release
+### 4.5 `gitops-terraform-guestbook` GitHub repository `tags` and `releases`
 
 ### Step 1: Create GitHub tag and release for the `gitops-terraform-guestbook` GitHub repository
 
