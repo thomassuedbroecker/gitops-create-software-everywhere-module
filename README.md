@@ -36,6 +36,15 @@ You can follow the steps in the [blog post](https://wp.me/paelj4-1yf) to do this
 
 ## 4. Implement the new `guestbook` module 
 
+The content of the section:
+
+* The `main.tf` file
+* The `variable.tf` file
+* The `helm chart` content
+* The `module.yaml` file
+* `gitops-terraform-guestbook` GitHub repository `tags` and release
+* Configure the `helm chart` copy automation
+
 ### 4.1 The `main.tf` file
 
 #### Step 1:  Do some modifications in the `main.tf` file
@@ -113,7 +122,7 @@ variable "cluster_type" {
 }
 ```
 
-### 4.2 The `helm chart` content
+### 4.3 The `helm chart` content
 
 #### Step 1: Create a new folder structure for the `guestbook helm chart`
 
@@ -240,7 +249,7 @@ spec:
             {}
 ```
 
-### 4.3 The `module.yaml` file
+### 4.4 The `module.yaml` file
 
 #### Step 1: Edited the `module.yaml` 
 
@@ -291,7 +300,7 @@ versions:
           output: sealed_secrets_cert
 ```
 
-### 4.4 `gitops-terraform-guestbook` GitHub repository `tags` and release
+### 4.5 `gitops-terraform-guestbook` GitHub repository `tags` and release
 
 ### Step 1: Create GitHub tag and release for the `gitops-terraform-guestbook` GitHub repository
 
@@ -312,7 +321,7 @@ Example relevant extract from a `BOM` -> `version: v0.0.5`
 
 You can follow the step to create a GitHub tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and then create a release.
 
-### 4.5 Configure the `helm chart` copy automation
+### 4.6 Configure the `helm chart` copy automation
 
 #### Step 1: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
 
@@ -346,11 +355,17 @@ In that example we will not publish the our `gitops-terraform-guestbook` module 
 
 We will create our own `catalog.yaml` file and save the configuration in the GitHub project of the module.
 
-* How to create `catalog.yaml` file ?
+* How to create `catalog.yaml` file?
+* How to combine various catalogs?
+* Inspect the structure of a `catalog.yaml`
+* Create a custom catalog steps
+
+
+### 5.1 How to create `catalog.yaml` file?
 
   It is useful to take a look into [iascable documentation](https://github.com/cloud-native-toolkit/iascable) and the [build-catalog.sh automation](https://github.com/cloud-native-toolkit/software-everywhere/blob/main/.github/scripts/build-catalog.sh).
 
-* How to combine various catalogs?
+### 5.2 How to combine various catalogs?
 
   You can combine more than one `catalog resources` and `BOM inputs` with the `iascable build` command.
 
@@ -364,7 +379,7 @@ We will create our own `catalog.yaml` file and save the configuration in the Git
   * `BOM_INPUT` is the input file containing the Bill of Material definition. Multiple BOM files can be provided at the same time.
   * `OUTPUT_DIR` is the directory where the output terraform template will be generated.
 
-* Inspect the structure of a `catalog.yaml`
+### 5.3 Inspect the structure of a `catalog.yaml`
 
   The structure of a catalog can be verified here
   [https://modules.cloudnativetoolkit.dev/index.yaml](https://modules.cloudnativetoolkit.dev/index.yaml)
@@ -411,11 +426,13 @@ We will create our own `catalog.yaml` file and save the configuration in the Git
           scope: global
   ```
 
-* Inspect the module section of the catalog file in more detail
+ ### 5.4 Inspect the module section of the catalog file in more detail
 
   We see that the `modules section` does contain following `cloudProvider`, `softwareProvider`, `id`, `group`, `displayName` and `type` which are not a part of the `module.yaml`. After these entries we insert content of the `module.yaml`.
 
   [Current `gitops` template](https://github.com/cloud-native-toolkit/template-terraform-gitops).
+
+### 5.5 Create a custom catalog
 
 #### Step 1: Create a `guestbook-catalog.yml` and insert following content
 
@@ -500,8 +517,7 @@ We will create our own `catalog.yaml` file and save the configuration in the Git
                   description: The type of module where the module is deployed
   ```
 
-### 5. Verify the `BOM` that we will use `guestbook module` and use [`iascable`](https://github.com/cloud-native-toolkit/iascable) to create the terraform code
-
+### 6. `BOM` that we will use `guestbook module` and use [`iascable`](https://github.com/cloud-native-toolkit/iascable) to create the terraform code
 
 #### Step 1: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
 
