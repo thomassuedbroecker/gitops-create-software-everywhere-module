@@ -821,11 +821,9 @@ There were two `Argo CD application` configurations added into the `iascable-git
 
 Let's take a look a the created `Argo CD application configurations`
 
-1. **Guestbook application** `Argo CD application configurations` to deploy the guestbook application
-
 We have two `Argo CD` application configurations:
 
-  * Guestbook **Namespace** in `argocd.1-infrastructure.cluster.default.base.namespace.yaml`
+#### 7.1.1.1 Guestbook **Namespace** in `argocd.1-infrastructure.cluster.default.base.namespace.yaml`
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -848,9 +846,9 @@ spec:
       prune: true
       selfHeal: true
   ignoreDifferences: []
- ```
+```
 
-  * Guestbook **application deployment**
+#### 7.1.1.2 Guestbook **application deployment** `argocd.3-applications.cluster.default.base.guestbook-helm-guestbook.yaml`
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
