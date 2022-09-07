@@ -51,6 +51,7 @@ In that section we will modify files
 #### Step 1:  Do some modifications in the `main.tf` file
 
 * Change `name = "my-helm-chart-folder"` to `helm-guestbook`
+
 * First add `helm_guestbook = {// create entry}` to the `values_content = {}`. That entry will be used to create the values for the variables in the `values.yaml` file for the helm chart.
   
   Below you see the relevant code in the `main.tf` which does the copy later. As you can is it uses the `{local.name}` value, so you need to ensure the name reflects the folder structure for your `helm-chart` later.
@@ -90,10 +91,12 @@ In that section we will modify files
       "affinity" = ""
     }
   ```
+  
 * Change `layer = "services"` to `layer = "applications"`
+
 * Add `cluster_type = var.cluster_type == "kubernetes" ? "kubernetes" : "openshift"` to the `locals`
 
-```
+ ```sh
 locals {
   name          = "my-helm-chart-folder"
   bin_dir       = module.setup_clis.bin_dir
@@ -110,7 +113,7 @@ locals {
   namespace = var.namespace
   layer_config = var.gitops_config[local.layer]
 }
-```
+ ```
 
 ### 4.2 The [`variable.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/variables.tf) file
 
