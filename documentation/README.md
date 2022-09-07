@@ -775,7 +775,7 @@ After some time you should get following output:
 Apply complete! Resources: 103 added, 0 changed, 0 destroyed.
 ```
 
-### 6.2 Verify the created Argo CD configuration on GitHub
+## 7. Verify the created Argo CD configuration on GitHub
 
 We see that in our GitHub account new repostory was created from the GitOps bootstap module to figure `Argo CD` for a using the `app-of-apps` concept with a single GitHub repository to manage all application in the GitOps context.
 
