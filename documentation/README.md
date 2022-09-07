@@ -808,7 +808,9 @@ We have to main folders in the `iascable-gitops-guestbook` repository.
 1. One for the `Argo CD application` configurations called `argocd`
 2. One for the application which will be deployed be the `Argo CD application` configurations called payload.
 
-Let inspect these two folders.
+Let inspect these two folders. The `gif` below shows the create files.
+
+![](images/develop-own-module-05.gif)
 
 #### 7.1.1 `argocd` folder
 
@@ -825,7 +827,7 @@ We have two `Argo CD` application configurations:
 
   * Guestbook **Namespace** in `argocd.1-infrastructure.cluster.default.base.namespace.yaml`
 
- ```yaml
+```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -850,7 +852,7 @@ spec:
 
   * Guestbook **application deployment**
 
- ```yaml
+```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -883,7 +885,7 @@ That folder contains what we defined in the
 
 Therefor we defined the values content before in the `module.tf` file.
 
-```hcl
+```sh
   values_content = {
     helm_guestbook = {
       // create entry
