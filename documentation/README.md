@@ -877,9 +877,73 @@ spec:
 
 #### 7.1.2 `payload` folder
 
-That folder contains what we defined in the 
+That folder contains a `namespace` payload and the `helm-chart` payload. 
 
-1. **Guestbook application** `helm chart configuration` to deploy the guestbook application
+#### 7.1.2.2 Guestbook **Namespace** in `payload.1-infrastructure.cluster.default.base`
+
+In the folder `payload.1-infrastructure.cluster.default.base` we have an `ns.yaml` and `rbac.yaml`. 
+
+* `ns.yaml`
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: guestbook
+  annotations:
+    argocd.argoproj.io/sync-wave: "-30"
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: guestbook-operator-group
+  namespace: guestbook
+  annotations:
+    argocd.argoproj.io/sync-wave: "-20"
+spec:
+  targetNamespaces:
+    - guestbook
+---
+```
+
+* `rbac.yaml`
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: argocd-admin
+  namespace: guestbook
+  annotations:
+    argocd.argoproj.io/sync-wave: "-20"
+rules:
+- apiGroups:
+  - "*"
+  resources:
+  - "*"
+  verbs:
+  - "*"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argocd-admin
+  namespace: guestbook
+  annotations:
+    argocd.argoproj.io/sync-wave: "-20"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: argocd-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:serviceaccounts:openshift-gitops
+```
+
+#### 7.1.1.2 Guestbook helm **application deployment** `payload.3-applications.cluster.default.base`
+
+That folder contains the **Guestbook application** `helm chart configuration` to deploy the guestbook application.
 
 Therefor we defined the values content before in the `module.tf` file.
 
