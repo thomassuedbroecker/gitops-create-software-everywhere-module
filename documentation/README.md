@@ -72,7 +72,7 @@ In that section we will modify files
 
   Now replace the `// create entry` with the needed values.
 
-  ```sh
+```sh
     helm_guestbook = {
       "replicaCount": 1
       "image.repository" = "gcr.io/heptio-images/ks-guestbook-demo"
@@ -90,13 +90,13 @@ In that section we will modify files
       "tolerations" = ""
       "affinity" = ""
     }
-  ```
+```
   
 * Change `layer = "services"` to `layer = "applications"`
 
 * Add `cluster_type = var.cluster_type == "kubernetes" ? "kubernetes" : "openshift"` to the `locals`
 
- ```sh
+```sh
 locals {
   name          = "my-helm-chart-folder"
   bin_dir       = module.setup_clis.bin_dir
@@ -113,7 +113,7 @@ locals {
   namespace = var.namespace
   layer_config = var.gitops_config[local.layer]
 }
- ```
+```
 
 ### 4.2 The [`variable.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/variables.tf) file
 
