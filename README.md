@@ -22,9 +22,9 @@ These are the main tasks:
 3. Create an own `catalog` for the `guestbook` `module`
 4. Create a `BOM` where the `guestbook` `module` is used and create the needed terraform output with `iascable`
 
-## 3. Perpare the environment
+## 2.1 Perpare the environment
 
-### 3.1 Create a new GitHub repository based on the `gitops template`
+### 2.1.1 Create a new GitHub repository based on the `gitops template`
 
 We will use later different catalogs here is a simplified view of the depencencies we will have later.
 
@@ -34,7 +34,7 @@ We will use later different catalogs here is a simplified view of the depencenci
 
 You can follow the steps in the [blog post](https://wp.me/paelj4-1yf) to do this.
 
-## 4. Implement the new `guestbook` module 
+## 3. Implement the new `guestbook` module 
 
 The content of the section:
 
@@ -45,7 +45,7 @@ The content of the section:
 * `gitops-terraform-guestbook` GitHub repository `tags` and release
 * Configure the `helm chart` copy automation
 
-### 4.1 The `main.tf` file
+### 3.1 The `main.tf` file
 
 #### Step 1:  Do some modifications in the `main.tf` file
 
@@ -111,7 +111,7 @@ locals {
 }
 ```
 
-### 4.2 The `variable.tf` file
+### 3.2 The `variable.tf` file
 
 #### Step 1: Add some variables in the `variable.tf` file
 
@@ -122,7 +122,7 @@ variable "cluster_type" {
 }
 ```
 
-### 4.3 The `helm chart` content
+### 3.3 The `helm chart` content
 
 #### Step 1: Create a new folder structure for the `guestbook helm chart`
 
@@ -249,7 +249,7 @@ spec:
             {}
 ```
 
-### 4.4 The `module.yaml` file
+### 3.4 The `module.yaml` file
 
 #### Step 1: Edited the `module.yaml` 
 
@@ -300,7 +300,7 @@ versions:
           output: sealed_secrets_cert
 ```
 
-### 4.5 `gitops-terraform-guestbook` GitHub repository `tags` and release
+### 3.5 `gitops-terraform-guestbook` GitHub repository `tags` and release
 
 ### Step 1: Create GitHub tag and release for the `gitops-terraform-guestbook` GitHub repository
 
@@ -321,7 +321,7 @@ Example relevant extract from a `BOM` -> `version: v0.0.5`
 
 You can follow the step to create a GitHub tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and then create a release.
 
-### 4.6 Configure the `helm chart` copy automation
+### 3.6 Configure the `helm chart` copy automation
 
 #### Step 1: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
 
@@ -349,7 +349,7 @@ echo "Files in output path"
 ls -l "${DEST_DIR}"
 ```
 
-## 5. Create an own catalog
+## 4. Create an own catalog
 
 In that example we will not publish the our `gitops-terraform-guestbook` module to the public catalog on [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/). 
 
@@ -361,11 +361,11 @@ We will create our own `catalog.yaml` file and save the configuration in the Git
 * Create a custom catalog steps
 
 
-### 5.1 How to create `catalog.yaml` file?
+### 4.1 How to create `catalog.yaml` file?
 
   It is useful to take a look into [iascable documentation](https://github.com/cloud-native-toolkit/iascable) and the [build-catalog.sh automation](https://github.com/cloud-native-toolkit/software-everywhere/blob/main/.github/scripts/build-catalog.sh).
 
-### 5.2 How to combine various catalogs?
+### 4.2 How to combine various catalogs?
 
   You can combine more than one `catalog resources` and `BOM inputs` with the `iascable build` command.
 
@@ -379,7 +379,7 @@ We will create our own `catalog.yaml` file and save the configuration in the Git
   * `BOM_INPUT` is the input file containing the Bill of Material definition. Multiple BOM files can be provided at the same time.
   * `OUTPUT_DIR` is the directory where the output terraform template will be generated.
 
-### 5.3 Inspect the structure of a `catalog.yaml`
+### 4.3 Inspect the structure of a `catalog.yaml`
 
   The structure of a catalog can be verified here
   [https://modules.cloudnativetoolkit.dev/index.yaml](https://modules.cloudnativetoolkit.dev/index.yaml)
@@ -426,13 +426,13 @@ We will create our own `catalog.yaml` file and save the configuration in the Git
           scope: global
   ```
 
- ### 5.4 Inspect the module section of the catalog file in more detail
+ ### 4.4 Inspect the module section of the catalog file in more detail
 
   We see that the `modules section` does contain following `cloudProvider`, `softwareProvider`, `id`, `group`, `displayName` and `type` which are not a part of the `module.yaml`. After these entries we insert content of the `module.yaml`.
 
   [Current `gitops` template](https://github.com/cloud-native-toolkit/template-terraform-gitops).
 
-### 5.5 Create a custom catalog
+### 4.5 Create a custom catalog
 
 #### Step 1: Create a `guestbook-catalog.yml` and insert following content
 
@@ -517,29 +517,15 @@ We will create our own `catalog.yaml` file and save the configuration in the Git
                   description: The type of module where the module is deployed
   ```
 
-### 6. `BOM` that we will use `guestbook module` and use [`iascable`](https://github.com/cloud-native-toolkit/iascable) to create the terraform code
+### 4.6. `BOM` that we will use `guestbook module`
 
-#### Step 1: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
-
-To ensure you use the lates version.
-
-```sh
-curl -sL https://iascable.cloudnativetoolkit.dev/install.sh | sh
-iascable --version
-```
-
-Example output:
-```sh
-2.17.2
-```
-
-#### Step 2: Clone the project with the example `BOM` configuration 
+#### Step 1: Clone the project with the example `BOM` configuration 
 
 ```sh
 git clone https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module
 ```
 
-#### Step 3: Verify the `ibm-vpc-roks-argocd-guestbook.yaml` `BOM` file
+#### Step 2: Verify the `ibm-vpc-roks-argocd-guestbook.yaml` `BOM` file
 
 ```yaml
 apiVersion: cloudnativetoolkit.dev/v1alpha1
@@ -626,7 +612,23 @@ spec:
           value: "helm-guestbook"
 ```
 
-#### Step 4: Update helper scripts
+### 4.7 Use [`iascable`](https://github.com/cloud-native-toolkit/iascable) to create the terraform code
+
+#### Step 1: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
+
+To ensure you use the lates version.
+
+```sh
+curl -sL https://iascable.cloudnativetoolkit.dev/install.sh | sh
+iascable --version
+```
+
+Example output:
+```sh
+2.17.2
+```
+
+#### Step 2: Update helper scripts
 
 The helper scripts are not a part of the framework, the will just help to avoid failures during the execution of several command.
 
@@ -652,7 +654,7 @@ CUSTOM_CATALOG=https://raw.githubusercontent.com/thomassuedbroecker/gitops-terra
 iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM_CATALOG
 ```
 
-#### Step 7: Execute "helper-create-scaffolding.sh"
+#### Step 3: Execute "helper-create-scaffolding.sh"
 
 ```sh
 sh helper-create-scaffolding.sh 
@@ -666,7 +668,7 @@ That script contains following sections:
 4. Navigate to the output folder
 5. Start the container engine
 
-#### Step 8: Delete the `-u "${UID}" \` command from the `output/launch.sh` script
+#### Step 4: Delete the `-u "${UID}" \` command from the `output/launch.sh` script
 
 ```sh
 ${DOCKER_CMD} run -itd --name ${CONTAINER_NAME} \
@@ -678,14 +680,14 @@ ${DOCKER_CMD} run -itd --name ${CONTAINER_NAME} \
   ${DOCKER_IMAGE}
 ```
 
-#### Step 9: Start the `launch.sh script`
+#### Step 5: Start the `launch.sh script`
 
 ```sh
 cd output
 sh launch.sh
 ```
 
-#### Step 10: Execute in the `tools container` the "helper-tools-create-container-workspace.sh" script
+#### Step 6: Execute in the `tools container` the "helper-tools-create-container-workspace.sh" script
 
 ```sh
 /terraform $
@@ -695,7 +697,7 @@ sh launch.sh
 sh helper-tools-create-container-workspace.sh 
 ```
 
-#### Step 11: Execute in the `tools container` the "helper-tools-execute-apply-and-backup-result.sh" script
+#### Step 7: Execute in the `tools container` the "helper-tools-execute-apply-and-backup-result.sh" script
 
 ```sh
 /terraform $
@@ -747,7 +749,7 @@ Provide a value for 'resource_group_name':
 > default
 ```
 
-#### Step 12: Verify the output of terraform execution
+#### Step 8: Verify the output of terraform execution
 
 After some time you should get following output:
 
@@ -755,7 +757,7 @@ After some time you should get following output:
 Apply complete! Resources: 103 added, 0 changed, 0 destroyed.
 ```
 
-### Verify the created Argo CD configuration on GitHub
+### 4.8 Verify the created Argo CD configuration on GitHub
 
 We see that in our GitHub account new repostory was created from the GitOps bootstap module to figure `Argo CD` for a using the `app-of-apps` concept with a single GitHub repository to manage all application in the GitOps context.
 
