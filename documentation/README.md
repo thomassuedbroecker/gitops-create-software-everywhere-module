@@ -14,7 +14,7 @@ It documents how to create a module for [`Technology Zone Accelerator Toolkit`](
 The [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) is a part of the `How to` instructions of the [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/). 
 The module covers the [GitOps topic](https://modules.cloudnativetoolkit.dev/#/how-to/gitops).
 
-# 3. Use the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) to create a module to deploy the guestbook example
+## 3. Use the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) to create a module to deploy the guestbook example
 
 These are the main tasks:
 
