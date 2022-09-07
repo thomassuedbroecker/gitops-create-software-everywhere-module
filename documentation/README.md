@@ -427,7 +427,7 @@ We will create our own `catalog.yaml` file and save the configuration in the Git
           scope: global
   ```
 
- ### 5.4 Inspect the module section of the catalog file in more detail
+### 5.4 Inspect the module section of the catalog file in more detail
 
   We see that the `modules section` does contain following `cloudProvider`, `softwareProvider`, `id`, `group`, `displayName` and `type` which are not a part of the `module.yaml`. After these entries we insert content of the `module.yaml`.
 
