@@ -36,6 +36,8 @@ You can follow the steps in the [blog post](https://wp.me/paelj4-1yf) to do this
 
 ## 4. Implement the new `guestbook` module 
 
+### 4.1 The `main.tf` file
+
 #### Step 1:  Do some modifications in the `main.tf` file
 
 * Change `name = "my-helm-chart-folder"` to `helm-guestbook`
@@ -100,7 +102,9 @@ locals {
 }
 ```
 
-#### Step 2: Add some variables in the `variable.tf` file
+### 4.2 The `variable.tf` file
+
+#### Step 1: Add some variables in the `variable.tf` file
 
 ```hcl
 variable "cluster_type" {
@@ -109,7 +113,9 @@ variable "cluster_type" {
 }
 ```
 
-#### Step 3: Create a new folder structure for the `guestbook helm chart`
+### 4.2 The `helm chart` content
+
+#### Step 1: Create a new folder structure for the `guestbook helm chart`
 
 * Create following folder structure `chart/helm-guestbook`.
   The name after chart must be the module name.
@@ -131,9 +137,9 @@ variable "cluster_type" {
   │       └── values.yaml
   ```
 
-#### Step 4: Copy in newly create folderstructure the content from the repository for the `helm-guestbook` chart [https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook)
+#### Step 2: Copy in newly create folderstructure the content from the repository for the `helm-guestbook` chart [https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook)
 
-#### Step 5: Validate the `helm chart` with following commands:
+#### Step 3: Validate the `helm chart` with following commands:
 
 * Navigate the charts directory
 
@@ -234,7 +240,9 @@ spec:
             {}
 ```
 
-#### Step 6: Edited the `module.yaml` 
+### 4.3 The `module.yaml` file
+
+#### Step 1: Edited the `module.yaml` 
 
 * Use for `name`: `gitops-terraform-guestbook`
 * Use for `description`: `That module will add a new Argo CD config to deploy the guestbook application`
@@ -283,7 +291,9 @@ versions:
           output: sealed_secrets_cert
 ```
 
-### Step 7: Create GitHub tag and release for the `gitops-terraform-guestbook` GitHub repository
+### 4.4 `gitops-terraform-guestbook` GitHub repository `tags` and release
+
+### Step 1: Create GitHub tag and release for the `gitops-terraform-guestbook` GitHub repository
 
 The module github repository releases should be updated when you are going to change the `gitops-terraform-guestbook` GitHub repository module. In case when you use specific version numbers in the `BOM` which consums the module. That is also relevant for the `catalog.yaml` we will define later.
 
@@ -302,7 +312,9 @@ Example relevant extract from a `BOM` -> `version: v0.0.5`
 
 You can follow the step to create a GitHub tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and then create a release.
 
-#### Step 7: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
+### 4.5 Configure the `helm chart` copy automation
+
+#### Step 1: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
 
 Replace the existing code in `scripts/create-yaml.sh` with following content. This is important for later when the `helm-chart` will be copied.
 
@@ -328,7 +340,7 @@ echo "Files in output path"
 ls -l "${DEST_DIR}"
 ```
 
-### 5. Create an own catalog
+## 5. Create an own catalog
 
 In that example we will not publish the our `gitops-terraform-guestbook` module to the public catalog on [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/). 
 
