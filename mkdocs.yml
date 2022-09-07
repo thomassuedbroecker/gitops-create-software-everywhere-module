@@ -1,0 +1,92 @@
+# Project information
+site_name:  Create a Software Everywhere module
+site_url: https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module
+site_author: Thomas Suedbroecker
+
+# Repository
+repo_name: Create a Software Everywhere module
+repo_url: https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module
+edit_uri: edit/main/documentation
+docs_dir: documentation
+
+# Navigation
+nav:
+  - 1. Overview: ./README.md
+
+## DO NOT CHANGE BELOW THIS LINE
+
+# Copyright
+#copyright: Copyright &copy; 2022 IBM Developer
+
+# Theme
+theme:
+  name: material
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  icon:
+    # .svg automatically appended
+    # logo: ibm_8bar_reverse_2
+    logo: material/library
+  features:
+    # - navigation.tabs
+    - navigation.instant
+    # - navigation.expand
+  palette:
+    scheme: default
+    primary: black
+    accent: blue
+  # palette:
+  #  scheme: default
+  #  primary: blue
+  #  accent: blue
+  # enable if you want to use a custom icon
+  # custom_dir: overrides
+
+# Customization
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module
+  generator: false
+
+extra_css:
+  - docs/stylesheets/extra.css
+  - stylesheets/extra.css
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
