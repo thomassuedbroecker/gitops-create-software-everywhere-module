@@ -520,13 +520,13 @@ We will create our own `catalog.yaml` file and save the configuration in the Git
 
 ### 5.6. `BOM` that we will use `guestbook module`
 
-#### Step 1: Clone the project with the example `BOM` configuration 
+#### Step 1: Clone the project with the example [`BOM`](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/ibm-vpc-roks-argocd-guestbook.yaml) configuration 
 
 ```sh
 git clone https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module
 ```
 
-#### Step 2: Verify the `ibm-vpc-roks-argocd-guestbook.yaml` `BOM` file
+#### Step 2: Verify the [`ibm-vpc-roks-argocd-guestbook.yaml`](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/ibm-vpc-roks-argocd-guestbook.yaml) `BOM` file
 
 ```yaml
 apiVersion: cloudnativetoolkit.dev/v1alpha1
