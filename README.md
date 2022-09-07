@@ -7,6 +7,7 @@ The objective is to understand how to build new modules for the [`Technology Zon
 # 1. What does the project do?
 
 This project does inspect the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) and needs to be seen in combination with the [gitops-verify-swagger-editor-example](https://github.com/thomassuedbroecker/gitops-verify-swagger-editor-example) outcome.
+It documents how to create a module for [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/) step by step using the [helm guestbook application example](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook) from the Argo CD GitHub repository.
 
 ## 1.1 Understand the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops)
 
