@@ -29,7 +29,7 @@ These are the main tasks:
 
 We will use later different catalogs here is a simplified view of the depencencies we will have later.
 
-![](../images/develop-own-module-01.png)
+![](images/develop-own-module-01.png)
 
 #### Step 1: Clone the GitHub `gitops template` repository to your local computer and create a new GitHub repository based on that template
 
@@ -785,14 +785,14 @@ The repository contains two folders:
 
 1. **argocd** folder which contains the configuration for `Argo CD` let us call it `**app-of-apps** folder`. The following image displays the resulting configuration in `Argo CD`
 
-![](../images/develop-own-module-03.png)
+![](images/develop-own-module-03.png)
 
 
 2. **payload** folder which contains the current helm deployment for the **apps** which will be deployed. The following image show the deployment created by `apps` in our case the helm-guestbook 
 
 The following image shows the newly created GitHub `iascable-gitops-guestbook` repository.
 
-![](../images/develop-own-module-02.png)
+![](images/develop-own-module-02.png)
 
 For more details visit the template of the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module.
 
