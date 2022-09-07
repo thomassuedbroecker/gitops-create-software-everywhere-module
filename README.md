@@ -36,7 +36,7 @@ You can follow the steps in the [blog post](https://wp.me/paelj4-1yf) to do this
 
 ## 4. Implement the new `guestbook` module 
 
-#### Step 1:  Do some modification in the `main.tf` file
+#### Step 1:  Do some modifications in the `main.tf` file
 
 * Change `name = "my-helm-chart-folder"` to `helm-guestbook`
 * First add `helm_guestbook = {// create entry}` to the `values_content = {}`. That entry will be used to create the values for the variables in the `values.yaml` file for the helm chart.
@@ -100,7 +100,7 @@ locals {
 }
 ```
 
-#### Step 2:  Add some variable in the `variable.tf` file
+#### Step 2: Add some variables in the `variable.tf` file
 
 ```hcl
 variable "cluster_type" {
@@ -109,7 +109,7 @@ variable "cluster_type" {
 }
 ```
 
-#### Step 3: Create a new folder structure for the `guestbook helmchart`
+#### Step 3: Create a new folder structure for the `guestbook helm chart`
 
 * Create following folder structure `chart/helm-guestbook`.
   The name after chart must be the module name.
@@ -234,7 +234,7 @@ spec:
             {}
 ```
 
-#### Step 5: Edited the `module.yaml` 
+#### Step 6: Edited the `module.yaml` 
 
 * Use for `name`: `gitops-terraform-guestbook`
 * Use for `description`: `That module will add a new Argo CD config to deploy the guestbook application`
@@ -283,10 +283,9 @@ versions:
           output: sealed_secrets_cert
 ```
 
-### Step 6: Create GitHub tag and relase
+### Step 7: Create GitHub tag and release for the `gitops-terraform-guestbook` GitHub repository
 
-The module github repository releases shoulf be updated when you are going to change the module.
-In case when you use specific version numbers in the `BOM` which consums the module.
+The module github repository releases should be updated when you are going to change the `gitops-terraform-guestbook` GitHub repository module. In case when you use specific version numbers in the `BOM` which consums the module. That is also relevant for the `catalog.yaml` we will define later.
 
 Example relevant extract from a `BOM` -> `version: v0.0.5`
 
