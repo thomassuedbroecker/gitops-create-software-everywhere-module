@@ -21,7 +21,7 @@ These are the main tasks:
 1. Create a GitHub repository based on the `gitops template` from `Software Everywhere`
 2. Configure the `guestbook` `module`
 3. Create an own `catalog` for the `guestbook` `module`
-4. Create a `BOM` where the `guestbook` `module` is used and create the needed terraform output with `iascable`
+4. Create a `BOM` (Bill of material) where the `guestbook` `module` is used and create the needed terraform output with `iascable`
 
 We will use later different catalogs here is a simplified view of the depencencies we will have later.
 
@@ -530,6 +530,30 @@ git clone https://github.com/thomassuedbroecker/gitops-create-software-everywher
 ```
 
 #### Step 2: Verify the [`ibm-vpc-roks-argocd-guestbook.yaml`](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/ibm-vpc-roks-argocd-guestbook.yaml) `BOM` file
+
+This is the simplified target architecture what our  `BOM` will create as terraform code for initial setup.
+
+A customized IBM Cloud environment for `GitOps` and our `guestbook` module.
+
+* For the configuration of GitOps in Red Hat OpenShift. We will use two operators:
+
+  * [Red Hat OpenShift GitOps operator](https://github.com/redhat-developer/gitops-operator)
+
+    We will create one ArgoCD instance with the Red at OpenShift GitOps operator, that ArgoCD instance will bin initial configured by a newly created GitHub project configure by a Cloud Native Toolkit template for GitOps repositories.
+
+  * [Red Hat OpenShift Pipelines operator](https://catalog.redhat.com/software/operators/detail/5ec54a4628834587a6b85ca5)
+
+    There will be no initial setup for a Tekton pipeline at the moment.
+ 
+  That images show a simplified view of the Argo CD basic configuration.
+
+  ![](images/develop-own-module-07.png)
+
+* IBM Cloud infrastructure with Red Hat OpenShift in a Virtual Private Cloud
+   
+   ![](images/develop-own-module-08.png)
+
+This is the structure of the `BOM` we are going to use: 
 
 ```yaml
 apiVersion: cloudnativetoolkit.dev/v1alpha1
