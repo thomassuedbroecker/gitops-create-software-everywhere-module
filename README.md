@@ -30,7 +30,7 @@ We will use later different catalogs here is a simplified view of the depencenci
 
 ![](images/develop-own-module-01.png)
 
-#### Step 1: Clone the GitHub repository to your local computer
+#### Step 1: Clone the GitHub `gitops template` repository to your local computer and create a new GitHub repository based on that template
 
 Follow the step in the [blog post](https://wp.me/paelj4-1yf)
 
