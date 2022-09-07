@@ -613,7 +613,9 @@ spec:
           value: "helm-guestbook"
 ```
 
-### 4.7 Use [`iascable`](https://github.com/cloud-native-toolkit/iascable) to create the terraform code
+## 5. Create terraform code and create the resources
+
+Use [`iascable`](https://github.com/cloud-native-toolkit/iascable) to create the terraform code
 
 #### Step 1: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
 
@@ -661,7 +663,7 @@ iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM
 sh helper-create-scaffolding.sh 
 ```
 
-That script contains following sections:
+That script does following steps:
 
 1. Basic global variables
 2. Create scaffolding (execute iascable)
@@ -698,6 +700,13 @@ sh launch.sh
 sh helper-tools-create-container-workspace.sh 
 ```
 
+That script does following steps inside the tools container:
+
+1. Basic global variables
+2. Create a workspace folder
+3. Copy content of the mapped volume to the newly created the workspace folder
+4. Navigate to the workspace folder
+
 #### Step 7: Execute in the `tools container` the "helper-tools-execute-apply-and-backup-result.sh" script
 
 ```sh
@@ -707,6 +716,14 @@ sh helper-tools-create-container-workspace.sh
 ```sh
 sh helper-tools-execute-apply-and-backup-result.sh 
 ```
+
+That script does following steps inside the tools container:
+
+1. Basic global variables
+2. Navigate to workspace
+3. Execute apply.sh
+4. List the created resources
+5. Copy current of the workspace folder to mapped volume
 
 Interactive output:
 
