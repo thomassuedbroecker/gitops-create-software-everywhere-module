@@ -850,6 +850,10 @@ spec:
 
 #### 7.1.1.2 Guestbook **application deployment** `argocd.3-applications.cluster.default.base.guestbook-helm-guestbook.yaml`
 
+This is the Argo CD application configuration `guestbook-helm-guestbook.yaml` file, which was created automaticly by our module with the `igc gitops-module` command.
+
+That `payload` directory is used as the `source.path` in that `Argo CD application` configuration as you see above.
+
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -873,7 +877,7 @@ spec:
       prune: true
       selfHeal: true
   ignoreDifferences: []
- ```
+```
 
 #### 7.1.2 `payload` folder
 
@@ -943,9 +947,12 @@ subjects:
 
 #### 7.1.1.2 Guestbook helm **application deployment** `payload.3-applications.cluster.default.base`
 
+
 That folder contains the **Guestbook application** `helm chart configuration` to deploy the guestbook application.
 
-Therefor we defined the values content before in the `module.tf` file.
+The script `scripts/create-yaml.sh` of our [module `gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/scripts/create-yaml.sh) was resposible to copy the guestbook helm-chart into the payload directory. Therefor we did the customization of that file.
+
+We defined the values content for the helm chart variables before in the `module.tf` file. That file `values.yaml` file is used in `Argo CD application` configuration for the parameters.
 
 ```sh
   values_content = {
@@ -955,37 +962,10 @@ Therefor we defined the values content before in the `module.tf` file.
   }
 ```
 
-These will be use in the first `values.yaml` file in the payload directory.
+The following gif shows the relation of the configuration.
 
-That first directory is used as the `source.path` in the `Argo CD` application configuration as you see above.
+![](images/develop-own-module-06.gif)
 
-This is the Argo CD application configuration `guestbook-helm-guestbook.yaml` file, which was created automaticly by our module with the `igc gitops-module` command.
 
-```yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: guestbook-helm-guestbook
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    namespace: guestbook
-    server: https://kubernetes.default.svc
-  project: 3-applications
-  source:
-    path: payload/3-applications/namespace/guestbook/helm-guestbook
-    repoURL: https://github.com/thomassuedbroecker/iascable-gitops-guestbook.git
-    targetRevision: main
-    helm:
-      releaseName: helm-guestbook
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-  ignoreDifferences: []
-```
 
-2. `Helm guestbook application` deployment
 
-The script `scripts/create-yaml.sh` of our [module `gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook) was resposible to copy the guestbook helm-chart into the payload directory. Therefor we did the customization of that file.
