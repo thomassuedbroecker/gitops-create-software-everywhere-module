@@ -44,7 +44,7 @@ In that section we will modify files
 * The `helm chart` content
 * The `module.yaml` file
 * Create for `gitops-terraform-guestbook` GitHub repository `tags` and `releases`
-* Configure the `helm chart` copy automation in the 
+* Configure the `helm chart` copy automation in the `scripts/create-yaml.sh` file
 
 ### 4.1 The `main.tf` file
 
@@ -322,7 +322,7 @@ Example relevant extract from a `BOM` -> `version: v0.0.5`
 
 You can follow the step to create a GitHub tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and then create a release.
 
-### 4.6 Configure the `helm chart` copy automation
+### 4.6 Configure the `helm chart` copy automation in the `scripts/create-yaml.sh` file
 
 #### Step 1: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
 
