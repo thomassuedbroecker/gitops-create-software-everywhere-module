@@ -303,7 +303,7 @@ versions:
 
 ### 4.5 `gitops-terraform-guestbook` GitHub repository `tags` and `releases`
 
-### Step 1: Create GitHub tag and release for the `gitops-terraform-guestbook` GitHub repository
+#### Step 1: Create GitHub tag and release for the `gitops-terraform-guestbook` GitHub repository
 
 The module github repository releases should be updated when you are going to change the `gitops-terraform-guestbook` GitHub repository module. In case when you use specific version numbers in the `BOM` which consums the module. That is also relevant for the `catalog.yaml` we will define later.
 
@@ -657,13 +657,13 @@ CUSTOM_CATALOG=https://raw.githubusercontent.com/thomassuedbroecker/gitops-terra
 iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM_CATALOG
 ```
 
-#### Step 3: Execute "helper-create-scaffolding.sh"
+#### Step 3: Execute ["helper-create-scaffolding.sh"](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-create-scaffolding.sh)
 
 ```sh
 sh helper-create-scaffolding.sh 
 ```
 
-That script does following steps:
+That script ["helper-create-scaffolding.sh"](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-create-scaffolding.sh) does following steps:
 
 1. Basic global variables
 2. Create scaffolding (execute iascable)
@@ -690,7 +690,7 @@ cd output
 sh launch.sh
 ```
 
-#### Step 6: Execute in the `tools container` the "helper-tools-create-container-workspace.sh" script
+#### Step 6: Execute in the `tools container` the ["helper-tools-create-container-workspace.sh"](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-create-container-workspace.sh) script
 
 ```sh
 /terraform $
@@ -700,14 +700,14 @@ sh launch.sh
 sh helper-tools-create-container-workspace.sh 
 ```
 
-That script does following steps inside the tools container:
+That script ["helper-tools-create-container-workspace.sh"](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-create-container-workspace.sh) does following steps inside the tools container:
 
 1. Basic global variables
 2. Create a workspace folder
 3. Copy content of the mapped volume to the newly created the workspace folder
 4. Navigate to the workspace folder
 
-#### Step 7: Execute in the `tools container` the "helper-tools-execute-apply-and-backup-result.sh" script
+#### Step 7: Execute in the `tools container` the ["helper-tools-execute-apply-and-backup-result.sh"](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-execute-apply-and-backup-result.sh) script
 
 ```sh
 /terraform $
@@ -717,7 +717,7 @@ That script does following steps inside the tools container:
 sh helper-tools-execute-apply-and-backup-result.sh 
 ```
 
-That script does following steps inside the tools container:
+That script ["helper-tools-execute-apply-and-backup-result.sh"](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-execute-apply-and-backup-result.sh) does following steps inside the tools container:
 
 1. Basic global variables
 2. Navigate to workspace
