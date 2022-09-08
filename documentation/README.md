@@ -994,6 +994,16 @@ subjects:
   name: system:serviceaccounts:openshift-gitops
 ```
 
+> Note: These configuration is reposible that our initial deployment of the guestbook application does run in a permission problem. Because we are not allowed to bind port **:80** with the permission in that folder.
+
+```sh
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.5.168. Set the 'ServerName' directive globally to suppress this message
+(13)Permission denied: AH00072: make_sock: could not bind to address [::]:80
+(13)Permission denied: AH00072: make_sock: could not bind to address 0.0.0.0:80
+no listening sockets available, shutting down
+AH00015: Unable to open logs
+```
+
 #### 7.1.1.2 Guestbook helm **application deployment** `payload.3-applications.cluster.default.base`
 
 
