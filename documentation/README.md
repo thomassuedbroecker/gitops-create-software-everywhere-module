@@ -67,7 +67,7 @@ brew install colima
 
 ## 4. Implement the new `guestbook` module 
 
-In that section we will modify files in our newly created repository.
+In that section we will modify files in our newly created repository. These are the relevant files for our new module.
 
 * The [`main.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/main.tf) file
 * The [`variable.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/variables.tf) file
