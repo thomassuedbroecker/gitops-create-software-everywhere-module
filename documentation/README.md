@@ -845,7 +845,6 @@ The new `iascable-gitops-guestbook` repository contains two folders the followin
 
 ![](images/develop-own-module-03.png)
 
-
 2. **payload** folder which contains the current helm deployment for the **apps** which will be deployed. The following image show the deployment created by `apps` in our case the helm-guestbook 
 
 The following image shows the newly created GitHub `iascable-gitops-guestbook` repository.
