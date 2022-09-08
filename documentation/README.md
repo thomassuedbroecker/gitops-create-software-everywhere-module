@@ -31,9 +31,9 @@ We will use later different catalogs here is a simplified view of the depencenci
 
 ### 3.1.1 Create a new GitHub repository based on the `gitops template`
 
-We clone the `gitops template` repository to our local computer and we going to create our [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook) repository.
+We clone the [`gitops template` repository](https://github.com/cloud-native-toolkit/template-terraform-gitops) to our local computer and we going to create our [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook) repository.
 
-#### Step 1: Clone the GitHub `gitops template` repository to your local computer and create a new GitHub repository based on that template
+#### Step 1: Clone the GitHub [`gitops template` repository](https://github.com/cloud-native-toolkit/template-terraform-gitops) to your local computer and create a new GitHub repository based on that template
 
 You can follow the steps in the [blog post](https://wp.me/paelj4-1yf) to do this.
 
