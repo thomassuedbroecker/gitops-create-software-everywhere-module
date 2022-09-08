@@ -21,11 +21,11 @@ These are the main tasks:
 1. Create a GitHub repository based on the `gitops template` from `Software Everywhere`
 2. Configure the `guestbook` `module`
 3. Create an own `catalog` for the `guestbook` `module`
-4. Create a `BOM` (Bill of material) where the `guestbook` `module` is used and create the needed terraform output with `iascable`
+4. Create a [`BOM`(Bill of material)](https://github.com/cloud-native-toolkit/iascable#bom-spec) where the `guestbook` `module` is used and create the needed terraform output with `iascable`
 
-We will use later different catalogs here is a simplified view of the depencencies we will have later.
+We will use later two catalogs and one `BOM` (Bill of material). here is a simplified view of the depencencies we will have later.
 
-![](images/develop-own-module-01.png)
+![](images/develop-own-module-11.png)
 
 ## 3.1 Perpare the environment
 
