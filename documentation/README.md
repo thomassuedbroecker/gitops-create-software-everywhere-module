@@ -585,6 +585,8 @@ A customized IBM Cloud environment for `GitOps` and our `guestbook` module.
 
 This is the structure of the `BOM` we are going to use: 
 
+> Note: Configure variables to your needs. We commented out the `#  version: v0.0.5` of our module because we will configure only one version in our catalog we will create later.
+
 ```yaml
 apiVersion: cloudnativetoolkit.dev/v1alpha1
 kind: BillOfMaterial
@@ -820,9 +822,9 @@ Apply complete! Resources: 103 added, 0 changed, 0 destroyed.
 
 ## 7. Verify the created Argo CD configuration on GitHub
 
-We see that in our GitHub account new repostory was created from the GitOps bootstap module to figure `Argo CD` for a using the `app-of-apps` concept with a single GitHub repository to manage all application in the GitOps context.
+We see that in our GitHub account new repostory was created from the [GitOps bootstap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap) to figure `Argo CD` for by using the `app-of-apps` concept with a single GitHub repository to manage all `Argo CD application configuration` and `helm configurations to deploy applications` in the GitOps context.
 
-The repository is called `iascable-gitops-guestbook` in our case.
+The new GitHub repository is called `iascable-gitops-guestbook` in our case.
 
 The repository contains two folders:
 
