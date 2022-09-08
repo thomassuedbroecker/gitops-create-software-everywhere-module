@@ -835,7 +835,7 @@ The new GitHub repository is called `iascable-gitops-guestbook` in our case.
 
 The repository contains two folders:
 
-1. **argocd** folder which contains the configuration for `Argo CD` let us call it `**app-of-apps** folder`. The following image displays the resulting configuration in `Argo CD`
+1. **argocd** folder which contains the configuration for `Argo CD` let us call it **app-of-apps** folder. The following image displays the resulting configuration in `Argo CD`
 
 ![](images/develop-own-module-03.png)
 
