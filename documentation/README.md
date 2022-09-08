@@ -833,7 +833,7 @@ We see that in our GitHub account new repostory was created from the [GitOps boo
 
 > Reminder the boot strap configuration is shown in the following image for details visit the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module.
 
-![](https://github.com/cloud-native-toolkit/terraform-tools-gitops/blob/main/template/docs/gitops-structure-overview.png)
+![](https://github.com/cloud-native-toolkit/terraform-tools-gitops/blob/main/template/docs/gitops-structure-overview.png?raw=true)
 
 The new GitHub repository is called `iascable-gitops-guestbook` in our case.
 
