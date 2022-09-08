@@ -585,7 +585,12 @@ A customized IBM Cloud environment for `GitOps` and our `guestbook` module.
 
 This is the structure of the `BOM` we are going to use: 
 
-> Note: Configure variables to your needs. We commented out the `#  version: v0.0.5` of our module because we will configure only one version in our catalog we will create later.
+* Virtual Private Cloud - related
+* ROKS - related (RedHat OpenShift on IBM Cloud)
+* GitOps and Bootstrap of GitOps 
+* Our own module called `gitops-terraform-guestbook`
+
+> Note: Configure variables to your needs. We commented out the `#  version: v0.0.5` of our module, because we will configure only one version in our `catalog.yaml` which we will define later.
 
 ```yaml
 apiVersion: cloudnativetoolkit.dev/v1alpha1
