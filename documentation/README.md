@@ -829,11 +829,17 @@ Apply complete! Resources: 103 added, 0 changed, 0 destroyed.
 
 ## 7. Verify the created Argo CD configuration on GitHub
 
-We see that in our GitHub account new repostory was created from the [GitOps bootstap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap) to figure `Argo CD` for by using the `app-of-apps` concept with a single GitHub repository to manage all `Argo CD application configuration` and `helm configurations to deploy applications` in the GitOps context.
+We see that in our GitHub account new repostory was created from the [GitOps bootstap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap) and the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module to figure `Argo CD` for by using the `app-of-apps` concept with a single GitHub repository to manage all `Argo CD application configuration` and `helm configurations to deploy applications` in the GitOps context.
+
+> Reminder the boot strap configuration is shown in the following image for details visit the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module.
+
+![](https://github.com/cloud-native-toolkit/terraform-tools-gitops/blob/main/template/docs/gitops-structure-overview.png)
 
 The new GitHub repository is called `iascable-gitops-guestbook` in our case.
 
-The repository contains two folders:
+The new `iascable-gitops-guestbook` repository contains two folders the following image shows the relation to the bootstrap configuration.
+
+![](images/develop-own-module-09.png)
 
 1. **argocd** folder which contains the configuration for `Argo CD` let us call it **app-of-apps** folder. The following image displays the resulting configuration in `Argo CD`
 
@@ -847,6 +853,8 @@ The following image shows the newly created GitHub `iascable-gitops-guestbook` r
 ![](images/develop-own-module-02.png)
 
 For more details visit the template of the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module.
+
+
 
 ### 7.1 Understand how the `guestbook module content` was pasted into the new `iascable-gitops-guestbook` repository
 
