@@ -31,9 +31,35 @@ We will use later different catalogs here is a simplified view of the depencenci
 
 ### 3.1.1 Create a new GitHub repository based on the `gitops template`
 
+We clone the `gitops template` repository to our local computer and we going to create our [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook) repository.
+
 #### Step 1: Clone the GitHub `gitops template` repository to your local computer and create a new GitHub repository based on that template
 
 You can follow the steps in the [blog post](https://wp.me/paelj4-1yf) to do this.
+
+#### Step 2: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
+
+We install  [`iascable`](https://github.com/cloud-native-toolkit/iascable) to ensure you use the lates version.
+
+```sh
+curl -sL https://iascable.cloudnativetoolkit.dev/install.sh | sh
+iascable --version
+```
+
+* Example output:
+
+```sh
+2.17.2
+```
+
+#### Step 3: Install a container engine
+
+In this example we use the unsupport container engine [colima](https://github.com/abiosoft/colima).
+
+```sh
+# Homebrew
+brew install colima
+``` 
 
 ## 4. Implement the new `guestbook` module 
 
@@ -644,21 +670,7 @@ spec:
 
 Use [`iascable`](https://github.com/cloud-native-toolkit/iascable) to create the terraform code
 
-#### Step 1: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
-
-To ensure you use the lates version.
-
-```sh
-curl -sL https://iascable.cloudnativetoolkit.dev/install.sh | sh
-iascable --version
-```
-
-Example output:
-```sh
-2.17.2
-```
-
-#### Step 2: Update helper scripts
+#### Step 1: Update helper scripts
 
 The helper scripts are not a part of the framework, the will just help to avoid failures during the execution of several command.
 
@@ -684,7 +696,7 @@ CUSTOM_CATALOG=https://raw.githubusercontent.com/thomassuedbroecker/gitops-terra
 iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c $BASE_CATALOG -c $CUSTOM_CATALOG
 ```
 
-#### Step 3: Execute ["helper-create-scaffolding.sh"](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-create-scaffolding.sh)
+#### Step 2: Execute ["helper-create-scaffolding.sh"](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-create-scaffolding.sh)
 
 ```sh
 sh helper-create-scaffolding.sh 
@@ -698,7 +710,7 @@ That script ["helper-create-scaffolding.sh"](https://github.com/thomassuedbroeck
 4. Navigate to the output folder
 5. Start the container engine
 
-#### Step 4: Delete the `-u "${UID}" \` command from the `output/launch.sh` script
+#### Step 3: Delete the `-u "${UID}" \` command from the `output/launch.sh` script
 
 ```sh
 ${DOCKER_CMD} run -itd --name ${CONTAINER_NAME} \
@@ -710,14 +722,14 @@ ${DOCKER_CMD} run -itd --name ${CONTAINER_NAME} \
   ${DOCKER_IMAGE}
 ```
 
-#### Step 5: Start the `launch.sh script`
+#### Step 4: Start the `launch.sh script`
 
 ```sh
 cd output
 sh launch.sh
 ```
 
-#### Step 6: Execute in the `tools container` the ["helper-tools-create-container-workspace.sh"](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-create-container-workspace.sh) script
+#### Step 5: Execute in the `tools container` the ["helper-tools-create-container-workspace.sh"](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-create-container-workspace.sh) script
 
 ```sh
 /terraform $
@@ -734,7 +746,7 @@ That script ["helper-tools-create-container-workspace.sh"](https://github.com/th
 3. Copy content of the mapped volume to the newly created the workspace folder
 4. Navigate to the workspace folder
 
-#### Step 7: Execute in the `tools container` the ["helper-tools-execute-apply-and-backup-result.sh"](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-execute-apply-and-backup-result.sh) script
+#### Step 6: Execute in the `tools container` the ["helper-tools-execute-apply-and-backup-result.sh"](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-execute-apply-and-backup-result.sh) script
 
 ```sh
 /terraform $
@@ -794,7 +806,7 @@ Provide a value for 'resource_group_name':
 > default
 ```
 
-#### Step 8: Verify the output of terraform execution
+#### Step 7: Verify the output of terraform execution
 
 After some time you should get following output:
 
