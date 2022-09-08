@@ -994,7 +994,7 @@ subjects:
   name: system:serviceaccounts:openshift-gitops
 ```
 
-> Note: These configuration is reposible that our initial deployment of the guestbook application does run in a permission problem. Because we are not allowed to bind port **:80** with the permission in that folder.
+> Note: This configuration is reposible that our initial deployment of the guestbook application does run in a permission problem. Because we are not allowed to bind port **:80** with the permission in that namespace (OpenShift project).
 
 ```sh
 AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.5.168. Set the 'ServerName' directive globally to suppress this message
