@@ -37,6 +37,32 @@ We clone the [`gitops template` repository](https://github.com/cloud-native-tool
 
 You can follow the steps in the [blog post](https://wp.me/paelj4-1yf) to do this.
 
+Then you should have following folderstructure on on computer:
+
+```sh
+├── LICENSE
+├── README.md
+├── main.tf
+├── module.yaml
+├── outputs.tf
+├── scripts
+│   └── create-yaml.sh
+├── test
+│   └── stages
+│       ├── stage0.tf
+│       ├── stage1-cert.tf
+│       ├── stage1-cluster.tf
+│       ├── stage1-cp-catalogs.tf
+│       ├── stage1-gitops-bootstrap.tf
+│       ├── stage1-gitops.tf
+│       ├── stage1-namespace.tf
+│       ├── stage2-mymodule.tf
+│       ├── stage3-outputs.tf
+│       └── variables.tf
+├── variables.tf
+└── version.tf
+```
+
 ### 3.1.2 Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
 
 We install  [`iascable`](https://github.com/cloud-native-toolkit/iascable) to ensure you use the lates version.
@@ -163,7 +189,7 @@ variable "cluster_type" {
 * Create following folder structure `chart/helm-guestbook`.
   The name after chart must be the module name.
 
-  ```sh
+```sh
   ├── chart
   │   └── helm-guestbook
   │       ├── Chart.yaml
@@ -178,7 +204,48 @@ variable "cluster_type" {
   │       │       └── values.yaml
   │       │       └── Chart.yaml
   │       └── values.yaml
-  ```
+```
+
+That will be the resulting folder structure for the `guestbook module` on your local pc:
+
+```sh
+├── LICENSE
+├── README.md
+├── chart
+│   └── helm-guestbook
+│       ├── Chart.yaml
+│       ├── charts
+│       │   └── helm-guestbook
+│       │       ├── Chart.yaml
+│       │       ├── templates
+│       │       │   ├── NOTES.txt
+│       │       │   ├── _helpers.tpl
+│       │       │   ├── deployment.yaml
+│       │       │   └── service.yaml
+│       │       ├── values-production.yaml
+│       │       └── values.yaml
+│       └── values.yaml
+├── main.tf
+├── module.yaml
+├── outputs.tf
+├── scripts
+│   └── create-yaml.sh
+├── test
+│   └── stages
+│       ├── stage0.tf
+│       ├── stage1-cert.tf
+│       ├── stage1-cluster.tf
+│       ├── stage1-cp-catalogs.tf
+│       ├── stage1-gitops-bootstrap.tf
+│       ├── stage1-gitops.tf
+│       ├── stage1-namespace.tf
+│       ├── stage2-mymodule.tf
+│       ├── stage3-outputs.tf
+│       └── variables.tf
+├── variables.tf
+└── version.tf
+```
+
 
 #### Step 2: Copy in newly create folderstructure the content from the repository for the `helm-guestbook` chart [https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook](https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook)
 
