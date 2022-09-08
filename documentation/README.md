@@ -852,7 +852,7 @@ For more details visit the template of the [terraform-tools-gitops](https://gith
 
 Following the concept for the gitops bootstrap setup documented in the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) GitHub repository.
 
-We have to main folders in the `iascable-gitops-guestbook` repository.
+We have two main folders in the `iascable-gitops-guestbook` repository.
 
 1. One for the `Argo CD application` configurations called `argocd`
 2. One for the application which will be deployed be the `Argo CD application` configurations called payload.
