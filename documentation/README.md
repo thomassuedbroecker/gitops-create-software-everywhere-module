@@ -413,6 +413,8 @@ The image below shows some releases and as you can see for each release an archi
 
 In case when you use specific version numbers in the `BOM` which consums the module. That is also relevant for the `catalog.yaml` we will define later.
 
+
+
 Example relevant extract from a `BOM` -> `version: v0.0.5`
 
 ```yaml
@@ -466,6 +468,10 @@ We will create our own `catalog.yaml` file and save the configuration in the Git
 * How to combine various catalogs?
 * Inspect the structure of a `catalog.yaml`
 * Create a custom catalog steps
+
+The following diagram shows the simplfied dependencies of `module`, `catalog` and `iascable`:
+
+![](images/develop-own-module-11.png)
 
 
 ### 5.1 How to create `catalog.yaml` file?
