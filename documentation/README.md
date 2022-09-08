@@ -857,7 +857,7 @@ We have two main folders in the `iascable-gitops-guestbook` repository.
 1. One for the `Argo CD application` configurations called `argocd`
 2. One for the application which will be deployed be the `Argo CD application` configurations called payload.
 
-Let inspect these two folders. The `gif` below shows the create files.
+Let us inspect these two folders. The `gif` below shows some of the created files and folders.
 
 ![](images/develop-own-module-05.gif)
 
@@ -865,8 +865,9 @@ Let inspect these two folders. The `gif` below shows the create files.
 
 There were two `Argo CD application` configurations added into the `iascable-gitops-guestbook` repository. 
 
-1. One for the `namespace` in the OpenShift or Kubernetes cluster where the guestbook application will be deployed 
-2. One for the `guestbook` application we want to deploy.
+1. One for the `namespace` in the OpenShift or Kubernetes cluster where the guestbook application will be deployed. That `Argo CD application` configuration is related to exiting  `1-infrastructure` Argo CD project created by the [GitOps bootstap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap).
+
+2. One for the `guestbook` application we want to deploy. That `Argo CD application` configuration is related to exiting  `3-application` Argo CD project created by the [GitOps bootstap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap).
 
 Let's take a look a the created `Argo CD application configurations`
 
