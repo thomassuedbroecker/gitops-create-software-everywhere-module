@@ -37,9 +37,11 @@ We clone the `gitops template` repository to our local computer and we going to 
 
 You can follow the steps in the [blog post](https://wp.me/paelj4-1yf) to do this.
 
-#### Step 2: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
+### 3.1.2 Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
 
 We install  [`iascable`](https://github.com/cloud-native-toolkit/iascable) to ensure you use the lates version.
+
+#### Step 1: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable) on your local computer
 
 ```sh
 curl -sL https://iascable.cloudnativetoolkit.dev/install.sh | sh
@@ -52,9 +54,11 @@ iascable --version
 2.17.2
 ```
 
-#### Step 3: Install a container engine
+### 3.1.2 Install a container engine
 
-In this example we use the unsupport container engine [colima](https://github.com/abiosoft/colima).
+In this example we use the unsupport container engine [colima](https://github.com/abiosoft/colima), because that worked for us.
+
+#### Step 1: Install [colima](https://github.com/abiosoft/colima)
 
 ```sh
 # Homebrew
@@ -63,7 +67,7 @@ brew install colima
 
 ## 4. Implement the new `guestbook` module 
 
-In that section we will modify files 
+In that section we will modify files in our newly created repository.
 
 * The [`main.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/main.tf) file
 * The [`variable.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/variables.tf) file
