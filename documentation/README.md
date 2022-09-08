@@ -401,11 +401,17 @@ versions:
           output: sealed_secrets_cert
 ```
 
-### 4.5 `gitops-terraform-guestbook` GitHub repository `tags` and `releases`
+### 4.5 [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tags) GitHub repository `tags` and `releases`
 
 #### Step 1: Create GitHub tag and release for the `gitops-terraform-guestbook` GitHub repository
 
-The module github repository releases should be updated when you are going to change the `gitops-terraform-guestbook` GitHub repository module. In case when you use specific version numbers in the `BOM` which consums the module. That is also relevant for the `catalog.yaml` we will define later.
+The module github repository `release tags` should be updated when you are going to change the [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook) GitHub repository module. 
+
+The image below shows some releases and as you can see for each release an archive is available. Later [`iascable`](https://github.com/cloud-native-toolkit/iascable) uses the `release tag` to download the right archive to the local computer to create the Terraform output.
+
+![](images/develop-own-module-10.png)
+
+In case when you use specific version numbers in the `BOM` which consums the module. That is also relevant for the `catalog.yaml` we will define later.
 
 Example relevant extract from a `BOM` -> `version: v0.0.5`
 
