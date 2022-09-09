@@ -99,8 +99,8 @@ In that section we will modify files in our newly created repository. These are 
 * The [`variable.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/variables.tf) file
 * The [`helm chart`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tree/main/chart/helm-guestbook) content
 * The [`module.yaml`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/module.yaml) file
-* Create for [`gitops-terraform-guestbook` GitHub repository `tags` and `releases`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tags)
 * Configure the `helm chart` copy automation in the `scripts/create-yaml.sh` file
+* Create for [`gitops-terraform-guestbook` GitHub repository `tags` and `releases`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tags)
 
 ### 4.1 The [`main.tf`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/main.tf) file
 
@@ -401,36 +401,7 @@ versions:
           output: sealed_secrets_cert
 ```
 
-### 4.5 [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tags) GitHub repository `tags` and `releases`
-
-#### Step 1: Create GitHub tag and release for the `gitops-terraform-guestbook` GitHub repository
-
-The module github repository `release tags` should be updated when you are going to change the [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook) GitHub repository module. 
-
-The image below shows some releases and as you can see for each release an archive is available. Later [`iascable`](https://github.com/cloud-native-toolkit/iascable) uses the `release tag` to download the right archive to the local computer to create the Terraform output.
-
-![](images/develop-own-module-10.png)
-
-In case when you use specific version numbers in the `BOM` which consums the module. That is also relevant for the `catalog.yaml` we will define later.
-
-
-
-Example relevant extract from a `BOM` -> `version: v0.0.5`
-
-```yaml
-    # Install guestbook
-    # New custom module linked be the custom catalog
-    - name: gitops-terraform-guestbook
-      # alias: gitops-terraform-guestbook
-      #  version: v0.0.5
-      # variables:
-      #  - name: namespace_name
-      #    value: "helm-guestbook"
-```
-
-You can follow the step to create a GitHub tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and then create a release.
-
-### 4.6 Configure the `helm chart` copy automation in the `scripts/create-yaml.sh` file
+### 4.5 Configure the `helm chart` copy automation in the `scripts/create-yaml.sh` file
 
 #### Step 1: Configure the `scripts/create-yaml.sh` in `gitops-terraform-guestbook` repository 
 
@@ -457,6 +428,37 @@ find "${DEST_DIR}" -name "*"
 echo "Files in output path"
 ls -l "${DEST_DIR}"
 ```
+
+### 4.6 [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tags) GitHub repository `tags` and `releases` 
+
+The release tag represents the version number of our module. [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook)
+
+#### Step 1: Create GitHub tag and release for the `gitops-terraform-guestbook` GitHub repository
+
+The module github repository `release tags` should be updated when you are going to change the [`gitops-terraform-guestbook`](https://github.com/thomassuedbroecker/gitops-terraform-guestbook) GitHub repository module. 
+
+The image below shows some releases and as you can see for each release an archive is available. Later [`iascable`](https://github.com/cloud-native-toolkit/iascable) uses the `release tag` to download the right archive to the local computer to create the Terraform output.
+
+![](images/develop-own-module-10.png)
+
+In case when you use specific version numbers in the `BOM` which consums the module, you need to ensure that version number is also in range of the custom chart which points to the module. That is also relevant for the `catalog.yaml` we will define later.
+
+
+
+Example relevant extract from a `BOM` -> `version: v0.0.5`
+
+```yaml
+    # Install guestbook
+    # New custom module linked be the custom catalog
+    - name: gitops-terraform-guestbook
+      # alias: gitops-terraform-guestbook
+      #  version: v0.0.5
+      # variables:
+      #  - name: namespace_name
+      #    value: "helm-guestbook"
+```
+
+You can follow the step to create a GitHub tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and then create a release.
 
 ## 5. Create an own catalog
 
