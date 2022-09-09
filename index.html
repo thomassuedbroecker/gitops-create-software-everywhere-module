@@ -1,0 +1,2239 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Thomas Suedbroecker, Diwakar Prasad Tiwari, Vishal Ramani">
+      
+      
+        <link rel="canonical" href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/">
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.3">
+    
+    
+      
+        <title>Create a Software Everywhere module</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.6b80c2a2.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="docs/stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Create a Software Everywhere module" class="md-header__button md-logo" aria-label="Create a Software Everywhere module" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Create a Software Everywhere module
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1. Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Create a Software Everywhere module
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Create a Software Everywhere module" class="md-nav__button md-logo" aria-label="Create a Software Everywhere module" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Create a Software Everywhere module
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Create a Software Everywhere module
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          1. Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        1. Overview
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objective" class="md-nav__link">
+    1. Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-does-the-project-do" class="md-nav__link">
+    2. What does the project do?
+  </a>
+  
+    <nav class="md-nav" aria-label="2. What does the project do?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-understand-the-template-terraform-gitops" class="md-nav__link">
+    2.1 Understand the template-terraform-gitops
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-use-the-template-terraform-gitops-to-create-a-module-to-deploy-the-guestbook-example" class="md-nav__link">
+    3. Use the template-terraform-gitops to create a module to deploy the guestbook example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-perpare-the-environment" class="md-nav__link">
+    3.1 Perpare the environment
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Perpare the environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311-create-a-new-github-repository-based-on-the-gitops-template" class="md-nav__link">
+    3.1.1 Create a new GitHub repository based on the gitops template
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1.1 Create a new GitHub repository based on the gitops template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-clone-the-github-gitops-template-repository-to-your-local-computer-and-create-a-new-github-repository-based-on-that-template" class="md-nav__link">
+    Step 1: Clone the GitHub gitops template repository to your local computer and create a new GitHub repository based on that template
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-install-iascable" class="md-nav__link">
+    3.1.2 Install iascable
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1.2 Install iascable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-install-iascable-on-your-local-computer" class="md-nav__link">
+    Step 1: Install iascable on your local computer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-install-a-container-engine" class="md-nav__link">
+    3.1.2 Install a container engine
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1.2 Install a container engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-install-colima" class="md-nav__link">
+    Step 1: Install colima
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-implement-the-new-guestbook-module" class="md-nav__link">
+    4. Implement the new guestbook module
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Implement the new guestbook module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-the-maintf-file" class="md-nav__link">
+    4.1 The main.tf file
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 The main.tf file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-do-some-modifications-in-the-maintf-file" class="md-nav__link">
+    Step 1:  Do some modifications in the main.tf file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-the-variabletf-file" class="md-nav__link">
+    4.2 The variable.tf file
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 The variable.tf file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-add-some-variables-in-the-variabletf-file" class="md-nav__link">
+    Step 1: Add some variables in the variable.tf file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-the-helm-chart-content" class="md-nav__link">
+    4.3 The helm chart content
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 The helm chart content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-a-new-folder-structure-for-the-guestbook-helm-chart" class="md-nav__link">
+    Step 1: Create a new folder structure for the guestbook helm chart
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-copy-in-newly-create-folderstructure-the-content-from-the-repository-for-the-helm-guestbook-chart-httpsgithubcomargoprojargocd-example-appstreemasterhelm-guestbook" class="md-nav__link">
+    Step 2: Copy in newly create folderstructure the content from the repository for the helm-guestbook chart https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-validate-the-helm-chart-with-following-commands" class="md-nav__link">
+    Step 3: Validate the helm chart with following commands:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-the-moduleyaml-file" class="md-nav__link">
+    4.4 The module.yaml file
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 The module.yaml file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-edited-the-moduleyaml" class="md-nav__link">
+    Step 1: Edited the module.yaml
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-configure-the-helm-chart-copy-automation-in-the-scriptscreate-yamlsh-file" class="md-nav__link">
+    4.5 Configure the helm chart copy automation in the scripts/create-yaml.sh file
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 Configure the helm chart copy automation in the scripts/create-yaml.sh file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-configure-the-scriptscreate-yamlsh-in-gitops-terraform-guestbook-repository" class="md-nav__link">
+    Step 1: Configure the scripts/create-yaml.sh in gitops-terraform-guestbook repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-gitops-terraform-guestbook-github-repository-tags-and-releases" class="md-nav__link">
+    4.6 gitops-terraform-guestbook GitHub repository tags and releases
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6 gitops-terraform-guestbook GitHub repository tags and releases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-github-tag-and-release-for-the-gitops-terraform-guestbook-github-repository" class="md-nav__link">
+    Step 1: Create GitHub tag and release for the gitops-terraform-guestbook GitHub repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-create-an-own-catalog" class="md-nav__link">
+    5. Create an own catalog
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Create an own catalog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-how-to-create-catalogyaml-file" class="md-nav__link">
+    5.1 How to create catalog.yaml file?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-how-to-combine-various-catalogs" class="md-nav__link">
+    5.2 How to combine various catalogs?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-inspect-the-structure-of-a-catalogyaml" class="md-nav__link">
+    5.3 Inspect the structure of a catalog.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-inspect-the-module-section-of-the-catalog-file-in-more-detail" class="md-nav__link">
+    5.4 Inspect the module section of the catalog file in more detail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-create-a-custom-catalog" class="md-nav__link">
+    5.5 Create a custom catalog
+  </a>
+  
+    <nav class="md-nav" aria-label="5.5 Create a custom catalog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-a-guestbook-catalogyml-and-insert-following-content" class="md-nav__link">
+    Step 1: Create a guestbook-catalog.yml and insert following content
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-bom-that-we-will-use-guestbook-module" class="md-nav__link">
+    5.6. BOM that we will use guestbook module
+  </a>
+  
+    <nav class="md-nav" aria-label="5.6. BOM that we will use guestbook module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-clone-the-project-with-the-example-bom-configuration" class="md-nav__link">
+    Step 1: Clone the project with the example BOM configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-verify-the-ibm-vpc-roks-argocd-guestbookyaml-bom-file" class="md-nav__link">
+    Step 2: Verify the ibm-vpc-roks-argocd-guestbook.yaml BOM file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-create-terraform-code-and-create-the-resources" class="md-nav__link">
+    6. Create terraform code and create the resources
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Create terraform code and create the resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-update-helper-scripts" class="md-nav__link">
+    Step 1: Update helper scripts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-execute-helper-create-scaffoldingsh" class="md-nav__link">
+    Step 2: Execute "helper-create-scaffolding.sh"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-delete-the-u-uid-command-from-the-outputlaunchsh-script" class="md-nav__link">
+    Step 3: Delete the -u "${UID}" \ command from the output/launch.sh script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-start-the-launchsh-script" class="md-nav__link">
+    Step 4: Start the launch.sh script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-execute-in-the-tools-container-the-helper-tools-create-container-workspacesh-script" class="md-nav__link">
+    Step 5: Execute in the tools container the "helper-tools-create-container-workspace.sh" script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-execute-in-the-tools-container-the-helper-tools-execute-apply-and-backup-resultsh-script" class="md-nav__link">
+    Step 6: Execute in the tools container the "helper-tools-execute-apply-and-backup-result.sh" script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-verify-the-output-of-terraform-execution" class="md-nav__link">
+    Step 7: Verify the output of terraform execution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-verify-the-created-argo-cd-configuration-on-github" class="md-nav__link">
+    7. Verify the created Argo CD configuration on GitHub
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Verify the created Argo CD configuration on GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-understand-how-the-guestbook-module-content-was-pasted-into-the-new-iascable-gitops-guestbook-repository" class="md-nav__link">
+    7.1 Understand how the guestbook module content was pasted into the new iascable-gitops-guestbook repository
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1 Understand how the guestbook module content was pasted into the new iascable-gitops-guestbook repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#711-argocd-folder" class="md-nav__link">
+    7.1.1 argocd folder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7111-guestbook-namespace-in-argocd1-infrastructureclusterdefaultbasenamespaceyaml" class="md-nav__link">
+    7.1.1.1 Guestbook Namespace in argocd.1-infrastructure.cluster.default.base.namespace.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7112-guestbook-application-deployment-argocd3-applicationsclusterdefaultbaseguestbook-helm-guestbookyaml" class="md-nav__link">
+    7.1.1.2 Guestbook application deployment argocd.3-applications.cluster.default.base.guestbook-helm-guestbook.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#712-payload-folder" class="md-nav__link">
+    7.1.2 payload folder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7122-guestbook-namespace-in-payload1-infrastructureclusterdefaultbase" class="md-nav__link">
+    7.1.2.2 Guestbook Namespace in payload.1-infrastructure.cluster.default.base
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7112-guestbook-helm-application-deployment-payload3-applicationsclusterdefaultbase" class="md-nav__link">
+    7.1.1.2 Guestbook helm application deployment payload.3-applications.cluster.default.base
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objective" class="md-nav__link">
+    1. Objective
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-does-the-project-do" class="md-nav__link">
+    2. What does the project do?
+  </a>
+  
+    <nav class="md-nav" aria-label="2. What does the project do?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-understand-the-template-terraform-gitops" class="md-nav__link">
+    2.1 Understand the template-terraform-gitops
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-use-the-template-terraform-gitops-to-create-a-module-to-deploy-the-guestbook-example" class="md-nav__link">
+    3. Use the template-terraform-gitops to create a module to deploy the guestbook example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-perpare-the-environment" class="md-nav__link">
+    3.1 Perpare the environment
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Perpare the environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311-create-a-new-github-repository-based-on-the-gitops-template" class="md-nav__link">
+    3.1.1 Create a new GitHub repository based on the gitops template
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1.1 Create a new GitHub repository based on the gitops template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-clone-the-github-gitops-template-repository-to-your-local-computer-and-create-a-new-github-repository-based-on-that-template" class="md-nav__link">
+    Step 1: Clone the GitHub gitops template repository to your local computer and create a new GitHub repository based on that template
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-install-iascable" class="md-nav__link">
+    3.1.2 Install iascable
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1.2 Install iascable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-install-iascable-on-your-local-computer" class="md-nav__link">
+    Step 1: Install iascable on your local computer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-install-a-container-engine" class="md-nav__link">
+    3.1.2 Install a container engine
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1.2 Install a container engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-install-colima" class="md-nav__link">
+    Step 1: Install colima
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-implement-the-new-guestbook-module" class="md-nav__link">
+    4. Implement the new guestbook module
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Implement the new guestbook module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-the-maintf-file" class="md-nav__link">
+    4.1 The main.tf file
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 The main.tf file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-do-some-modifications-in-the-maintf-file" class="md-nav__link">
+    Step 1:  Do some modifications in the main.tf file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-the-variabletf-file" class="md-nav__link">
+    4.2 The variable.tf file
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 The variable.tf file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-add-some-variables-in-the-variabletf-file" class="md-nav__link">
+    Step 1: Add some variables in the variable.tf file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-the-helm-chart-content" class="md-nav__link">
+    4.3 The helm chart content
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 The helm chart content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-a-new-folder-structure-for-the-guestbook-helm-chart" class="md-nav__link">
+    Step 1: Create a new folder structure for the guestbook helm chart
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-copy-in-newly-create-folderstructure-the-content-from-the-repository-for-the-helm-guestbook-chart-httpsgithubcomargoprojargocd-example-appstreemasterhelm-guestbook" class="md-nav__link">
+    Step 2: Copy in newly create folderstructure the content from the repository for the helm-guestbook chart https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-validate-the-helm-chart-with-following-commands" class="md-nav__link">
+    Step 3: Validate the helm chart with following commands:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-the-moduleyaml-file" class="md-nav__link">
+    4.4 The module.yaml file
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 The module.yaml file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-edited-the-moduleyaml" class="md-nav__link">
+    Step 1: Edited the module.yaml
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-configure-the-helm-chart-copy-automation-in-the-scriptscreate-yamlsh-file" class="md-nav__link">
+    4.5 Configure the helm chart copy automation in the scripts/create-yaml.sh file
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 Configure the helm chart copy automation in the scripts/create-yaml.sh file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-configure-the-scriptscreate-yamlsh-in-gitops-terraform-guestbook-repository" class="md-nav__link">
+    Step 1: Configure the scripts/create-yaml.sh in gitops-terraform-guestbook repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-gitops-terraform-guestbook-github-repository-tags-and-releases" class="md-nav__link">
+    4.6 gitops-terraform-guestbook GitHub repository tags and releases
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6 gitops-terraform-guestbook GitHub repository tags and releases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-github-tag-and-release-for-the-gitops-terraform-guestbook-github-repository" class="md-nav__link">
+    Step 1: Create GitHub tag and release for the gitops-terraform-guestbook GitHub repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-create-an-own-catalog" class="md-nav__link">
+    5. Create an own catalog
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Create an own catalog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-how-to-create-catalogyaml-file" class="md-nav__link">
+    5.1 How to create catalog.yaml file?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-how-to-combine-various-catalogs" class="md-nav__link">
+    5.2 How to combine various catalogs?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-inspect-the-structure-of-a-catalogyaml" class="md-nav__link">
+    5.3 Inspect the structure of a catalog.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-inspect-the-module-section-of-the-catalog-file-in-more-detail" class="md-nav__link">
+    5.4 Inspect the module section of the catalog file in more detail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-create-a-custom-catalog" class="md-nav__link">
+    5.5 Create a custom catalog
+  </a>
+  
+    <nav class="md-nav" aria-label="5.5 Create a custom catalog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-a-guestbook-catalogyml-and-insert-following-content" class="md-nav__link">
+    Step 1: Create a guestbook-catalog.yml and insert following content
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-bom-that-we-will-use-guestbook-module" class="md-nav__link">
+    5.6. BOM that we will use guestbook module
+  </a>
+  
+    <nav class="md-nav" aria-label="5.6. BOM that we will use guestbook module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-clone-the-project-with-the-example-bom-configuration" class="md-nav__link">
+    Step 1: Clone the project with the example BOM configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-verify-the-ibm-vpc-roks-argocd-guestbookyaml-bom-file" class="md-nav__link">
+    Step 2: Verify the ibm-vpc-roks-argocd-guestbook.yaml BOM file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-create-terraform-code-and-create-the-resources" class="md-nav__link">
+    6. Create terraform code and create the resources
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Create terraform code and create the resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-update-helper-scripts" class="md-nav__link">
+    Step 1: Update helper scripts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-execute-helper-create-scaffoldingsh" class="md-nav__link">
+    Step 2: Execute "helper-create-scaffolding.sh"
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-delete-the-u-uid-command-from-the-outputlaunchsh-script" class="md-nav__link">
+    Step 3: Delete the -u "${UID}" \ command from the output/launch.sh script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-start-the-launchsh-script" class="md-nav__link">
+    Step 4: Start the launch.sh script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-execute-in-the-tools-container-the-helper-tools-create-container-workspacesh-script" class="md-nav__link">
+    Step 5: Execute in the tools container the "helper-tools-create-container-workspace.sh" script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-execute-in-the-tools-container-the-helper-tools-execute-apply-and-backup-resultsh-script" class="md-nav__link">
+    Step 6: Execute in the tools container the "helper-tools-execute-apply-and-backup-result.sh" script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-verify-the-output-of-terraform-execution" class="md-nav__link">
+    Step 7: Verify the output of terraform execution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-verify-the-created-argo-cd-configuration-on-github" class="md-nav__link">
+    7. Verify the created Argo CD configuration on GitHub
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Verify the created Argo CD configuration on GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-understand-how-the-guestbook-module-content-was-pasted-into-the-new-iascable-gitops-guestbook-repository" class="md-nav__link">
+    7.1 Understand how the guestbook module content was pasted into the new iascable-gitops-guestbook repository
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1 Understand how the guestbook module content was pasted into the new iascable-gitops-guestbook repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#711-argocd-folder" class="md-nav__link">
+    7.1.1 argocd folder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7111-guestbook-namespace-in-argocd1-infrastructureclusterdefaultbasenamespaceyaml" class="md-nav__link">
+    7.1.1.1 Guestbook Namespace in argocd.1-infrastructure.cluster.default.base.namespace.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7112-guestbook-application-deployment-argocd3-applicationsclusterdefaultbaseguestbook-helm-guestbookyaml" class="md-nav__link">
+    7.1.1.2 Guestbook application deployment argocd.3-applications.cluster.default.base.guestbook-helm-guestbook.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#712-payload-folder" class="md-nav__link">
+    7.1.2 payload folder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7122-guestbook-namespace-in-payload1-infrastructureclusterdefaultbase" class="md-nav__link">
+    7.1.2.2 Guestbook Namespace in payload.1-infrastructure.cluster.default.base
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7112-guestbook-helm-application-deployment-payload3-applicationsclusterdefaultbase" class="md-nav__link">
+    7.1.1.2 Guestbook helm application deployment payload.3-applications.cluster.default.base
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+  <a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/edit/main/documentation/README.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
+<h2 id="1-objective">1. Objective<a class="headerlink" href="#1-objective" title="Permanent link">&para;</a></h2>
+<p>The objective is to understand how to build new modules for the <a href="https://modules.cloudnativetoolkit.dev/"><code>Technology Zone Accelerator Toolkit</code></a>.</p>
+<h2 id="2-what-does-the-project-do">2. What does the project do?<a class="headerlink" href="#2-what-does-the-project-do" title="Permanent link">&para;</a></h2>
+<p>This project does inspect the <a href="https://github.com/cloud-native-toolkit/template-terraform-gitops">template-terraform-gitops</a> and needs to be seen in combination with the <a href="https://github.com/thomassuedbroecker/gitops-verify-swagger-editor-example">gitops-verify-swagger-editor-example</a> outcome.
+The repository documents how to create a module for <a href="https://modules.cloudnativetoolkit.dev/"><code>Technology Zone Accelerator Toolkit</code></a> <code>step-by-step</code> using the <a href="https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook">helm guestbook application example</a> from the Argo CD GitHub repository.</p>
+<h3 id="21-understand-the-template-terraform-gitops">2.1 Understand the <a href="https://github.com/cloud-native-toolkit/template-terraform-gitops">template-terraform-gitops</a><a class="headerlink" href="#21-understand-the-template-terraform-gitops" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://github.com/cloud-native-toolkit/template-terraform-gitops"><code>template-terraform-gitops</code></a> is a part of the <code>How to</code> instructions of the <a href="https://modules.cloudnativetoolkit.dev/"><code>Technology Zone Accelerator Toolkit</code></a>. 
+The module covers the <a href="https://modules.cloudnativetoolkit.dev/#/how-to/gitops">GitOps topic</a>.</p>
+<h2 id="3-use-the-template-terraform-gitops-to-create-a-module-to-deploy-the-guestbook-example">3. Use the <a href="https://github.com/cloud-native-toolkit/template-terraform-gitops">template-terraform-gitops</a> to create a module to deploy the guestbook example<a class="headerlink" href="#3-use-the-template-terraform-gitops-to-create-a-module-to-deploy-the-guestbook-example" title="Permanent link">&para;</a></h2>
+<p>These are the main tasks:</p>
+<ol>
+<li>Create a GitHub repository based on the <code>gitops template</code> from <code>Software Everywhere</code></li>
+<li>Configure the <code>guestbook</code> <code>module</code></li>
+<li>Create an own <code>catalog</code> for the <code>guestbook</code> <code>module</code></li>
+<li>Create a <a href="https://github.com/cloud-native-toolkit/iascable#bom-spec"><code>BOM</code>(Bill of material)</a> where the <code>guestbook</code> <code>module</code> is used and create the needed terraform output with <code>iascable</code></li>
+</ol>
+<p>We will use later two catalogs and one <code>BOM</code> (Bill of material). here is a simplified view of the depencencies we will have later.</p>
+<p><img alt="" src="images/develop-own-module-11.png" /></p>
+<h2 id="31-perpare-the-environment">3.1 Perpare the environment<a class="headerlink" href="#31-perpare-the-environment" title="Permanent link">&para;</a></h2>
+<h3 id="311-create-a-new-github-repository-based-on-the-gitops-template">3.1.1 Create a new GitHub repository based on the <code>gitops template</code><a class="headerlink" href="#311-create-a-new-github-repository-based-on-the-gitops-template" title="Permanent link">&para;</a></h3>
+<p>We clone the <a href="https://github.com/cloud-native-toolkit/template-terraform-gitops"><code>gitops template</code> repository</a> to our local computer and we going to create our <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook"><code>gitops-terraform-guestbook</code></a> repository.</p>
+<h4 id="step-1-clone-the-github-gitops-template-repository-to-your-local-computer-and-create-a-new-github-repository-based-on-that-template">Step 1: Clone the GitHub <a href="https://github.com/cloud-native-toolkit/template-terraform-gitops"><code>gitops template</code> repository</a> to your local computer and create a new GitHub repository based on that template<a class="headerlink" href="#step-1-clone-the-github-gitops-template-repository-to-your-local-computer-and-create-a-new-github-repository-based-on-that-template" title="Permanent link">&para;</a></h4>
+<p>You can follow the steps in the <a href="https://wp.me/paelj4-1yf">blog post</a> to do this.</p>
+<p>Then you should have following folderstructure on on computer:</p>
+<div class="highlight"><pre><span></span><code>├── LICENSE
+├── README.md
+├── main.tf
+├── module.yaml
+├── outputs.tf
+├── scripts
+│   └── create-yaml.sh
+├── <span class="nb">test</span>
+│   └── stages
+│       ├── stage0.tf
+│       ├── stage1-cert.tf
+│       ├── stage1-cluster.tf
+│       ├── stage1-cp-catalogs.tf
+│       ├── stage1-gitops-bootstrap.tf
+│       ├── stage1-gitops.tf
+│       ├── stage1-namespace.tf
+│       ├── stage2-mymodule.tf
+│       ├── stage3-outputs.tf
+│       └── variables.tf
+├── variables.tf
+└── version.tf
+</code></pre></div>
+<h3 id="312-install-iascable">3.1.2 Install <a href="https://github.com/cloud-native-toolkit/iascable"><code>iascable</code></a><a class="headerlink" href="#312-install-iascable" title="Permanent link">&para;</a></h3>
+<p>We install  <a href="https://github.com/cloud-native-toolkit/iascable"><code>iascable</code></a> to ensure you use the lates version.</p>
+<h4 id="step-1-install-iascable-on-your-local-computer">Step 1: Install <a href="https://github.com/cloud-native-toolkit/iascable"><code>iascable</code></a> on your local computer<a class="headerlink" href="#step-1-install-iascable-on-your-local-computer" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>curl -sL https://iascable.cloudnativetoolkit.dev/install.sh <span class="p">|</span> sh
+iascable --version
+</code></pre></div>
+<ul>
+<li>Example output:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="m">2</span>.17.2
+</code></pre></div>
+<h3 id="312-install-a-container-engine">3.1.2 Install a container engine<a class="headerlink" href="#312-install-a-container-engine" title="Permanent link">&para;</a></h3>
+<p>In this example we use the unsupport container engine <a href="https://github.com/abiosoft/colima">colima</a>, because that worked for us.</p>
+<h4 id="step-1-install-colima">Step 1: Install <a href="https://github.com/abiosoft/colima">colima</a><a class="headerlink" href="#step-1-install-colima" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Homebrew</span>
+brew install colima
+</code></pre></div>
+<h2 id="4-implement-the-new-guestbook-module">4. Implement the new <code>guestbook</code> module<a class="headerlink" href="#4-implement-the-new-guestbook-module" title="Permanent link">&para;</a></h2>
+<p>In that section we will modify files in our newly created repository. These are the relevant files for our new module.</p>
+<ul>
+<li>The <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/main.tf"><code>main.tf</code></a> file</li>
+<li>The <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/variables.tf"><code>variable.tf</code></a> file</li>
+<li>The <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tree/main/chart/helm-guestbook"><code>helm chart</code></a> content</li>
+<li>The <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/module.yaml"><code>module.yaml</code></a> file</li>
+<li>Configure the <code>helm chart</code> copy automation in the <code>scripts/create-yaml.sh</code> file</li>
+<li>Create for <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tags"><code>gitops-terraform-guestbook</code> GitHub repository <code>tags</code> and <code>releases</code></a></li>
+</ul>
+<h3 id="41-the-maintf-file">4.1 The <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/main.tf"><code>main.tf</code></a> file<a class="headerlink" href="#41-the-maintf-file" title="Permanent link">&para;</a></h3>
+<h4 id="step-1-do-some-modifications-in-the-maintf-file">Step 1:  Do some modifications in the <code>main.tf</code> file<a class="headerlink" href="#step-1-do-some-modifications-in-the-maintf-file" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Change <code>name = "my-helm-chart-folder"</code> to <code>helm-guestbook</code></p>
+</li>
+<li>
+<p>First add <code>helm_guestbook = {// create entry}</code> to the <code>values_content = {}</code>. That entry will be used to create the values for the variables in the <code>values.yaml</code> file for the helm chart.</p>
+</li>
+</ul>
+<p>Below you see the relevant code in the <code>main.tf</code> which does the copy later. As you can is it uses the <code>{local.name}</code> value, so you need to ensure the name reflects the folder structure for your <code>helm-chart</code> later.</p>
+<div class="highlight"><pre><span></span><code>resource null_resource create_yaml <span class="o">{</span>
+  provisioner <span class="s2">&quot;local-exec&quot;</span> <span class="o">{</span>
+    <span class="nb">command</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">path</span><span class="p">.module</span><span class="si">}</span><span class="s2">/scripts/create-yaml.sh &#39;</span><span class="si">${</span><span class="nv">local</span><span class="p">.name</span><span class="si">}</span><span class="s2">&#39; &#39;</span><span class="si">${</span><span class="nv">local</span><span class="p">.yaml_dir</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+
+    <span class="nv">environment</span> <span class="o">=</span> <span class="o">{</span>
+      <span class="nv">VALUES_CONTENT</span> <span class="o">=</span> yamlencode<span class="o">(</span>local.values_content<span class="o">)</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>These are the values we need to insert for our guestbook application as variables for the helm-chart. You find the variables in the Argo CD github project for the helm guestbook application <a href="https://github.com/argoproj/argocd-example-apps/blob/master/helm-guestbook/values.yaml">values.yaml</a></p>
+<p>Now replace the <code>// create entry</code> with the needed values.</p>
+<div class="highlight"><pre><span></span><code>    <span class="nv">helm_guestbook</span> <span class="o">=</span> <span class="o">{</span>
+      <span class="s2">&quot;replicaCount&quot;</span>: <span class="m">1</span>
+      <span class="s2">&quot;image.repository&quot;</span> <span class="o">=</span> <span class="s2">&quot;gcr.io/heptio-images/ks-guestbook-demo&quot;</span>
+      <span class="s2">&quot;image.tag&quot;</span> <span class="o">=</span> <span class="s2">&quot;0.1&quot;</span>
+      <span class="s2">&quot;image.pullPolicy&quot;</span> <span class="o">=</span> <span class="s2">&quot;IfNotPresent&quot;</span>
+      <span class="s2">&quot;service.type&quot;</span> <span class="o">=</span> <span class="s2">&quot;ClusterIP&quot;</span>
+      <span class="s2">&quot;service.port&quot;</span> <span class="o">=</span> <span class="s2">&quot;80&quot;</span>
+      <span class="s2">&quot;ingress.enabled&quot;</span> <span class="o">=</span> <span class="s2">&quot;false&quot;</span>
+      <span class="s2">&quot;ingress.annotations&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+      <span class="s2">&quot;ingress.path&quot;</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span>
+      <span class="s2">&quot;ingress.hosts&quot;</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;chart-example.local&quot;</span><span class="o">]</span>
+      <span class="s2">&quot;ingress.tls&quot;</span> <span class="o">=</span> <span class="o">[]</span>
+      <span class="s2">&quot;resources&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+      <span class="s2">&quot;nodeSelector&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+      <span class="s2">&quot;tolerations&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+      <span class="s2">&quot;affinity&quot;</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="o">}</span>
+</code></pre></div>
+<ul>
+<li>
+<p>Change <code>layer = "services"</code> to <code>layer = "applications"</code></p>
+</li>
+<li>
+<p>Add <code>cluster_type = var.cluster_type == "kubernetes" ? "kubernetes" : "openshift"</code> to the <code>locals</code></p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>locals <span class="o">{</span>
+  <span class="nv">name</span>          <span class="o">=</span> <span class="s2">&quot;my-helm-chart-folder&quot;</span>
+  <span class="nv">bin_dir</span>       <span class="o">=</span> module.setup_clis.bin_dir
+  <span class="nv">yaml_dir</span>      <span class="o">=</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">path</span><span class="p">.cwd</span><span class="si">}</span><span class="s2">/.tmp/</span><span class="si">${</span><span class="nv">local</span><span class="p">.name</span><span class="si">}</span><span class="s2">/chart/</span><span class="si">${</span><span class="nv">local</span><span class="p">.name</span><span class="si">}</span><span class="s2">&quot;</span>
+  <span class="nv">service_url</span>   <span class="o">=</span> <span class="s2">&quot;http://</span><span class="si">${</span><span class="nv">local</span><span class="p">.name</span><span class="si">}</span><span class="s2">.</span><span class="si">${</span><span class="nv">var</span><span class="p">.namespace</span><span class="si">}</span><span class="s2">&quot;</span>
+  <span class="nv">values_content</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="nv">helm_guestbook</span> <span class="o">=</span> <span class="o">{</span>
+      // create entry
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="nv">layer</span> <span class="o">=</span> <span class="s2">&quot;services&quot;</span>
+  <span class="nb">type</span>  <span class="o">=</span> <span class="s2">&quot;base&quot;</span>
+  <span class="nv">application_branch</span> <span class="o">=</span> <span class="s2">&quot;main&quot;</span>
+  <span class="nv">namespace</span> <span class="o">=</span> var.namespace
+  <span class="nv">layer_config</span> <span class="o">=</span> var.gitops_config<span class="o">[</span>local.layer<span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div>
+<h3 id="42-the-variabletf-file">4.2 The <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/variables.tf"><code>variable.tf</code></a> file<a class="headerlink" href="#42-the-variabletf-file" title="Permanent link">&para;</a></h3>
+<h4 id="step-1-add-some-variables-in-the-variabletf-file">Step 1: Add some variables in the <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/variables.tf"><code>variable.tf</code></a> file<a class="headerlink" href="#step-1-add-some-variables-in-the-variabletf-file" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>variable &quot;cluster_type&quot; {
+  description = &quot;The cluster type (openshift or kubernetes)&quot;
+  default     = &quot;openshift&quot;
+}
+</code></pre></div>
+<h3 id="43-the-helm-chart-content">4.3 The <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tree/main/chart/helm-guestbook"><code>helm chart</code></a> content<a class="headerlink" href="#43-the-helm-chart-content" title="Permanent link">&para;</a></h3>
+<h4 id="step-1-create-a-new-folder-structure-for-the-guestbook-helm-chart">Step 1: Create a new folder structure for the <code>guestbook helm chart</code><a class="headerlink" href="#step-1-create-a-new-folder-structure-for-the-guestbook-helm-chart" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Create following folder structure <code>chart/helm-guestbook</code>.
+  The name after chart must be the module name.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>  ├── chart
+  │   └── helm-guestbook
+  │       ├── Chart.yaml
+  │       ├── charts
+  │       │   └── helm-guestbook
+  │       │       ├── templates
+  │       │       │   ├── NOTES.txt
+  │       │       │   ├── _helpers.tpl
+  │       │       │   ├── deployment.yaml
+  │       │       │   └── service.yaml
+  │       │       ├── values-production.yaml
+  │       │       └── values.yaml
+  │       │       └── Chart.yaml
+  │       └── values.yaml
+</code></pre></div>
+<p>That will be the resulting folder structure for the <code>guestbook module</code> on your local pc:</p>
+<div class="highlight"><pre><span></span><code>├── LICENSE
+├── README.md
+├── chart
+│   └── helm-guestbook
+│       ├── Chart.yaml
+│       ├── charts
+│       │   └── helm-guestbook
+│       │       ├── Chart.yaml
+│       │       ├── templates
+│       │       │   ├── NOTES.txt
+│       │       │   ├── _helpers.tpl
+│       │       │   ├── deployment.yaml
+│       │       │   └── service.yaml
+│       │       ├── values-production.yaml
+│       │       └── values.yaml
+│       └── values.yaml
+├── main.tf
+├── module.yaml
+├── outputs.tf
+├── scripts
+│   └── create-yaml.sh
+├── <span class="nb">test</span>
+│   └── stages
+│       ├── stage0.tf
+│       ├── stage1-cert.tf
+│       ├── stage1-cluster.tf
+│       ├── stage1-cp-catalogs.tf
+│       ├── stage1-gitops-bootstrap.tf
+│       ├── stage1-gitops.tf
+│       ├── stage1-namespace.tf
+│       ├── stage2-mymodule.tf
+│       ├── stage3-outputs.tf
+│       └── variables.tf
+├── variables.tf
+└── version.tf
+</code></pre></div>
+<h4 id="step-2-copy-in-newly-create-folderstructure-the-content-from-the-repository-for-the-helm-guestbook-chart-httpsgithubcomargoprojargocd-example-appstreemasterhelm-guestbook">Step 2: Copy in newly create folderstructure the content from the repository for the <code>helm-guestbook</code> chart <a href="https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook">https://github.com/argoproj/argocd-example-apps/tree/master/helm-guestbook</a><a class="headerlink" href="#step-2-copy-in-newly-create-folderstructure-the-content-from-the-repository-for-the-helm-guestbook-chart-httpsgithubcomargoprojargocd-example-appstreemasterhelm-guestbook" title="Permanent link">&para;</a></h4>
+<h4 id="step-3-validate-the-helm-chart-with-following-commands">Step 3: Validate the <code>helm chart</code> with following commands:<a class="headerlink" href="#step-3-validate-the-helm-chart-with-following-commands" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Navigate the charts directory</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">CHARTDIR</span><span class="o">=</span>./chart/helm-guestbook/charts/helm-guestbook
+<span class="nb">cd</span> <span class="nv">$CHARTDIR</span>
+</code></pre></div>
+<ul>
+<li>Verify the dependencies</li>
+</ul>
+<div class="highlight"><pre><span></span><code>helm dep update .
+</code></pre></div>
+<ul>
+<li>Verify the helm chart structure</li>
+</ul>
+<div class="highlight"><pre><span></span><code>helm lint .
+</code></pre></div>
+<p>Example output:</p>
+<div class="highlight"><pre><span></span><code><span class="o">==</span>&gt; Linting .
+<span class="o">[</span>INFO<span class="o">]</span> Chart.yaml: icon is recommended
+
+<span class="m">1</span> chart<span class="o">(</span>s<span class="o">)</span> linted, <span class="m">0</span> chart<span class="o">(</span>s<span class="o">)</span> failed
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>helm template <span class="nb">test</span> . -n <span class="nb">test</span>
+</code></pre></div>
+<p>Example output:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Source: helm-guestbook/templates/service.yaml</span>
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-helm-guestbook
+  labels:
+    app: helm-guestbook
+    chart: helm-guestbook-0.1.0
+    release: <span class="nb">test</span>
+    heritage: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: <span class="m">80</span>
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: helm-guestbook
+    release: <span class="nb">test</span>
+---
+<span class="c1"># Source: helm-guestbook/templates/deployment.yaml</span>
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-helm-guestbook
+  labels:
+    app: helm-guestbook
+    chart: helm-guestbook-0.1.0
+    release: <span class="nb">test</span>
+    heritage: Helm
+spec:
+  replicas: <span class="m">1</span>
+  revisionHistoryLimit: <span class="m">3</span>
+  selector:
+    matchLabels:
+      app: helm-guestbook
+      release: <span class="nb">test</span>
+  template:
+    metadata:
+      labels:
+        app: helm-guestbook
+        release: <span class="nb">test</span>
+    spec:
+      containers:
+        - name: helm-guestbook
+          image: <span class="s2">&quot;gcr.io/heptio-images/ks-guestbook-demo:0.1&quot;</span>
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: <span class="m">80</span>
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            <span class="o">{}</span>
+</code></pre></div>
+<h3 id="44-the-moduleyaml-file">4.4 The <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/module.yaml"><code>module.yaml</code></a> file<a class="headerlink" href="#44-the-moduleyaml-file" title="Permanent link">&para;</a></h3>
+<h4 id="step-1-edited-the-moduleyaml">Step 1: Edited the <code>module.yaml</code><a class="headerlink" href="#step-1-edited-the-moduleyaml" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Use for <code>name</code>: <code>gitops-terraform-guestbook</code></li>
+<li>Use for <code>description</code>: <code>That module will add a new Argo CD config to deploy the guestbook application</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="nt">tags</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tools</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="nt">versions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platforms</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ocp3</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ocp4</span><span class="w"></span>
+<span class="w">    </span><span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">        </span><span class="nt">refs</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.com/cloud-native-toolkit/terraform-tools-gitops.git</span><span class="w"></span>
+<span class="w">            </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&gt;=</span><span class="nv"> </span><span class="s">1.1.0&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">namespace</span><span class="w"></span>
+<span class="w">        </span><span class="nt">refs</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.com/cloud-native-toolkit/terraform-gitops-namespace.git</span><span class="w"></span>
+<span class="w">            </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&gt;=</span><span class="nv"> </span><span class="s">1.0.0&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">variables</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops_config</span><span class="w"></span>
+<span class="w">        </span><span class="nt">moduleRef</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">          </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops_config</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git_credentials</span><span class="w"></span>
+<span class="w">        </span><span class="nt">moduleRef</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">          </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git_credentials</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server_name</span><span class="w"></span>
+<span class="w">        </span><span class="nt">moduleRef</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">          </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server_name</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">namespace</span><span class="w"></span>
+<span class="w">        </span><span class="nt">moduleRef</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">namespace</span><span class="w"></span>
+<span class="w">          </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubeseal_cert</span><span class="w"></span>
+<span class="w">        </span><span class="nt">moduleRef</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">          </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed_secrets_cert</span><span class="w"></span>
+</code></pre></div>
+<h3 id="45-configure-the-helm-chart-copy-automation-in-the-scriptscreate-yamlsh-file">4.5 Configure the <code>helm chart</code> copy automation in the <code>scripts/create-yaml.sh</code> file<a class="headerlink" href="#45-configure-the-helm-chart-copy-automation-in-the-scriptscreate-yamlsh-file" title="Permanent link">&para;</a></h3>
+<h4 id="step-1-configure-the-scriptscreate-yamlsh-in-gitops-terraform-guestbook-repository">Step 1: Configure the <code>scripts/create-yaml.sh</code> in <code>gitops-terraform-guestbook</code> repository<a class="headerlink" href="#step-1-configure-the-scriptscreate-yamlsh-in-gitops-terraform-guestbook-repository" title="Permanent link">&para;</a></h4>
+<p>Replace the existing code in <code>scripts/create-yaml.sh</code> with following content. This is important for later when the <code>helm-chart</code> will be copied.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="nv">SCRIPT_DIR</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="k">$(</span>dirname <span class="s2">&quot;</span><span class="nv">$0</span><span class="s2">&quot;</span><span class="k">)</span><span class="p">;</span> <span class="nb">pwd</span> -P<span class="k">)</span>
+<span class="nv">MODULE_DIR</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SCRIPT_DIR</span><span class="si">}</span><span class="s2">/..&quot;</span><span class="p">;</span> <span class="nb">pwd</span> -P<span class="k">)</span>
+<span class="nv">CHART_DIR</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SCRIPT_DIR</span><span class="si">}</span><span class="s2">/../chart/helm-guestbook&quot;</span><span class="p">;</span> <span class="nb">pwd</span> -P<span class="k">)</span>
+
+<span class="nv">NAME</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="nv">DEST_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span>
+
+<span class="c1">## Add logic here to put the yaml resource content in DEST_DIR</span>
+mkdir -p <span class="s2">&quot;</span><span class="si">${</span><span class="nv">DEST_DIR</span><span class="si">}</span><span class="s2">&quot;</span>
+cp -R <span class="s2">&quot;</span><span class="si">${</span><span class="nv">CHART_DIR</span><span class="si">}</span><span class="s2">/&quot;</span>* <span class="s2">&quot;</span><span class="si">${</span><span class="nv">DEST_DIR</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="k">if</span> <span class="o">[[</span> -n <span class="s2">&quot;</span><span class="si">${</span><span class="nv">VALUES_CONTENT</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">VALUES_CONTENT</span><span class="si">}</span><span class="s2">&quot;</span> &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">DEST_DIR</span><span class="si">}</span><span class="s2">/values.yaml&quot;</span>
+<span class="k">fi</span>
+find <span class="s2">&quot;</span><span class="si">${</span><span class="nv">DEST_DIR</span><span class="si">}</span><span class="s2">&quot;</span> -name <span class="s2">&quot;*&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;Files in output path&quot;</span>
+ls -l <span class="s2">&quot;</span><span class="si">${</span><span class="nv">DEST_DIR</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h3 id="46-gitops-terraform-guestbook-github-repository-tags-and-releases">4.6 <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook/tags"><code>gitops-terraform-guestbook</code></a> GitHub repository <code>tags</code> and <code>releases</code><a class="headerlink" href="#46-gitops-terraform-guestbook-github-repository-tags-and-releases" title="Permanent link">&para;</a></h3>
+<p>The release tag represents the version number of our module. <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook"><code>gitops-terraform-guestbook</code></a></p>
+<h4 id="step-1-create-github-tag-and-release-for-the-gitops-terraform-guestbook-github-repository">Step 1: Create GitHub tag and release for the <code>gitops-terraform-guestbook</code> GitHub repository<a class="headerlink" href="#step-1-create-github-tag-and-release-for-the-gitops-terraform-guestbook-github-repository" title="Permanent link">&para;</a></h4>
+<p>The module github repository <code>release tags</code> should be updated when you are going to change the <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook"><code>gitops-terraform-guestbook</code></a> GitHub repository module. </p>
+<p>The image below shows some releases and as you can see for each release an archive is available. Later <a href="https://github.com/cloud-native-toolkit/iascable"><code>iascable</code></a> uses the <code>release tag</code> to download the right archive to the local computer to create the Terraform output.</p>
+<p><img alt="" src="images/develop-own-module-10.png" /></p>
+<p>In case when you use specific version numbers in the <code>BOM</code> which consums the module, you need to ensure that version number is also in range of the custom chart which points to the module. That is also relevant for the <code>catalog.yaml</code> we will define later.</p>
+<p>Example relevant extract from a <code>BOM</code> -&gt; <code>version: v0.0.5</code></p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1"># Install guestbook</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># New custom module linked be the custom catalog</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops-terraform-guestbook</span><span class="w"></span>
+<span class="w">      </span><span class="c1"># alias: gitops-terraform-guestbook</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#  version: v0.0.5</span><span class="w"></span>
+<span class="w">      </span><span class="c1"># variables:</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#  - name: namespace_name</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#    value: &quot;helm-guestbook&quot;</span><span class="w"></span>
+</code></pre></div>
+<p>You can follow the step to create a GitHub tag is that <a href="https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/">example blog post</a> and then create a release.</p>
+<h2 id="5-create-an-own-catalog">5. Create an own catalog<a class="headerlink" href="#5-create-an-own-catalog" title="Permanent link">&para;</a></h2>
+<p>In that example we will not publish the our <code>gitops-terraform-guestbook</code> module to the public catalog on <a href="https://modules.cloudnativetoolkit.dev/"><code>Technology Zone Accelerator Toolkit</code></a>. </p>
+<p>We will create our own <code>catalog.yaml</code> file and save the configuration in the GitHub project of the module.</p>
+<ul>
+<li>How to create <code>catalog.yaml</code> file?</li>
+<li>How to combine various catalogs?</li>
+<li>Inspect the structure of a <code>catalog.yaml</code></li>
+<li>Create a custom catalog steps</li>
+</ul>
+<p>The following diagram shows the simplfied dependencies of <code>module</code>, <code>catalog</code> and <code>iascable</code>:</p>
+<p><img alt="" src="images/develop-own-module-11.png" /></p>
+<h3 id="51-how-to-create-catalogyaml-file">5.1 How to create <code>catalog.yaml</code> file?<a class="headerlink" href="#51-how-to-create-catalogyaml-file" title="Permanent link">&para;</a></h3>
+<p>It is useful to take a look into <a href="https://github.com/cloud-native-toolkit/iascable">iascable documentation</a> and the <a href="https://github.com/cloud-native-toolkit/software-everywhere/blob/main/.github/scripts/build-catalog.sh">build-catalog.sh automation</a>.</p>
+<h3 id="52-how-to-combine-various-catalogs">5.2 How to combine various catalogs?<a class="headerlink" href="#52-how-to-combine-various-catalogs" title="Permanent link">&para;</a></h3>
+<p>You can combine more than one <code>catalog resources</code> and <code>BOM inputs</code> with the <code>iascable build</code> command.</p>
+<p>Here is the build command:</p>
+<div class="highlight"><pre><span></span><code>iascable build <span class="o">[</span>-c <span class="o">{</span>CATALOG_URL<span class="o">}]</span> <span class="o">[</span>-c <span class="o">{</span>CATALOG_URL<span class="o">}]</span> -i <span class="o">{</span>BOM_INPUT<span class="o">}</span> <span class="o">[</span>-i <span class="o">{</span>BOM_INPUT<span class="o">}]</span> <span class="o">[</span>-o <span class="o">{</span>OUTPUT_DIR<span class="o">}]</span>
+</code></pre></div>
+<ul>
+<li><code>CATALOG_URL</code> is the url of the module catalog. The default module catalog is https://modules.cloudnativetoolkit.dev/index.yaml. Multiple module catalogs can be provided. The catalogs are combined, with the last one taking precedence in the case of duplicate modules.</li>
+<li><code>BOM_INPUT</code> is the input file containing the Bill of Material definition. Multiple BOM files can be provided at the same time.</li>
+<li><code>OUTPUT_DIR</code> is the directory where the output terraform template will be generated.</li>
+</ul>
+<h3 id="53-inspect-the-structure-of-a-catalogyaml">5.3 Inspect the structure of a <code>catalog.yaml</code><a class="headerlink" href="#53-inspect-the-structure-of-a-catalogyaml" title="Permanent link">&para;</a></h3>
+<p>The structure of a catalog can be verified here
+  <a href="https://modules.cloudnativetoolkit.dev/index.yaml">https://modules.cloudnativetoolkit.dev/index.yaml</a>
+  That is a minimize extraction of the <code>index.yaml</code> above. It contains: <code>categories</code>,<code>modules</code>,<code>aliases</code> and <code>providers</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cloudnativetoolkit.dev/vlalphal</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Catalog</span><span class="w"></span>
+<span class="nt">categories</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ai-ml</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">databases</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev-tool</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">    </span><span class="nt">categoryName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitOps</span><span class="w"></span>
+<span class="w">    </span><span class="nt">selection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">multiple</span><span class="w"></span>
+<span class="w">    </span><span class="nt">modules</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cloudProvider</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">softwareProvider</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops-ocs-operator</span><span class="w"></span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Module to populate a gitops repo with the resources to provision ocs-operator</span><span class="w"></span>
+<span class="w">        </span><span class="nt">tags</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tools</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">        </span><span class="nt">versions</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.com/cloud-native-toolkit/terraform-gitops-ocs-operator</span><span class="w"></span>
+<span class="w">        </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">displayName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ocs-operator</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iam</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">image-registry</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">infrastructure</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"></span>
+<span class="nt">aliases</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.com/terraform-ibm-modules/terraform-ibm-toolkit-mongodb</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"></span>
+<span class="nt">providers</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-cloud/ibm</span><span class="w"></span>
+<span class="w">    </span><span class="nt">variables</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibmcloud_api_key</span><span class="w"></span>
+<span class="w">        </span><span class="nt">scope</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">global</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">region</span><span class="w"></span>
+<span class="w">        </span><span class="nt">scope</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">global</span><span class="w"></span>
+</code></pre></div>
+<h3 id="54-inspect-the-module-section-of-the-catalog-file-in-more-detail">5.4 Inspect the module section of the catalog file in more detail<a class="headerlink" href="#54-inspect-the-module-section-of-the-catalog-file-in-more-detail" title="Permanent link">&para;</a></h3>
+<p>We see that the <code>modules section</code> does contain following <code>cloudProvider</code>, <code>softwareProvider</code>, <code>id</code>, <code>group</code>, <code>displayName</code> and <code>type</code> which are not a part of the <code>module.yaml</code>. After these entries we insert content of the <code>module.yaml</code>.</p>
+<p><a href="https://github.com/cloud-native-toolkit/template-terraform-gitops">Current <code>gitops</code> template</a>.</p>
+<h3 id="55-create-a-custom-catalog">5.5 Create a custom catalog<a class="headerlink" href="#55-create-a-custom-catalog" title="Permanent link">&para;</a></h3>
+<h4 id="step-1-create-a-guestbook-catalogyml-and-insert-following-content">Step 1: Create a <code>guestbook-catalog.yml</code> and insert following content<a class="headerlink" href="#step-1-create-a-guestbook-catalogyml-and-insert-following-content" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Note: Ensure that the github project has a tag and a release!</p>
+</blockquote>
+<p><strong>The right value of the release</strong> must be reference in the catalog! (Example <code>version: v0.0.1</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cloudnativetoolkit.dev/v1alpha1</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Catalog</span><span class="w"></span>
+<span class="nt">categories</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom_module</span><span class="w"></span>
+<span class="w">    </span><span class="nt">categoryName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom_module</span><span class="w"></span>
+<span class="w">    </span><span class="nt">selection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">multiple</span><span class="w"></span>
+<span class="w">    </span><span class="nt">modules</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cloudProvider</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">softwareProvider</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.com/thomassuedbroecker/gitops-terraform-guestbook</span><span class="w"></span>
+<span class="w">        </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">displayName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops-terraform-guestbook</span><span class="w"></span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops-terraform-guestbook</span><span class="w"></span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">asdf</span><span class="w"></span>
+<span class="w">        </span><span class="nt">tags</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tools</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">        </span><span class="nt">versions</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">platforms</span><span class="p">:</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ocp3</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ocp4</span><span class="w"></span>
+<span class="w">            </span><span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">                </span><span class="nt">refs</span><span class="p">:</span><span class="w"></span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.com/cloud-native-toolkit/terraform-tools-gitops.git</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&gt;=</span><span class="nv"> </span><span class="s">1.1.0&#39;</span><span class="w"></span>
+<span class="w">            </span><span class="nt">variables</span><span class="p">:</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops_config</span><span class="w"></span>
+<span class="w">                </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Config information regarding the gitops repo structure</span><span class="w"></span>
+<span class="w">                </span><span class="nt">moduleRef</span><span class="p">:</span><span class="w"></span>
+<span class="w">                  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">                  </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops_config</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git_credentials</span><span class="w"></span>
+<span class="w">                </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The credentials for the gitops repo(s)</span><span class="w"></span>
+<span class="w">                </span><span class="nt">sensitive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">                </span><span class="nt">moduleRef</span><span class="p">:</span><span class="w"></span>
+<span class="w">                  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">                  </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git_credentials</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">namespace</span><span class="w"></span>
+<span class="w">                </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"></span>
+<span class="w">                </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The namespace where the application should be deployed</span><span class="w"></span>
+<span class="w">                </span><span class="nt">moduleRef</span><span class="p">:</span><span class="w"></span>
+<span class="w">                  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">namespace</span><span class="w"></span>
+<span class="w">                  </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubeseal_cert</span><span class="w"></span>
+<span class="w">                </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"></span>
+<span class="w">                </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The certificate/public key used to encrypt the sealed secrets</span><span class="w"></span>
+<span class="w">                </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="nt">moduleRef</span><span class="p">:</span><span class="w"></span>
+<span class="w">                  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">                  </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed_secrets_cert</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server_name</span><span class="w"></span>
+<span class="w">                </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"></span>
+<span class="w">                </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The name of the server</span><span class="w"></span>
+<span class="w">                </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"></span>
+<span class="w">                </span><span class="nt">moduleRef</span><span class="p">:</span><span class="w"></span>
+<span class="w">                  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class="w"></span>
+<span class="w">                  </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server_name</span><span class="w"></span>
+<span class="w">            </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.0.1</span><span class="w"></span>
+<span class="w">            </span><span class="nt">outputs</span><span class="p">:</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="w"></span>
+<span class="w">                </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The name of the module</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">branch</span><span class="w"></span>
+<span class="w">                </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The branch where the module config has been placed</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">namespace</span><span class="w"></span>
+<span class="w">                </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The namespace where the module will be deployed</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">server_name</span><span class="w"></span>
+<span class="w">                </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The server where the module will be deployed</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">layer</span><span class="w"></span>
+<span class="w">                </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The layer where the module is deployed</span><span class="w"></span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type</span><span class="w"></span>
+<span class="w">                </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The type of module where the module is deployed</span><span class="w"></span>
+</code></pre></div>
+<h3 id="56-bom-that-we-will-use-guestbook-module">5.6. <code>BOM</code> that we will use <code>guestbook module</code><a class="headerlink" href="#56-bom-that-we-will-use-guestbook-module" title="Permanent link">&para;</a></h3>
+<h4 id="step-1-clone-the-project-with-the-example-bom-configuration">Step 1: Clone the project with the example <a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/ibm-vpc-roks-argocd-guestbook.yaml"><code>BOM</code></a> configuration<a class="headerlink" href="#step-1-clone-the-project-with-the-example-bom-configuration" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module
+</code></pre></div>
+<h4 id="step-2-verify-the-ibm-vpc-roks-argocd-guestbookyaml-bom-file">Step 2: Verify the <a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/ibm-vpc-roks-argocd-guestbook.yaml"><code>ibm-vpc-roks-argocd-guestbook.yaml</code></a> <code>BOM</code> file<a class="headerlink" href="#step-2-verify-the-ibm-vpc-roks-argocd-guestbookyaml-bom-file" title="Permanent link">&para;</a></h4>
+<p>This is the simplified target architecture what our  <code>BOM</code> will create as terraform code for initial setup.</p>
+<p>A customized IBM Cloud environment for <code>GitOps</code> and our <code>guestbook</code> module.</p>
+<ul>
+<li>
+<p>For the configuration of GitOps in Red Hat OpenShift. We will use two operators:</p>
+</li>
+<li>
+<p><a href="https://github.com/redhat-developer/gitops-operator">Red Hat OpenShift GitOps operator</a></p>
+<p>We will create one ArgoCD instance with the Red at OpenShift GitOps operator, that ArgoCD instance will bin initial configured by a newly created GitHub project configure by a Cloud Native Toolkit template for GitOps repositories.</p>
+</li>
+<li>
+<p><a href="https://catalog.redhat.com/software/operators/detail/5ec54a4628834587a6b85ca5">Red Hat OpenShift Pipelines operator</a></p>
+<p>There will be no initial setup for a Tekton pipeline at the moment.</p>
+</li>
+</ul>
+<p>That images show a simplified view of the Argo CD basic configuration.</p>
+<p><img alt="" src="images/develop-own-module-07.png" /></p>
+<ul>
+<li>IBM Cloud infrastructure with Red Hat OpenShift in a Virtual Private Cloud</li>
+</ul>
+<p><img alt="" src="images/develop-own-module-08.png" /></p>
+<p>This is the structure of the <code>BOM</code> we are going to use: </p>
+<ul>
+<li>Virtual Private Cloud - related</li>
+<li>ROKS - related (RedHat OpenShift on IBM Cloud)</li>
+<li>GitOps and Bootstrap of GitOps </li>
+<li>Our own module called <code>gitops-terraform-guestbook</code></li>
+</ul>
+<blockquote>
+<p>Note: You need configure variables to your needs, when you share your IBM Cloud environment with others. </p>
+</blockquote>
+<p>We commented out the <code>#  version: v0.0.5</code> of our module, because we will configure only one version in our <code>catalog.yaml</code> which we will define later.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cloudnativetoolkit.dev/v1alpha1</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BillOfMaterial</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-vpc-roks-argocd-guestbook</span><span class="w"></span>
+<span class="nt">spec</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">modules</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># Virtual Private Cloud - related</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># - subnets</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># - gateways</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-vpc</span><span class="w"></span>
+<span class="w">      </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-vpc</span><span class="w"></span>
+<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.16.1</span><span class="w"></span>
+<span class="w">      </span><span class="nt">variables</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="w"></span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tsued-gitops-guestbook&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tags</span><span class="w"></span>
+<span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;tsuedro&quot;</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-vpc-subnets</span><span class="w"></span>
+<span class="w">      </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-vpc-subnets</span><span class="w"></span>
+<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.13.2</span><span class="w"></span>
+<span class="w">      </span><span class="nt">variables</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">_count</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tsued-gitops-guestbook&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tags</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;tsuedro&quot;</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-vpc-gateways</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># ROKS - related</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># - objectstorage</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-ocp-vpc</span><span class="w"></span>
+<span class="w">      </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-ocp-vpc</span><span class="w"></span>
+<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.15.7</span><span class="w"></span>
+<span class="w">      </span><span class="nt">variables</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tsued-gitops-guestbook&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">worker_count</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tags</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;tsuedro&quot;</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-object-storage</span><span class="w"></span>
+<span class="w">      </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-object-storage</span><span class="w"></span>
+<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v4.0.3</span><span class="w"></span>
+<span class="w">      </span><span class="nt">variables</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cos_tsued_guestbook&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tags</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;tsuedro&quot;</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">label</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;cos_tsued_guestbook&quot;</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># Install OpenShift GitOps and Bootstrap GitOps (aka. ArgoCD) - related</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># - argocd</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># - gitops</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd-bootstrap</span><span class="w"></span>
+<span class="w">      </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd-bootstrap</span><span class="w"></span>
+<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.12.0</span><span class="w"></span>
+<span class="w">      </span><span class="nt">variables</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo_token</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops-repo</span><span class="w"></span>
+<span class="w">      </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops-repo</span><span class="w"></span>
+<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.20.2</span><span class="w"></span>
+<span class="w">      </span><span class="nt">variables</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;github.com&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GIT&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;thomassuedbroecker&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">username</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;thomassuedbroecker&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">project</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;iascable-gitops-guestbook&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;iascable-gitops-guestbook&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># Install guestbook</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># New custom module linked be the custom catalog</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gitops-terraform-guestbook</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#  alias: gitops-terraform-guestbook</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#  version: v0.0.5</span><span class="w"></span>
+<span class="w">      </span><span class="nt">variables</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">namespace</span><span class="w"></span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;helm-guestbook&quot;</span><span class="w"></span>
+</code></pre></div>
+<h2 id="6-create-terraform-code-and-create-the-resources">6. Create terraform code and create the resources<a class="headerlink" href="#6-create-terraform-code-and-create-the-resources" title="Permanent link">&para;</a></h2>
+<p>Use <a href="https://github.com/cloud-native-toolkit/iascable"><code>iascable</code></a> to create the terraform code</p>
+<h4 id="step-1-update-helper-scripts">Step 1: Update helper scripts<a class="headerlink" href="#step-1-update-helper-scripts" title="Permanent link">&para;</a></h4>
+<p>The helper scripts are not a part of the framework, the will just help to avoid failures during the execution of several command.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> example
+ls
+</code></pre></div>
+<p>These are the helper scripts:</p>
+<ul>
+<li><a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-create-scaffolding.sh">helper-create-scaffolding.sh</a>                          </li>
+<li><a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-create-container-workspace.sh">helper-tools-create-container-workspace.sh</a>          </li>
+<li><a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-execute-apply-and-backup-result.sh">helper-tools-execute-apply-and-backup-result.sh</a>       </li>
+<li>
+<p><a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-execute-destroy-and-delete-backup.sh">helper-tools-execute-destroy-and-delete-backup.sh</a></p>
+</li>
+<li>
+<p>Update helper script <code>helper-create-scaffolding.sh</code> with following code that uses two catalog files as input for the terraform creation with <code>iascable</code>.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">BASE_CATALOG</span><span class="o">=</span>https://modules.cloudnativetoolkit.dev/index.yaml
+<span class="nv">CUSTOM_CATALOG</span><span class="o">=</span>https://raw.githubusercontent.com/thomassuedbroecker/gitops-terraform-guestbook/main/guestbook-catalog.yml
+
+<span class="c1"># 1. Create scaffolding</span>
+iascable build -i ibm-vpc-roks-argocd-guestbook.yaml -c <span class="nv">$BASE_CATALOG</span> -c <span class="nv">$CUSTOM_CATALOG</span>
+</code></pre></div>
+<h4 id="step-2-execute-helper-create-scaffoldingsh">Step 2: Execute <a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-create-scaffolding.sh">"helper-create-scaffolding.sh"</a><a class="headerlink" href="#step-2-execute-helper-create-scaffoldingsh" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>sh helper-create-scaffolding.sh 
+</code></pre></div>
+<p>That script <a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-create-scaffolding.sh">"helper-create-scaffolding.sh"</a> does following steps:</p>
+<ol>
+<li>Basic global variables</li>
+<li>Create scaffolding (execute iascable)</li>
+<li>Copy helper bash scripts</li>
+<li>Navigate to the output folder</li>
+<li>Start the container engine</li>
+</ol>
+<h4 id="step-3-delete-the-u-uid-command-from-the-outputlaunchsh-script">Step 3: Delete the <code>-u "${UID}" \</code> command from the <code>output/launch.sh</code> script<a class="headerlink" href="#step-3-delete-the-u-uid-command-from-the-outputlaunchsh-script" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="si">${</span><span class="nv">DOCKER_CMD</span><span class="si">}</span> run -itd --name <span class="si">${</span><span class="nv">CONTAINER_NAME</span><span class="si">}</span> <span class="se">\</span>
+  --device /dev/net/tun --cap-add<span class="o">=</span>NET_ADMIN <span class="se">\</span>
+  -u <span class="s2">&quot;</span><span class="si">${</span><span class="nv">UID</span><span class="si">}</span><span class="s2">&quot;</span> <span class="se">\</span>
+  -v <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SRC_DIR</span><span class="si">}</span><span class="s2">:/terraform&quot;</span> <span class="se">\</span>
+  -v <span class="s2">&quot;workspace-</span><span class="si">${</span><span class="nv">AUTOMATION_BASE</span><span class="si">}</span><span class="s2">:/workspaces&quot;</span> <span class="se">\</span>
+  <span class="si">${</span><span class="nv">ENV_VARS</span><span class="si">}</span> -w /terraform <span class="se">\</span>
+  <span class="si">${</span><span class="nv">DOCKER_IMAGE</span><span class="si">}</span>
+</code></pre></div>
+<h4 id="step-4-start-the-launchsh-script">Step 4: Start the <code>launch.sh script</code><a class="headerlink" href="#step-4-start-the-launchsh-script" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> output
+sh launch.sh
+</code></pre></div>
+<h4 id="step-5-execute-in-the-tools-container-the-helper-tools-create-container-workspacesh-script">Step 5: Execute in the <code>tools container</code> the <a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-create-container-workspace.sh">"helper-tools-create-container-workspace.sh"</a> script<a class="headerlink" href="#step-5-execute-in-the-tools-container-the-helper-tools-create-container-workspacesh-script" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>/terraform $
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>sh helper-tools-create-container-workspace.sh 
+</code></pre></div>
+<p>That script <a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-create-container-workspace.sh">"helper-tools-create-container-workspace.sh"</a> does following steps inside the tools container:</p>
+<ol>
+<li>Basic global variables</li>
+<li>Create a workspace folder</li>
+<li>Copy content of the mapped volume to the newly created the workspace folder</li>
+<li>Navigate to the workspace folder</li>
+</ol>
+<h4 id="step-6-execute-in-the-tools-container-the-helper-tools-execute-apply-and-backup-resultsh-script">Step 6: Execute in the <code>tools container</code> the <a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-execute-apply-and-backup-result.sh">"helper-tools-execute-apply-and-backup-result.sh"</a> script<a class="headerlink" href="#step-6-execute-in-the-tools-container-the-helper-tools-execute-apply-and-backup-resultsh-script" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>/terraform $
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>sh helper-tools-execute-apply-and-backup-result.sh 
+</code></pre></div>
+<p>That script <a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/helper-tools-execute-apply-and-backup-result.sh">"helper-tools-execute-apply-and-backup-result.sh"</a> does following steps inside the tools container:</p>
+<ol>
+<li>Basic global variables</li>
+<li>Navigate to workspace</li>
+<li>Execute apply.sh</li>
+<li>List the created resources</li>
+<li>Copy current of the workspace folder to mapped volume</li>
+</ol>
+<p>Interactive output:</p>
+<ul>
+<li>Namespace: guestbook</li>
+<li>Region: eu-de</li>
+<li>Resource group: default</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Provide a value <span class="k">for</span> <span class="s1">&#39;gitops-repo_host&#39;</span>:
+  The host <span class="k">for</span> the git repository. The git host used can be a GitHub, GitHub Enterprise, Gitlab, Bitbucket, Gitea or Azure DevOps server. If the host is null assumes <span class="k">in</span>-cluster Gitea instance will be used.
+&gt; <span class="o">(</span>github.com<span class="o">)</span> 
+Provide a value <span class="k">for</span> <span class="s1">&#39;gitops-repo_org&#39;</span>:
+  The org/group where the git repository exists/will be provisioned. If the value is left blank <span class="k">then</span> the username org will be used.
+&gt; <span class="o">(</span>thomassuedbroecker<span class="o">)</span> 
+Provide a value <span class="k">for</span> <span class="s1">&#39;gitops-repo_project&#39;</span>:
+  The project that will be used <span class="k">for</span> the git repo. <span class="o">(</span>Primarily used <span class="k">for</span> Azure DevOps repos<span class="o">)</span>
+&gt; <span class="o">(</span>iascable-gitops-guestbook<span class="o">)</span> 
+Provide a value <span class="k">for</span> <span class="s1">&#39;gitops-repo_username&#39;</span>:
+  The username of the user with access to the repository
+&gt; <span class="o">(</span>thomassuedbroecker<span class="o">)</span> 
+Provide a value <span class="k">for</span> <span class="s1">&#39;gitops-repo_token&#39;</span>:
+&gt; XXX
+&gt; Provide a value <span class="k">for</span> <span class="s1">&#39;ibmcloud_api_key&#39;</span>:
+&gt; XXX
+Provide a value <span class="k">for</span> <span class="s1">&#39;region&#39;</span>:
+&gt; eu-de
+Provide a value <span class="k">for</span> <span class="s1">&#39;worker_count&#39;</span>:
+  The number of worker nodes that should be provisioned <span class="k">for</span> classic infrastructure
+&gt; <span class="o">(</span><span class="m">2</span><span class="o">)</span> 
+Provide a value <span class="k">for</span> <span class="s1">&#39;ibm-ocp-vpc_flavor&#39;</span>:
+  The machine <span class="nb">type</span> that will be provisioned <span class="k">for</span> classic infrastructure
+&gt; <span class="o">(</span>bx2.4x16<span class="o">)</span> 
+Provide a value <span class="k">for</span> <span class="s1">&#39;ibm-vpc-subnets__count&#39;</span>:
+  The number of subnets that should be provisioned
+&gt; <span class="o">(</span><span class="m">1</span><span class="o">)</span> 
+Provide a value <span class="k">for</span> <span class="s1">&#39;namespace_name&#39;</span>:
+  The value that should be used <span class="k">for</span> the namespace
+&gt; guestbook
+Provide a value <span class="k">for</span> <span class="s1">&#39;resource_group_name&#39;</span>:
+  The name of the resource group
+&gt; default
+</code></pre></div>
+<h4 id="step-7-verify-the-output-of-terraform-execution">Step 7: Verify the output of terraform execution<a class="headerlink" href="#step-7-verify-the-output-of-terraform-execution" title="Permanent link">&para;</a></h4>
+<p>After some time you should get following output:</p>
+<div class="highlight"><pre><span></span><code>Apply complete! Resources: <span class="m">103</span> added, <span class="m">0</span> changed, <span class="m">0</span> destroyed.
+</code></pre></div>
+<h2 id="7-verify-the-created-argo-cd-configuration-on-github">7. Verify the created Argo CD configuration on GitHub<a class="headerlink" href="#7-verify-the-created-argo-cd-configuration-on-github" title="Permanent link">&para;</a></h2>
+<p>We see that in our GitHub account new repostory was created from the <a href="https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap">GitOps bootstap module</a> and the <a href="https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template">terraform-tools-gitops</a> module to figure <code>Argo CD</code> for by using the <code>app-of-apps</code> concept with a single GitHub repository to manage all <code>Argo CD application configuration</code> and <code>helm configurations to deploy applications</code> in the GitOps context.</p>
+<blockquote>
+<p>Reminder the boot strap configuration is shown in the following image for details visit the <a href="https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template">terraform-tools-gitops</a> module.</p>
+</blockquote>
+<p><img alt="" src="https://github.com/cloud-native-toolkit/terraform-tools-gitops/blob/main/template/docs/gitops-structure-overview.png?raw=true" /></p>
+<p>The new GitHub repository is called <code>iascable-gitops-guestbook</code> in our case.</p>
+<p>The new <code>iascable-gitops-guestbook</code> repository contains two folders the following image shows the relation to the bootstrap configuration.</p>
+<p><img alt="" src="images/develop-own-module-09.png" /></p>
+<ul>
+<li><strong>argocd</strong> folder which contains the configuration for <code>Argo CD</code> let us call it <strong>app-of-apps</strong> folder. The following image displays the resulting configuration in <code>Argo CD</code></li>
+</ul>
+<p><img alt="" src="images/develop-own-module-03.png" /></p>
+<ul>
+<li><strong>payload</strong> folder which contains the current helm deployment for the <strong>apps</strong> which will be deployed. The following image show the deployment created by <code>apps</code> in our case the helm-guestbook </li>
+</ul>
+<p>The following image shows the newly created GitHub <code>iascable-gitops-guestbook</code> repository.</p>
+<p><img alt="" src="images/develop-own-module-02.png" /></p>
+<p>For more details visit the template of the <a href="https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template">terraform-tools-gitops</a> module.</p>
+<h3 id="71-understand-how-the-guestbook-module-content-was-pasted-into-the-new-iascable-gitops-guestbook-repository">7.1 Understand how the <code>guestbook module content</code> was pasted into the new <code>iascable-gitops-guestbook</code> repository<a class="headerlink" href="#71-understand-how-the-guestbook-module-content-was-pasted-into-the-new-iascable-gitops-guestbook-repository" title="Permanent link">&para;</a></h3>
+<p>Following the concept for the gitops bootstrap setup documented in the <a href="https://github.com/cloud-native-toolkit/template-terraform-gitops">template-terraform-gitops</a> GitHub repository.</p>
+<p>We have two main folders in the <code>iascable-gitops-guestbook</code> repository.</p>
+<ol>
+<li>One for the <code>Argo CD application</code> configurations called <code>argocd</code></li>
+<li>One for the application which will be deployed be the <code>Argo CD application</code> configurations called payload.</li>
+</ol>
+<p>Let us inspect these two folders. The <code>gif</code> below shows some of the created files and folders.</p>
+<p><img alt="" src="images/develop-own-module-05.gif" /></p>
+<h4 id="711-argocd-folder">7.1.1 <code>argocd</code> folder<a class="headerlink" href="#711-argocd-folder" title="Permanent link">&para;</a></h4>
+<p>There were two <code>Argo CD application</code> configurations added into the <code>iascable-gitops-guestbook</code> repository. </p>
+<ol>
+<li>
+<p>One for the <code>namespace</code> in the OpenShift or Kubernetes cluster where the guestbook application will be deployed. That <code>Argo CD application</code> configuration is related to exiting  <code>1-infrastructure</code> Argo CD project created by the <a href="https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap">GitOps bootstap module</a>.</p>
+</li>
+<li>
+<p>One for the <code>guestbook</code> application we want to deploy. That <code>Argo CD application</code> configuration is related to exiting  <code>3-application</code> Argo CD project created by the <a href="https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap">GitOps bootstap module</a>.</p>
+</li>
+</ol>
+<p>Let's take a look a the created <code>Argo CD application configurations</code></p>
+<p>We have two <code>Argo CD</code> application configurations:</p>
+<h4 id="7111-guestbook-namespace-in-argocd1-infrastructureclusterdefaultbasenamespaceyaml">7.1.1.1 Guestbook <strong>Namespace</strong> in <code>argocd.1-infrastructure.cluster.default.base.namespace.yaml</code><a class="headerlink" href="#7111-guestbook-namespace-in-argocd1-infrastructureclusterdefaultbasenamespaceyaml" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argoproj.io/v1alpha1</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">namespace-guestbook</span><span class="w"></span>
+<span class="w">  </span><span class="nt">finalizers</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resources-finalizer.argocd.argoproj.io</span><span class="w"></span>
+<span class="nt">spec</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">destination</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"></span>
+<span class="w">    </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubernetes.default.svc</span><span class="w"></span>
+<span class="w">  </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1-infrastructure</span><span class="w"></span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">payload/1-infrastructure/namespace/guestbook/namespace</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/thomassuedbroecker/iascable-gitops-guestbook.git</span><span class="w"></span>
+<span class="w">    </span><span class="nt">targetRevision</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span><span class="w"></span>
+<span class="w">  </span><span class="nt">syncPolicy</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">automated</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">      </span><span class="nt">selfHeal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ignoreDifferences</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+</code></pre></div>
+<h4 id="7112-guestbook-application-deployment-argocd3-applicationsclusterdefaultbaseguestbook-helm-guestbookyaml">7.1.1.2 Guestbook <strong>application deployment</strong> <code>argocd.3-applications.cluster.default.base.guestbook-helm-guestbook.yaml</code><a class="headerlink" href="#7112-guestbook-application-deployment-argocd3-applicationsclusterdefaultbaseguestbook-helm-guestbookyaml" title="Permanent link">&para;</a></h4>
+<p>This is the Argo CD application configuration <code>guestbook-helm-guestbook.yaml</code> file, which was created automaticly by our module with the <code>igc gitops-module</code> command.</p>
+<p>That <code>payload</code> directory is used as the <code>source.path</code> in that <code>Argo CD application</code> configuration as you see above.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argoproj.io/v1alpha1</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">guestbook-helm-guestbook</span><span class="w"></span>
+<span class="w">  </span><span class="nt">finalizers</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resources-finalizer.argocd.argoproj.io</span><span class="w"></span>
+<span class="nt">spec</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">destination</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">guestbook</span><span class="w"></span>
+<span class="w">    </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://kubernetes.default.svc</span><span class="w"></span>
+<span class="w">  </span><span class="nt">project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3-applications</span><span class="w"></span>
+<span class="w">  </span><span class="nt">source</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">payload/3-applications/namespace/guestbook/helm-guestbook</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/thomassuedbroecker/iascable-gitops-guestbook.git</span><span class="w"></span>
+<span class="w">    </span><span class="nt">targetRevision</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span><span class="w"></span>
+<span class="w">    </span><span class="nt">helm</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">releaseName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">helm-guestbook</span><span class="w"></span>
+<span class="w">  </span><span class="nt">syncPolicy</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">automated</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">prune</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">      </span><span class="nt">selfHeal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ignoreDifferences</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+</code></pre></div>
+<h4 id="712-payload-folder">7.1.2 <code>payload</code> folder<a class="headerlink" href="#712-payload-folder" title="Permanent link">&para;</a></h4>
+<p>That folder contains a <code>namespace</code> payload and the <code>helm-chart</code> payload. </p>
+<h4 id="7122-guestbook-namespace-in-payload1-infrastructureclusterdefaultbase">7.1.2.2 Guestbook <strong>Namespace</strong> in <code>payload.1-infrastructure.cluster.default.base</code><a class="headerlink" href="#7122-guestbook-namespace-in-payload1-infrastructureclusterdefaultbase" title="Permanent link">&para;</a></h4>
+<p>In the folder <code>payload.1-infrastructure.cluster.default.base</code> we have an <code>ns.yaml</code> and <code>rbac.yaml</code>. </p>
+<ul>
+<li><code>ns.yaml</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Namespace</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">guestbook</span><span class="w"></span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">argocd.argoproj.io/sync-wave</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-30&quot;</span><span class="w"></span>
+<span class="nn">---</span><span class="w"></span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operators.coreos.com/v1</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OperatorGroup</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">guestbook-operator-group</span><span class="w"></span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">guestbook</span><span class="w"></span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">argocd.argoproj.io/sync-wave</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-20&quot;</span><span class="w"></span>
+<span class="nt">spec</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">targetNamespaces</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">guestbook</span><span class="w"></span>
+<span class="nn">---</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>rbac.yaml</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Role</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd-admin</span><span class="w"></span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">guestbook</span><span class="w"></span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">argocd.argoproj.io/sync-wave</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-20&quot;</span><span class="w"></span>
+<span class="nt">rules</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiGroups</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="w"></span>
+<span class="nn">---</span><span class="w"></span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io/v1</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RoleBinding</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd-admin</span><span class="w"></span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">guestbook</span><span class="w"></span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">argocd.argoproj.io/sync-wave</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-20&quot;</span><span class="w"></span>
+<span class="nt">roleRef</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span><span class="w"></span>
+<span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Role</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd-admin</span><span class="w"></span>
+<span class="nt">subjects</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbac.authorization.k8s.io</span><span class="w"></span>
+<span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Group</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system:serviceaccounts:openshift-gitops</span><span class="w"></span>
+</code></pre></div>
+<blockquote>
+<p>Note: This configuration is reposible that our initial deployment of the guestbook application does run in a permission problem. Because we are not allowed to bind port <strong>:80</strong> with the permission in that namespace (OpenShift project).</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>AH00558: apache2: Could not reliably determine the server<span class="s1">&#39;s fully qualified domain name, using 172.17.5.168. Set the &#39;</span>ServerName<span class="err">&#39;</span> directive globally to suppress this message
+<span class="o">(</span><span class="m">13</span><span class="o">)</span>Permission denied: AH00072: make_sock: could not <span class="nb">bind</span> to address <span class="o">[</span>::<span class="o">]</span>:80
+<span class="o">(</span><span class="m">13</span><span class="o">)</span>Permission denied: AH00072: make_sock: could not <span class="nb">bind</span> to address <span class="m">0</span>.0.0.0:80
+no listening sockets available, shutting down
+AH00015: Unable to open logs
+</code></pre></div>
+<h4 id="7112-guestbook-helm-application-deployment-payload3-applicationsclusterdefaultbase">7.1.1.2 Guestbook helm <strong>application deployment</strong> <code>payload.3-applications.cluster.default.base</code><a class="headerlink" href="#7112-guestbook-helm-application-deployment-payload3-applicationsclusterdefaultbase" title="Permanent link">&para;</a></h4>
+<p>That folder contains the <strong>Guestbook application</strong> <code>helm chart configuration</code> to deploy the guestbook application.</p>
+<p>The script <code>scripts/create-yaml.sh</code> of our <a href="https://github.com/thomassuedbroecker/gitops-terraform-guestbook/blob/main/scripts/create-yaml.sh">module <code>gitops-terraform-guestbook</code></a> was resposible to copy the guestbook helm-chart into the payload directory. Therefor we did the customization of that file.</p>
+<p>We defined the values content for the helm chart variables before in the <code>module.tf</code> file. That file <code>values.yaml</code> file is used in <code>Argo CD application</code> configuration for the parameters.</p>
+<div class="highlight"><pre><span></span><code>  <span class="nv">values_content</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="nv">helm_guestbook</span> <span class="o">=</span> <span class="o">{</span>
+      // create entry
+    <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>
+<p>The following gif shows the relation of the configuration.</p>
+<p><img alt="" src="images/develop-own-module-06.gif" /></p>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant"], "search": "assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.2ab50757.min.js"></script>
+      
+    
+  </body>
+</html>
